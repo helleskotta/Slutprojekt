@@ -4,7 +4,4 @@
 [Pp]lugins/wp8.json
 [Pp]lugins/remote_ios.json
 /[Pp]latforms/
-simulation/app-host.js
-simulation/app-host.json
-simulation/sim-host.js
-simulation/sim-host.json
+/simulation/
