@@ -68,5 +68,14 @@
     <Build Include="dbo\Tables\AspNetUserClaims.sql" />
     <Build Include="dbo\Tables\AspNetRoles.sql" />
     <Build Include="dbo\Tables\AspNetRoleClaims.sql" />
+    <Build Include="dbo\Tables\WorkoutSession.sql" />
+    <Build Include="dbo\Tables\Exercise.sql" />
+    <Build Include="dbo\Tables\Set.sql" />
+    <Build Include="dbo\Tables\UserWeight.sql" />
+    <Build Include="dbo\Tables\UserSettings.sql" />
+    <Build Include="dbo\Tables\Goal.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="SlutprojektDatabase.refactorlog" />
   </ItemGroup>
 </Project>
