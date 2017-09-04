@@ -6,10 +6,10 @@
 *.user
 *.userosscache
 *.sln.docstates
-app-host.js
-app-host.json
-sim-host.js
-sim-host.json
+simulation/app-host.js
+simulation/app-host.json
+simulation/sim-host.js
+simulation/sim-host.json
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
