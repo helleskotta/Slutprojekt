@@ -9,7 +9,8 @@
 /simulation/
 simulation/
 [Ss]imulation/
-/[Ss]imulation/
+/[Ss]imulation/*.json
+/[Ss]imulation/*.js
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
