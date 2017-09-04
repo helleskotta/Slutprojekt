@@ -17,7 +17,7 @@ namespace SlutprojektBackend
         public async Task<string> Index()
         {
 
-            await identityDbContext.Database.EnsureCreatedAsync();
+            //await identityDbContext.Database.EnsureCreatedAsync();
             return"ok";
         }
     }

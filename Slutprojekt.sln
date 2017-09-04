@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "Slutprojekt", "Slutprojekt\Slutprojekt.jsproj", "{4BDC5587-6CA1-4F9F-85C3-2BEB26CD03ED}"
+Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "SlutprojektCordova", "Slutprojekt\SlutprojektCordova.jsproj", "{4BDC5587-6CA1-4F9F-85C3-2BEB26CD03ED}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SlutprojektBackend", "SlutprojektBackend\SlutprojektBackend.csproj", "{DF5CCAE8-A2A4-4DAA-B3DA-4B385967D132}"
 EndProject
