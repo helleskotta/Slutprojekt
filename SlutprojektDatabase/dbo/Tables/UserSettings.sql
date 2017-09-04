@@ -1,6 +1,6 @@
-﻿CREATE TABLE [dbo].[UserSettings]
+﻿CREATE TABLE [logit].[UserSettings]
 (
 	[Id] INT NOT NULL PRIMARY KEY, 
-     [UserID] NVARCHAR(450) NOT NULL references AspNetUsers(ID), 
+     [UserID] NVARCHAR(450) NOT NULL, --references AspNetUsers(ID), 
     [Gender] NVARCHAR(10) NOT NULL
 )

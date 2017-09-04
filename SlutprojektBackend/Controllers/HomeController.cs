@@ -9,11 +9,6 @@ namespace SlutprojektBackend
 {
     public class HomeController : Controller
     {
-        IdentityDbContext identityDbContext;
-        public HomeController( IdentityDbContext identityDbContext)
-        {
-            this.identityDbContext = identityDbContext;
-        }
         public async Task<string> Index()
         {
 

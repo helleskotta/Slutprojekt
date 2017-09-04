@@ -18,7 +18,6 @@ namespace SlutprojektBackend.Models.Entities
         public double? Distance { get; set; }
         public string SessionUserNote { get; set; }
 
-        public AspNetUsers User { get; set; }
         public ICollection<Exercise> Exercise { get; set; }
     }
 }
