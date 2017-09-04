@@ -1,6 +1,6 @@
-* {
+/** {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
-}
+}*/
 
 body {
     -webkit-touch-callout: none;
@@ -16,9 +16,7 @@ body {
     padding: 0px;
     /*text-transform: uppercase;*/
     width: 100%;
-    background-color: #32383d;
-    font-family: 'RobotoRegular', 'Droid Sans', 'Segoe UI', Segoe, 'San Francisco', 'Helvetica Neue', Helvetica, Arial, Geneva, sans-serif;
-    font-size: 12px;
+    background-color: #999999;
 }
 
 a {
@@ -51,7 +49,7 @@ a:hover {
 }
 
 h1 {
-    font-size:24px;
+    font-size:28px;
     font-weight:bold;
     margin:0px;
     overflow:visible;
@@ -60,9 +58,16 @@ h1 {
     font-family: 'Titillium';
 }
 
+h2 {
+    font-size: 16px;
+    text-transform:uppercase;
+    text-align:center;
+    font-weight:normal;
+}
+
 .event {
     border-radius:4px;
-    -webkit-border-radius:4px;
+    /*-webkit-border-radius:4px;*/
     color:#FFFFFF;
     font-size:12px;
     margin:0px 30px;
@@ -93,23 +98,22 @@ h1 {
  
 .blink {
     animation:fade 3000ms infinite;
-    -webkit-animation:fade 3000ms infinite;
+    /*-webkit-animation:fade 3000ms infinite;*/
 }
-
-input[type=text], [type=number] {
+input[type=text], [type=password], [type=email] {
     border: 2px solid #ccc;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    width: 130px;
     height: 25px;
     width: 100%;
 }
 
-label {
-    font-size: 14px;
+input[type=number] {
+    width:15%;
 }
 
-input[type=text]:focus, [type=number]:focus {
+
+input[type=text]:focus,[type=password]:focus, [type=email]:focus {
     border-color: #333;
 }
 
@@ -122,7 +126,6 @@ input[type=submit], [type=button] {
     border-radius: 15px;
     font-size: 14px;
     text-transform: uppercase;
-    text-align: left;
     font-family: 'Titillium';
     width:100%;
     text-align:center;
@@ -133,6 +136,9 @@ input[type=submit], [type=button] {
         opacity: 0.75;
     }
 
+label {
+    font-size: 14px;
+}
 select {
     border: 2px solid #ccc;
     -webkit-border-radius: 5px;
