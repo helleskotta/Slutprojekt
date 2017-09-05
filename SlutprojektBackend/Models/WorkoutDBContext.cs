@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SlutprojektBackend.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,11 @@ namespace SlutprojektBackend.Models.Entities
         public WorkoutDBContext(DbContextOptions<WorkoutDBContext> o) : base (o)
         {
             
+        }
+
+        public void AddWorkoutSession(string userID, WorkoutSessionVM workoutSessionToAdd) //Bool return?
+        {
+
         }
         //Lägg till metoder
     }
