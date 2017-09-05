@@ -23,7 +23,7 @@ namespace SlutprojektBackend
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            var connString = conf["connString"];
+            var connString = conf["connStringLocal"];
             services.AddDbContext<IdentityDbContext>(o => o.UseSqlServer(connString));
 
 
