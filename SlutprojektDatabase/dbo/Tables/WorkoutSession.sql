@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [logit].[WorkoutSession]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[ID] INT NOT NULL PRIMARY KEY, 
     [UserID] NVARCHAR(450) NOT NULL, --references AspNetUsers(ID), 
     [Date] DATETIME NOT NULL, 
     [Type] NVARCHAR(50) NULL, 
