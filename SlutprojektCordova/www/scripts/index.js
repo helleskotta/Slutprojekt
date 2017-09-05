@@ -16,7 +16,6 @@
         $("#register").hide();
         $("#welcome").hide();
         $("#addstats").hide();
-        $("#showErrorRegister").hide();
         //// TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
         //var parentElement = document.getElementById('deviceready');
         //var listeningElement = parentElement.querySelector('.listening');
@@ -40,7 +39,6 @@ $("#redirect").click(function () {
     $("#register").show();
     $("#welcome").hide();
     $("#addstats").hide();
-    $("#showErrorRegister").hide();
 });
 
 //$("#stats").click(function () {
@@ -65,7 +63,6 @@ $("#mystats").click(function () {
     $("#welcome").hide();
     $("#register").hide();
     $("#addstats").show();
-    $("#showErrorRegister").hide();
 });
 
 $("#main").click(function () {
@@ -90,6 +87,7 @@ $("#loginTest").click(function () {
     })
 });
 
+///////////////////////////////////////////////////////////////// REGISTER
 $("#add").click(function () {
 
     $.ajax({
@@ -115,14 +113,33 @@ $("#add").click(function () {
                 $("#welcome").show();
                 $("#register").hide();
                 $("#addstats").hide();
-                $("#showErrorRegister").hide();
         },
         error: function (result) {
             alert("register error:" + result);
-            $("#showErrorRegister").show();
                     //.find("p").html(result.)
         }
-
     })
 
+});
+
+///////////////////////////////////////////////////////////////// LOGIN
+$("#loginbtn").click(function () {
+
+    $.ajax({
+        url: "http://localhost:49902/Account/Login",
+        type: "POST",
+        data: {
+            "UserName": $("#username").val(), /* Username or Email */
+            "PassWord": $("#password").val()
+        },
+
+        success: function (result) {
+            alert("Login successfull: " + result);
+        },
+        error: function (result) {
+            alert("Login error:" + result);
+            $("#showErrorRegister").show();
+            //.find("p").html(result.)
+        }
+    })
 });

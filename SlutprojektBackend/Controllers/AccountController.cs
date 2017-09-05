@@ -47,7 +47,7 @@ namespace SlutprojektBackend.Controllers
                 return Content("no");
             }
             var r = await signInManager.PasswordSignInAsync(viewModel.UserName, viewModel.Password, true, false);
-            return Content("YEs");
+            return Content("Yes");
             //return result;
 
         }
@@ -57,33 +57,18 @@ namespace SlutprojektBackend.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(LoginVM model)
         {
-
-            #region Validera vy-modellen
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return Content("NO");
             }
-            #endregion
-
-            #region Skapa användaren 
             
-            // Spara den nya användaren i databasen
-            var result = await userManager.CreateAsync(new IdentityUser(model.UserName), model.PassWord);
+            var result = await signInManager.PasswordSignInAsync(model.UserName, model.PassWord, true, false);
             if (!result.Succeeded)
             {
-                // Lägg till ett fel som visas i formuläret
-                ModelState.AddModelError("UserName", result.Errors.First().Description);
-                return View(model);
+                return Content("no");
             }
-            #endregion
-
-            #region Logga in och skicka användaren vidare
-            // Logga in användaren (med en icke-persistent cookie)
-            await signInManager.PasswordSignInAsync(model.UserName, model.PassWord, false, false);
-
-            // Skicka användaren till en annan inloggnings-skyddad action
-            return RedirectToAction(nameof(Index), "Members");
-            #endregion
+            
+            return Content("Logged in!");
         }
 
 
