@@ -1,6 +1,6 @@
-﻿CREATE TABLE [dbo].[Exercise]
+﻿CREATE TABLE [logit].[Exercise]
 (
 	[Id] INT NOT NULL PRIMARY KEY, 
-    [WorkoutSessionID] INT NOT NULL references WorkoutSession(ID), 
+    [WorkoutSessionID] INT NOT NULL references logit.WorkoutSession(ID), 
     [ExerciseName] NVARCHAR(20) NOT NULL
 )

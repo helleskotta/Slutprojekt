@@ -9,7 +9,5 @@ namespace SlutprojektBackend.Models.Entities
         public string UserId { get; set; }
         public double UserWeight1 { get; set; }
         public DateTime Date { get; set; }
-
-        public AspNetUsers User { get; set; }
     }
 }

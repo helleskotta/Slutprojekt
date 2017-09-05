@@ -8,7 +8,5 @@ namespace SlutprojektBackend.Models.Entities
         public int Id { get; set; }
         public string UserId { get; set; }
         public string Gender { get; set; }
-
-        public AspNetUsers User { get; set; }
     }
 }

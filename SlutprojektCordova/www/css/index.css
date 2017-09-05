@@ -1,38 +1,38 @@
-* {
+/** {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
-}
+}*/
 
 body {
     -webkit-touch-callout: none;
     -webkit-text-size-adjust: none;
     -webkit-user-select: none;
-    background-image: linear-gradient(top, #FF0000 0%, #C0C0C0 51%);
-    background-image: -webkit-linear-gradient(top, #FF0000 0%, #E4E4E4 51%);
-    /*background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #A7A7A7),
-        color-stop(0.51, #E4E4E4)
-    );*/
+    background-image: linear-gradient(top, #C0C0C0 0%, #C0C0C0 51%);
+    background-image: -webkit-linear-gradient(top, #C0C0C0 0%, #E4E4E4 51%);
     background-attachment: fixed;
     font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size: 12px;
     height: 100%;
     margin: 0px;
     padding: 0px;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     width: 100%;
-    background-color: #32383d;
-    font-family: 'RobotoRegular', 'Droid Sans', 'Segoe UI', Segoe, 'San Francisco', 'Helvetica Neue', Helvetica, Arial, Geneva, sans-serif;
-    font-size: 12px;
+    background-color: #999999;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+a:hover {
+    color:#999;
 }
 
 .app {
     background: transparent; 
     position: absolute;             
     left: 50%;
-    top: 50%;
+    top: 5%;
     height: 50px;                  
     width: 225px;                   
     text-align: center;
@@ -49,17 +49,25 @@ body {
 }
 
 h1 {
-    font-size:24px;
-    font-weight:normal;
+    font-size:28px;
+    font-weight:bold;
     margin:0px;
     overflow:visible;
     padding:0px;
     text-align:center;
+    font-family: 'Titillium';
+}
+
+h2 {
+    font-size: 16px;
+    text-transform:uppercase;
+    text-align:center;
+    font-weight:normal;
 }
 
 .event {
     border-radius:4px;
-    -webkit-border-radius:4px;
+    /*-webkit-border-radius:4px;*/
     color:#FFFFFF;
     font-size:12px;
     margin:0px 30px;
@@ -90,5 +98,55 @@ h1 {
  
 .blink {
     animation:fade 3000ms infinite;
-    -webkit-animation:fade 3000ms infinite;
+    /*-webkit-animation:fade 3000ms infinite;*/
 }
+input[type=text], [type=password], [type=email] {
+    border: 2px solid #ccc;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    height: 25px;
+    width: 100%;
+}
+
+input[type=number] {
+    width:15%;
+}
+
+
+input[type=text]:focus,[type=password]:focus, [type=email]:focus {
+    border-color: #333;
+}
+
+input[type=submit], [type=button] {
+    padding: 10px 20px;
+    background: #2DA130;
+    color: #fff;
+    border: 0 none;
+    cursor: pointer;
+    border-radius: 15px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: 'Titillium';
+    width:100%;
+    text-align:center;
+}
+
+    input[type=submit]:hover, [type=button]:hover {
+        filter: alpha(opacity=75);
+        opacity: 0.75;
+    }
+
+label {
+    font-size: 14px;
+}
+select {
+    border: 2px solid #ccc;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+    select:focus {
+        border: 2px solid #ccc;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+    }

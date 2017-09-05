@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using SlutprojektBackend.Models.Entities;
 
 namespace SlutprojektBackend
 {
@@ -24,14 +25,14 @@ namespace SlutprojektBackend
         public void ConfigureServices(IServiceCollection services)
         {
             var connString = conf["connStringLocal"];
-            services.AddDbContext<IdentityDbContext>(o => o.UseSqlServer(connString));
-
+            services.AddDbContext<AppIdentityDBContext>(o => o.UseSqlServer(connString));
+            services.AddDbContext<WorkoutDBContext>(o => o.UseSqlServer(connString));
 
             services.AddIdentity<IdentityUser, IdentityRole>(o =>
             {
                 o.Password.RequireNonAlphanumeric = false;
                 o.Password.RequiredLength = 6;
-            }).AddEntityFrameworkStores<IdentityDbContext>()
+            }).AddEntityFrameworkStores<AppIdentityDBContext>()
               .AddDefaultTokenProviders();
             //services.ConfigureApplicationCookie(o => o.LoginPath = "/Account/LogIn");
             services.AddMvc();

@@ -12,8 +12,119 @@
     </head>
     <body>
         <div class="app">
+<!--------------------------------------------------------------------------------------------->
+            <!--ID LOGIN -->
+            <div id="login">
+                <img width="50%" src="images/logo-color.png" />
+                <h1>LogIt</h1>
+                <h2>Login</h2>
+                <br />
+                <form action="">
+                    <label>E-mail or username</label>
+                    <br />
+                    <input type="text" />
+                    <br />
+                    <br />
+                    <label>Password</label>
+                    <br />
+                    <input type="text" />
+                    <br />
+                    <a href="page.html">Forgot your password?</a>
+                    <br />
+                    <br />
+                    <input type="submit" value="LOGIN" style="background:white; color:#2DA130;" />
+                </form>
+                <br />
+                <input type="button" value="REGISTER" id="redirect" />
+            </div>
+            <!-- LOGIN VIEW END -->
+            <!--------------------------------------------------------------------------------------------->
+
+            <!-- ID REGISTER -->
+            <div id="register">
+                <input type="button" value="ADD STATS" id="stats" /><br /><br />
+                <h1>
+                    <img width="20%" src="images/logo-color.png" />
+                    LogIt
+                </h1>
+                <h2>Register</h2>
+                <br />
+                <form action="index.html">
+                    <label>Name (a username is fine)<font color="red">*</font></label>
+                    <br />
+                    <input type="text" required>
+                    <br />
+                    <br />
+                    <label>E-mail <font color="red">*</font></label>
+                    <br />
+                    <input type="email" required>
+                    <br />
+                    <br />
+                    <label>Password <font color="red">*</font></label>
+                    <br />
+                    <input type="password" required>
+                    <br />
+                    <br />
+                    <label>Re-type password <font color="red">*</font></label>
+                    <br />
+                    <input type="password" required>
+                    <br />
+                    <br />
+                    <input type="submit" value="REGISTER" id="add" />
+                </form>
+            </div>
+            <!--REGISTER END-->
+            <!--------------------------------------------------------------------------------------------->
+
+            <!-- ID WELCOME -->
+
+            <div id="welcome">
+                <h2><b>Welcome to</b></h2>
+                <img width="50%" src="images/logo-color.png" />
+                <h1>
+                    LogIt
+                </h1>
+                <br /><br />
+                <input type="button" value="ADD STATS" id="mystats" /><br /><br />
+
+                <input type="button" value="VIEW APP" id="main" style="background:white; color:#2DA130;" />
+            </div>
+            <!-- WELCOME END -->
+            <!--------------------------------------------------------------------------------------------->
+
+            <!--ADD STATS SCREEN-->
+            <div id="addstats">
+                <h1>
+                    <img width="20%" src="images/logo-color.png" />
+                    LogIt
+                </h1>
+                <br /><br />
+                <form action="">
+                    <label>Height</label><br />
+                    <input type="number" />
+                    <select>
+                        <option>cm</option>
+                        <option>inch</option>
+                    </select>
+                    <br /><br />
+                    <label>Weight</label><br />
+                    <input type="number" />
+                    <select>
+                        <option>kg</option>
+                        <option>pound</option>
+                    </select><br /><br />
+                    <br />
+                    <label>Chest</label> <label>Waist</label> <label>Hips</label><br />
+                    <input type="number" /> <input type="number" /> <input type="number" /><br /><br />
+                    <input type="submit" value="SUBMIT" />
+                </form>
+                <a href="">Add later</a>
+            </div>
+            <!--ADD TAG END -->
 
         </div>
+
+        <script src="scripts/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="scripts/platformOverrides.js"></script>
         <script type="text/javascript" src="scripts/index.js"></script>

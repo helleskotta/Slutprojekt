@@ -1,23 +1,28 @@
-﻿// For an introduction to the Blank template, see the following documentation:
-// http://go.microsoft.com/fwlink/?LinkID=397704
-// To debug code on page load in cordova-simulate or on Android devices/emulators: launch your app, set breakpoints, 
+﻿// To debug code on page load in cordova-simulate or on Android devices/emulators: launch your app, set breakpoints, 
 // and then run "window.location.reload()" in the JavaScript Console.
+
 (function () {
     "use strict";
 
-    document.addEventListener( 'deviceready', onDeviceReady.bind( this ), false );
+    document.addEventListener('deviceready', onDeviceReady.bind(this), false);
 
     function onDeviceReady() {
+
         // Handle the Cordova pause and resume events
-        document.addEventListener( 'pause', onPause.bind( this ), false );
-        document.addEventListener( 'resume', onResume.bind( this ), false );
-        
-        // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
-        var parentElement = document.getElementById('deviceready');
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+        document.addEventListener('pause', onPause.bind(this), false);
+        document.addEventListener('resume', onResume.bind(this), false);
+
+        $("#login").show();
+        $("#register").hide();
+        $("#welcome").hide();
+        $("#addstats").hide();
+        //// TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
+        //var parentElement = document.getElementById('deviceready');
+        //var listeningElement = parentElement.querySelector('.listening');
+        //var receivedElement = parentElement.querySelector('.received');
+        //listeningElement.setAttribute('style', 'display:none;');
+        //receivedElement.setAttribute('style', 'display:block;');
+
     };
 
     function onPause() {
@@ -27,4 +32,30 @@
     function onResume() {
         // TODO: This application has been reactivated. Restore application state here.
     };
-} )();
+})();
+
+$("#redirect").click(function () {
+    $("#login").hide();
+    $("#register").show();
+    $("#welcome").hide();
+    $("#addstats").hide();
+});
+
+$("#stats").click(function () {
+    $("#login").hide();
+    $("#welcome").show();
+    $("#register").hide();
+    $("#addstats").hide();
+});
+
+
+$("#mystats").click(function () {
+    $("#login").hide();
+    $("#welcome").hide();
+    $("#register").hide();
+    $("#addstats").show();
+});
+
+$("#main").click(function () {
+    window.location = "main.html";
+});
