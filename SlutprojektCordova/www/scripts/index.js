@@ -93,6 +93,7 @@ $("#loginTest").click(function () {
 $("#registerForm").on('submit', function () {
 
     $.ajax({
+        //url: "http://localhost:49902/Account/Register",
         url: "http://localhost:49902/Account/Register",
         type: "POST",
         data: {
