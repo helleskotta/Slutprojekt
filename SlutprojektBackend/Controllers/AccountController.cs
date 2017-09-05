@@ -17,13 +17,11 @@ namespace SlutprojektBackend.Controllers
     {
         UserManager<IdentityUser> userManager;
         SignInManager<IdentityUser> signInManager;
-        IdentityDbContext identityContext;
 
-        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IdentityDbContext identityContext)
+        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
-            this.identityContext = identityContext;
         }
 
         [HttpGet]
@@ -35,25 +33,21 @@ namespace SlutprojektBackend.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterVM viewModel)
+        public async Task<string> Register(RegisterVM viewModel)
         {
-            //await identityContext.Database.EnsureCreatedAsync();
-            //Skapa användare
-
             if (!ModelState.IsValid)
-                return View(viewModel);
+                return "NO";//new IdentityResult {Succeeded=false};
 
             var result = await userManager.CreateAsync(new IdentityUser(viewModel.UserName), (viewModel.Password));
 
             if (!result.Succeeded)
             {
                 ModelState.AddModelError("Password", result.Errors.First().Description);
-                return View(viewModel);
+                //return result;
+                return "NO";
             }
-
-
-            return RedirectToAction(nameof(Login));
+            return "yes!";
+            //return result;
 
         }
 

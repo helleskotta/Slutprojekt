@@ -49,29 +49,32 @@
                 </h1>
                 <h2>Register</h2>
                 <br />
-                <form action="index.html">
+                <form id="registerForm">
                     <label>Name (a username is fine)<font color="red">*</font></label>
                     <br />
-                    <input type="text" required>
+                    <input id="newUserName" type="text" required>
                     <br />
                     <br />
                     <label>E-mail <font color="red">*</font></label>
                     <br />
-                    <input type="email" required>
+                    <input id="newEmail" type="email" required>
                     <br />
                     <br />
                     <label>Password <font color="red">*</font></label>
                     <br />
-                    <input type="password" required>
+                    <input id="newPassword" type="password" required>
                     <br />
                     <br />
                     <label>Re-type password <font color="red">*</font></label>
                     <br />
-                    <input type="password" required>
+                    <input id="confirmPassword" type="password" required>
                     <br />
                     <br />
                     <input type="submit" value="REGISTER" id="add" />
                 </form>
+                <div id="showErrorRegister">
+                    <p>Failed</p>
+                </div>
             </div>
             <!--REGISTER END-->
             <!--------------------------------------------------------------------------------------------->

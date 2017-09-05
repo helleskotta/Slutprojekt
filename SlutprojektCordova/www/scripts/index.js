@@ -16,6 +16,7 @@
         $("#register").hide();
         $("#welcome").hide();
         $("#addstats").hide();
+        $("#showErrorRegister").hide();
         //// TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
         //var parentElement = document.getElementById('deviceready');
         //var listeningElement = parentElement.querySelector('.listening');
@@ -39,14 +40,24 @@ $("#redirect").click(function () {
     $("#register").show();
     $("#welcome").hide();
     $("#addstats").hide();
+    $("#showErrorRegister").hide();
 });
 
-$("#stats").click(function () {
-    $("#login").hide();
-    $("#welcome").show();
-    $("#register").hide();
-    $("#addstats").hide();
-});
+//$("#stats").click(function () {
+//    $.ajax({
+//        url: "http://localhost:49902",
+//        method: "POST",
+//        success: function (result) {
+//            console.log(result);
+//        }
+        
+//    })
+
+//    //$("#login").hide();
+//    //$("#welcome").show();
+//    //$("#register").hide();
+//    //$("#addstats").hide();
+//});
 
 
 $("#mystats").click(function () {
@@ -54,8 +65,42 @@ $("#mystats").click(function () {
     $("#welcome").hide();
     $("#register").hide();
     $("#addstats").show();
+    $("#showErrorRegister").hide();
 });
 
 $("#main").click(function () {
     window.location = "main.html";
+});
+
+$("#registerForm").on('submit', function () {
+
+    $.ajax({
+        url: "http://localhost:49902/Account/Register",
+        type: "POST",
+        //data: {
+        //    "newUserName": $("#newUserName").val(),
+        //    "newEmail": $("#newEmail").val(),
+        //    "newPassword": $("#newPassword").val(),
+        //    "confirmPassword": $("#confirmPassword").val(),
+        //},
+        success: function (result) {
+            console.log(result);
+            //if (result.succeeded === true) {
+            //    $("#login").hide();
+            //    $("#welcome").show();
+            //    $("#register").hide();
+            //    $("#addstats").hide();
+            //    $("#showErrorRegister").hide();
+            //} else {
+            //    $("#showErrorRegister").show();
+            //        //.find("p").html(result.)
+
+            //}
+        },
+        error: function (result) {
+            console.log("error:" + result);
+        }
+
+    })
+
 });
