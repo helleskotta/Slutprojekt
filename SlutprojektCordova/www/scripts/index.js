@@ -90,10 +90,9 @@ $("#loginTest").click(function () {
     })
 });
 
-$("#registerForm").on('submit', function () {
+$("#add").click(function () {
 
     $.ajax({
-        //url: "http://localhost:49902/Account/Register",
         url: "http://localhost:49902/Account/Register",
         type: "POST",
         data: {
@@ -112,12 +111,11 @@ $("#registerForm").on('submit', function () {
         success: function (result) {
             alert("Register successfull: " + result);
            
-                //$("#login").hide();
-                //$("#welcome").show();
-                //$("#register").hide();
-                //$("#addstats").hide();
-                //$("#showErrorRegister").hide();
-                 
+                $("#login").hide();
+                $("#welcome").show();
+                $("#register").hide();
+                $("#addstats").hide();
+                $("#showErrorRegister").hide();
         },
         error: function (result) {
             alert("register error:" + result);
