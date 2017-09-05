@@ -72,33 +72,56 @@ $("#main").click(function () {
     window.location = "main.html";
 });
 
+
+
+$("#loginTest").click(function () {
+    $.ajax({
+        url: "http://localhost:49902/Account/LoggedIn",
+        type: "POST",
+        //xhrFields: {
+        //    withCredentials: true
+        //},
+        success: function (result) {
+            console.log("success: " + result);
+        },
+        error: function (result) {
+            console.log("login error: " + result);
+        }
+    })
+});
+
 $("#registerForm").on('submit', function () {
 
     $.ajax({
         url: "http://localhost:49902/Account/Register",
         type: "POST",
-        //data: {
-        //    "newUserName": $("#newUserName").val(),
-        //    "newEmail": $("#newEmail").val(),
-        //    "newPassword": $("#newPassword").val(),
-        //    "confirmPassword": $("#confirmPassword").val(),
+        data: {
+            "UserName": $("#newUserName").val(),
+            "Email": $("#newEmail").val(),
+            "Password": $("#newPassword").val(),
+            "ConfirmPassword": $("#confirmPassword").val(),
+        },
+        //xhrFields: {
+        //    withCredentials: true
+        //},
+        //crossDomain: true,
+        //headers: {
+        //    Cookie: mycookies
         //},
         success: function (result) {
-            console.log(result);
-            //if (result.succeeded === true) {
-            //    $("#login").hide();
-            //    $("#welcome").show();
-            //    $("#register").hide();
-            //    $("#addstats").hide();
-            //    $("#showErrorRegister").hide();
-            //} else {
-            //    $("#showErrorRegister").show();
-            //        //.find("p").html(result.)
-
-            //}
+            alert("Register successfull: " + result);
+           
+                //$("#login").hide();
+                //$("#welcome").show();
+                //$("#register").hide();
+                //$("#addstats").hide();
+                //$("#showErrorRegister").hide();
+                 
         },
         error: function (result) {
-            console.log("error:" + result);
+            alert("register error:" + result);
+            $("#showErrorRegister").show();
+                    //.find("p").html(result.)
         }
 
     })

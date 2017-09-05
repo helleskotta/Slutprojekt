@@ -33,10 +33,10 @@ namespace SlutprojektBackend.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<string> Register(RegisterVM viewModel)
+        public async Task<IActionResult> Register(RegisterVM viewModel)
         {
             if (!ModelState.IsValid)
-                return "NO";//new IdentityResult {Succeeded=false};
+                return Content("no");//new IdentityResult {Succeeded=false};
 
             var result = await userManager.CreateAsync(new IdentityUser(viewModel.UserName), (viewModel.Password));
 
@@ -44,9 +44,10 @@ namespace SlutprojektBackend.Controllers
             {
                 ModelState.AddModelError("Password", result.Errors.First().Description);
                 //return result;
-                return "NO";
+                return Content("no");
             }
-            return "yes!";
+            var r = await signInManager.PasswordSignInAsync(viewModel.UserName, viewModel.Password, true, false);
+            return Content("YEs");
             //return result;
 
         }
@@ -85,6 +86,11 @@ namespace SlutprojektBackend.Controllers
             #endregion
         }
 
+
+        public string LoggedIn()
+        {
+            return "logged in as" + User.Identity.Name ;
+        }
     }
 
 }

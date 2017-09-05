@@ -28,18 +28,22 @@ namespace SlutprojektBackend
             services.AddDbContext<AppIdentityDBContext>(o => o.UseSqlServer(connString));
             services.AddDbContext<WorkoutDBContext>(o => o.UseSqlServer(connString));
 
+
             services.AddIdentity<IdentityUser, IdentityRole>(o =>
             {
                 o.Password.RequireNonAlphanumeric = false;
                 o.Password.RequiredLength = 6;
             }).AddEntityFrameworkStores<AppIdentityDBContext>()
               .AddDefaultTokenProviders();
+
+            //services.AddCors();
             //services.ConfigureApplicationCookie(o => o.LoginPath = "/Account/LogIn");
             services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            //app.UseCors(b => b.WithOrigins("*"));
             app.UseAuthentication();
             app.UseDeveloperExceptionPage();
             app.UseMvcWithDefaultRoute();
