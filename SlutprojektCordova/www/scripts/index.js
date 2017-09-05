@@ -1,6 +1,5 @@
 ﻿// To debug code on page load in cordova-simulate or on Android devices/emulators: launch your app, set breakpoints, 
 // and then run "window.location.reload()" in the JavaScript Console.
-
 (function () {
     "use strict";
 
@@ -22,6 +21,7 @@
         //var receivedElement = parentElement.querySelector('.received');
         //listeningElement.setAttribute('style', 'display:none;');
         //receivedElement.setAttribute('style', 'display:block;');
+        
 
     }
 
@@ -143,3 +143,12 @@ $("#loginbtn").click(function () {
         }
     })
 });
+
+
+//////////////////////////////////////////////////////////////////// TODAYS DATE
+var d = new Date();
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+window.onload = function () {
+    document.getElementById("date").innerHTML = d.getDate() + " " + months[d.getMonth()];
+}

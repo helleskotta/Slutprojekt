@@ -8,13 +8,68 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="text/css" href="css/index.css">
+
     <title>SlutprojektCordova</title>
 </head>
 <body>
-    <div class="app">
+    <div id="wrapper">
+
+        <div id="date" style="text-transform:lowercase;">
+            <!--  Datumet skrivs ut i Javascript -->
+        </div>
+
+        <!------------- YESTERDAY TODAY TOMORROW BOXES ------------->
+        <div id="boxes">
+
+            <!-- BOX 1: YESTERDAY -->
+            <div id="box1">
+                <h3>yesterday</h3>
+
+            </div>
+
+            <!-- BOX 3:TOMORROW -->
+            <div id="box3">
+                <h3>tomorrow</h3>
+
+            </div>
+
+            <!-- BOX 2: TOADY -->
+            <div id="box2">
+                <h3>today</h3>
+
+            </div>
+
+        </div>
+        <!------------- end boxes ------------->
+
+        <div id="module">
+            <h1>Här är random info</h1>
+        </div>
 
     </div>
+    <!-- wrtapper end -->
 
+    <!-- FOOTER -->
+    <div id="footer">
+
+        <!-- BOX 1: STATS -->
+        <div id="statsicon">
+            <img src="images/graph.png" />
+        </div>
+
+        <!-- BOX 3: CALENDAR -->
+        <div id="calendaricon">
+            <img src="images/calendar.png" />
+        </div>
+
+        <!-- BOX 2: HOME -->
+        <div id="homeicon" class="selectedicon">
+            <img src="images/house.png" />
+        </div>
+
+    </div>
+    <!-- footer end -->
+    
     <script src="scripts/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="scripts/platformOverrides.js"></script>
