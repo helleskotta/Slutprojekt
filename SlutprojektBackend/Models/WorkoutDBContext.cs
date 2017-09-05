@@ -14,10 +14,32 @@ namespace SlutprojektBackend.Models.Entities
         {
             
         }
-
-        public void AddWorkoutSession(string userID, WorkoutSessionVM workoutSessionToAdd) //Bool return?
+        //todo
+        public void AddWorkoutSession(string userID, WorkoutSessionVM workoutSessionVM) //Bool return?
         {
+            var session=new WorkoutSession
+            {
+                Date = workoutSessionVM.Date,
+                Distance = workoutSessionVM.Distance,
+                Duration = workoutSessionVM.Duration,
+                Type = workoutSessionVM.Type,
+                SessionUserNote = workoutSessionVM.SessionUserNote,
+                //Exercise = workoutSessionToAdd.Exercises
+                UserId = userID,
+                
+            };
 
+            foreach (var exerciseVM in workoutSessionVM.Exercises)
+            {
+                var exercise = new Exercise { ExerciseName = exerciseVM.Name };
+                session.Exercise.Add(exercise);
+                foreach (var set in exerciseVM.Sets)
+                {
+                    exercise.Set.Add(new Entities.Set { });
+                }
+            };
+            WorkoutSession.Add(session);
+            SaveChanges();
         }
         //Lägg till metoder
     }
