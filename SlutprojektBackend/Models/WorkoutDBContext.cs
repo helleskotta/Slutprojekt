@@ -31,11 +31,11 @@ namespace SlutprojektBackend.Models.Entities
 
             foreach (var exerciseVM in workoutSessionVM.Exercises)
             {
-                var exercise = new Exercise { ExerciseName = exerciseVM.Name };
+                var exercise = new Exercise { ExerciseName = exerciseVM.Name};
                 session.Exercise.Add(exercise);
                 foreach (var set in exerciseVM.Sets)
                 {
-                    exercise.Set.Add(new Entities.Set { });
+                    exercise.Set.Add(new Set {Reps=set.Reps,UsedWeight=set.Weight,UserNote=set.UserComment });
                 }
             };
             WorkoutSession.Add(session);
