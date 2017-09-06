@@ -152,7 +152,8 @@ $("#loginbtn").click(function () {
 });
 
 
-//////////////////////////////////////////////////////////////////// TODAYS DATE
+
+////////////////////////////////////////////////////////////////// MAIN VIEW
 var d = new Date();
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -160,6 +161,9 @@ window.onload = function () {
     document.getElementById("date").innerHTML = d.getDate() + " " + months[d.getMonth()];
     $("#addmenu").hide();
     $("#addmenu2").hide();
+    $("#menuToggle").hide();
+    $("#hamburger").show();
+    $("#hamburgermenu").hide();
 }
 
 //////////////////////////////////////////////////////////////////// ADD BUTTON
@@ -168,6 +172,7 @@ $("#addbutton").click(function () {
     $("#wrapper").addClass("clickadd");
     $("#addmenu").show();
     $("#addmenu2").show();
+    $("#hamburgermenu").hide();
 });
 
 
@@ -175,4 +180,12 @@ $("#wrapper").click(function () {
     $("#wrapper").removeClass("clickadd");
     $("#addmenu").hide();
     $("#addmenu2").hide();
+    $("#hamburgermenu").hide();
+});
+
+$("#hamburgericon").click(function () {
+    $("#wrapper").addClass("clickadd");
+    $("#addmenu").hide();
+    $("#addmenu2").hide();
+    $("#hamburgermenu").show();
 });

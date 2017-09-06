@@ -203,6 +203,7 @@ select {
     position: fixed;
     bottom: 0;
     height: 10%;
+    border-top:1px solid #999;
 }
 
 #statsicon, #homeicon, #calendaricon {
@@ -288,3 +289,33 @@ select {
         filter: drop-shadow(3px 2px 5px #888);
     }
 
+#hamburgermenu {
+    float: left;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 10%;
+    transition: all .5s linear;
+    background: #2DA130;
+    width: 60%;
+    height: 100%;
+    filter: drop-shadow(3px 2px 5px #888);
+    border-radius: 2px;
+}
+
+#hamburgermenu ul {
+    background:white;
+    margin-top:10px;
+    padding: 15px 0 10px 10px;
+}
+
+    #hamburgermenu li {
+        list-style-type: none;
+        padding: 10px 30px 20px 5px;
+        text-align:left;
+    }
+
+#hamburgericon {
+    margin-left:20px;
+    margin-top:20px;
+}
