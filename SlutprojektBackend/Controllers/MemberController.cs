@@ -12,7 +12,7 @@ namespace SlutprojektBackend.Controllers
     [Authorize]
     public class MemberController : Controller
     {
-        
+       
         public IActionResult Index()
         {
             return View();

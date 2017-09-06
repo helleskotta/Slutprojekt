@@ -8,13 +8,15 @@ namespace SlutprojektBackend.Models.ViewModels
     public class MainVM
     {
         // Random statistik - lista? Välj ut i DataManager?
-        //public List<StatisticsMainVM> Statistics; 
+       
+        public List<StatisticsMainVM> Statistics { get; set; }
 
         // 3 dagar i boxar
-        public List<WrapperCalendarVM> Calendar;
+        public List<CalendarMainVM> Calendar;
 
         // Random statistik
-        public List<GoalVM> Goals;
+        public List<GoalVM> Goals { get; set; }
+        
 
         // Grön knapp
         public List<string> Favorites { get; set; }

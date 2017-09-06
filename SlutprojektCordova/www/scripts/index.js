@@ -21,7 +21,7 @@
         //var receivedElement = parentElement.querySelector('.received');
         //listeningElement.setAttribute('style', 'display:none;');
         //receivedElement.setAttribute('style', 'display:block;');
-        
+
 
     }
 
@@ -48,7 +48,7 @@ $("#redirect").click(function () {
 //        success: function (result) {
 //            console.log(result);
 //        }
-        
+
 //    })
 
 //    //$("#login").hide();
@@ -108,15 +108,15 @@ $("#add").click(function () {
         //},
         success: function (result) {
             alert("Register successfull: " + result);
-           
-                $("#login").hide();
-                $("#welcome").show();
-                $("#register").hide();
-                $("#addstats").hide();
+
+            $("#login").hide();
+            $("#welcome").show();
+            $("#register").hide();
+            $("#addstats").hide();
         },
         error: function (result) {
             alert("register error:" + result);
-                    //.find("p").html(result.)
+            //.find("p").html(result.)
         }
     })
 
@@ -134,11 +134,18 @@ $("#loginbtn").click(function () {
         },
 
         success: function (result) {
-            alert("Login successfull: " + result);
+            alert("Login successful: " + result);
+
+            if (result === "Logged in!") { // TODO: HÅRDKODAD STRÄNG!! ---------------------------------------- !
+                window.location = "main.html";
+            }
+            else {
+                // TODO: SHOW ERROR MESSAGES ---------------------------------------------------------------- !
+            }
         },
         error: function (result) {
             alert("Login error:" + result);
-            $("#showErrorRegister").show();
+            window.location = "index.html";
             //.find("p").html(result.)
         }
     })
@@ -151,4 +158,21 @@ var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc
 
 window.onload = function () {
     document.getElementById("date").innerHTML = d.getDate() + " " + months[d.getMonth()];
+    $("#addmenu").hide();
+    $("#addmenu2").hide();
 }
+
+//////////////////////////////////////////////////////////////////// ADD BUTTON
+
+$("#addbutton").click(function () {
+    $("#wrapper").addClass("clickadd");
+    $("#addmenu").show();
+    $("#addmenu2").show();
+});
+
+
+$("#wrapper").click(function () {
+    $("#wrapper").removeClass("clickadd");
+    $("#addmenu").hide();
+    $("#addmenu2").hide();
+});

@@ -18,7 +18,7 @@ namespace SlutprojektBackend.Models.Entities
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SlutprojektLocalDatabase;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SlutprojektLokalDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             }
         }
 
@@ -28,7 +28,7 @@ namespace SlutprojektBackend.Models.Entities
             {
                 entity.ToTable("Exercise", "logit");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.ExerciseName)
                     .IsRequired()
@@ -40,14 +40,12 @@ namespace SlutprojektBackend.Models.Entities
                     .WithMany(p => p.Exercise)
                     .HasForeignKey(d => d.WorkoutSessionId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Exercise__Workou__5812160E");
+                    .HasConstraintName("FK__Exercise__Workou__619B8048");
             });
 
             modelBuilder.Entity<Goal>(entity =>
             {
                 entity.ToTable("Goal", "logit");
-
-                entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.Type)
                     .IsRequired()
@@ -63,8 +61,6 @@ namespace SlutprojektBackend.Models.Entities
             {
                 entity.ToTable("Set", "logit");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.ExerciseId).HasColumnName("ExerciseID");
 
                 entity.Property(e => e.UserNote)
@@ -75,14 +71,12 @@ namespace SlutprojektBackend.Models.Entities
                     .WithMany(p => p.Set)
                     .HasForeignKey(d => d.ExerciseId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Set__ExerciseID__571DF1D5");
+                    .HasConstraintName("FK__Set__ExerciseID__60A75C0F");
             });
 
             modelBuilder.Entity<UserSettings>(entity =>
             {
                 entity.ToTable("UserSettings", "logit");
-
-                entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.Gender)
                     .IsRequired()
@@ -98,8 +92,6 @@ namespace SlutprojektBackend.Models.Entities
             {
                 entity.ToTable("UserWeight", "logit");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
                 entity.Property(e => e.UserId)
@@ -114,9 +106,11 @@ namespace SlutprojektBackend.Models.Entities
             {
                 entity.ToTable("WorkoutSession", "logit");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Date).HasColumnType("datetime");
+
+                entity.Property(e => e.SessionName).HasMaxLength(50);
 
                 entity.Property(e => e.SessionUserNote).HasMaxLength(50);
 
