@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace SlutprojektBackend.Models.ViewModels
 {
-    public class IndexVM
+    public class WrapperCalendarVM
     {
-        // Vy-modeller
+        public List<CalendarVM> Calendar { get; set; }
+
     }
 }

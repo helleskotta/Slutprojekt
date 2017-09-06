@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SlutprojektBackend.Models.ViewModels
+namespace SlutprojektBackend.Models
 {
-    public class StatisticsMainVM
+    public class CardioStats : Stats
     {
-        public string TypeOfWorkoutSession { get; set; }
         public DateTime Time { get; set; }
-
+        public float Distance { get; set; }
+        public int Pulse { get; set; }
     }
 }

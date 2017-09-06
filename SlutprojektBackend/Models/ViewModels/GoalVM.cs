@@ -9,5 +9,8 @@ namespace SlutprojektBackend.Models.ViewModels
     {
         public string UserId { get; set; }
         public string Type { get; set; }
+        public int GoalWeight { get; set; }
+        public int CurrentWeight { get; set; }
+        public DateTime GoalEnd { get; set; }
     }
 }

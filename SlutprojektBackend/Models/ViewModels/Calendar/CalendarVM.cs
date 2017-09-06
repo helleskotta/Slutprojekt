@@ -7,10 +7,10 @@ namespace SlutprojektBackend.Models.ViewModels
 {
     public class CalendarVM
     {
+        public string NameOfWorkoutSession { get; set; }
+        public string TypeOfWorkoutSession { get; set; }
         public DateTime Date { get; set; }
-        public int Week { get; set; }
-        public int Month { get; set; }
-        //public List<WorkoutSessionVM>;
+        //public bool TrainingDay { get; set; }
 
     }
 }

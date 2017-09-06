@@ -12,8 +12,7 @@ namespace SlutprojektBackend.Models.ViewModels
         public List<StatisticsMainVM> Statistics { get; set; }
 
         // 3 dagar i boxar
-
-        public List<CalendarMainVM> Calendar { get; set; }
+        public List<CalendarMainVM> Calendar;
 
         // Random statistik
         public List<GoalVM> Goals { get; set; }
