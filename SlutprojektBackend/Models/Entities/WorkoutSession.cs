@@ -17,6 +17,7 @@ namespace SlutprojektBackend.Models.Entities
         public int? Duration { get; set; }
         public double? Distance { get; set; }
         public string SessionUserNote { get; set; }
+        public string SessionName { get; set; }
 
         public ICollection<Exercise> Exercise { get; set; }
     }

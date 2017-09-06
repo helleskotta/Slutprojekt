@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using SlutprojektBackend.Models.Entities;
+using SlutprojektBackend.Models;
 
 namespace SlutprojektBackend
 {
@@ -25,6 +26,7 @@ namespace SlutprojektBackend
         public void ConfigureServices(IServiceCollection services)
         {
             var connString = conf["connStringLocal"];
+            services.AddTransient<DataManager>();
             services.AddDbContext<AppIdentityDBContext>(o => o.UseSqlServer(connString));
             services.AddDbContext<WorkoutDBContext>(o => o.UseSqlServer(connString));
 
