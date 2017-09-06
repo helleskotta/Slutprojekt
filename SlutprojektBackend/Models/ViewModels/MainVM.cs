@@ -7,11 +7,18 @@ namespace SlutprojektBackend.Models.ViewModels
 {
     public class MainVM
     {
-        public List<StatisticsMainVM> Statistics;
-        public List<CalendarVM> Calendar;
+        // Random statistik - lista? Välj ut i DataManager?
+        public List<StatisticsMainVM> Statistics; 
+
+        // 3 dagar i boxar
+        public List<CalendarMainVM> Calendar;
+
+        // Random statistik
         public List<GoalVM> Goals;
-        public DateTime Dates { get; set; }
-        public string Favorites { get; set; }
-        public List<WorkoutSessionMainVM> WorkoutSessionMain;
+
+        // Grön knapp
+        public List<string> Favorites { get; set; }
+        
+        // public List<WorkoutSessionMainVM> WorkoutSessionMain;
     }
 }
