@@ -81,7 +81,7 @@ namespace SlutprojektBackend.Models.Entities
         {
             throw new NotImplementedException();
         }
-        
+
         //Gets all workoutsession for a user
         public List<WorkoutSessionVM> GetAllWorkoutSessions(string userID)
         {
