@@ -9,6 +9,7 @@ namespace SlutprojektBackend.Models.ViewModels
     {
         public string TypeOfWorkoutSession { get; set; }
         public string TypeOfExercise { get; set; }
+
         public float BodyWeight { get; set; }
         public float Waist { get; set; }
         public float Chest { get; set; }

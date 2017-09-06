@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SlutprojektBackend.Models
+namespace SlutprojektBackend.Models.ViewModels
 {
-    public class Class
+    public class CalendarMainVM
     {
-        // Alla proppar
     }
 }
