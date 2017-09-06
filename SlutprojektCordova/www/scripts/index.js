@@ -142,16 +142,25 @@ window.onload = function () {
     $("#hamburger").show();
     $("#hamburgermenu").hide();
 
+    // Klicka på hem
     if (document.getElementById("boxes")) {
         $("#homeicon").addClass("selectedicon");
         $("#calendaricon").removeClass("selectedicon");
         $("#statsicon").removeClass("selectedicon");
     }
 
+    // Klicka på Kalender
     if (document.getElementById("calendarlist")) {
         $("#homeicon").removeClass("selectedicon");
         $("#calendaricon").addClass("selectedicon");
         $("#statsicon").removeClass("selectedicon");
+    }
+
+    // Klicka på Statistik
+    if (document.getElementById("mainstats")) {
+        $("#homeicon").removeClass("selectedicon");
+        $("#calendaricon").removeClass("selectedicon");
+        $("#statsicon").addClass("selectedicon");
     }
 
 
@@ -196,4 +205,8 @@ $("#homeicon").click(function () {
 
 $("#calendaricon").click(function () {
     window.location = "calendar.html";
+});
+
+$("#statsicon").click(function () {
+    window.location = "statistics.html";
 });
