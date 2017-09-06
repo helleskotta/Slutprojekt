@@ -25,6 +25,7 @@ namespace SlutprojektBackend.Models.Entities
                 Type = workoutSessionVM.Type,
                 SessionUserNote = workoutSessionVM.SessionUserNote,
                 UserId = userID,
+                SessionName = workoutSessionVM.SessionName,
             };
 
 
@@ -74,7 +75,8 @@ namespace SlutprojektBackend.Models.Entities
 
         private List<GoalVM> GetGoalsForMain(string userID)
         {
-            throw new NotImplementedException();
+            //return Goal.Where(u => u.UserId == userID);
+            return null;
         }
 
         private List<StatisticsMainVM> GetStatisticsForMain(string userID)
@@ -94,6 +96,9 @@ namespace SlutprojektBackend.Models.Entities
                     Date = w.Date,
                     Distance = w.Distance,
                     Duration = w.Duration,
+                    SessionName=w.SessionName,
+                    SessionUserNote=w.SessionUserNote,
+                    Type=w.Type,
                     Exercises =
                     w.Exercise.Select(
                         z => new ExerciseVM

@@ -26,15 +26,28 @@ namespace SlutprojektBackend.Models
             List<ExerciseVM> exerciseView = new List<ExerciseVM>();
             exerciseView.Add(new ExerciseVM { Name="Test",Sets=setView });
 
-            WorkoutSessionVM viewModel = new WorkoutSessionVM { Date = DateTime.Now, Exercises = exerciseView, Type = "NewTest" };
+            WorkoutSessionVM viewModel = new WorkoutSessionVM {
+                Date = DateTime.Now,
+                Exercises = exerciseView,
+                Type = "NewTest"};
             workoutcontext.AddWorkoutSessionStrength(user, viewModel);
+        }
 
+        internal MainVM GetMainViewModel(string userID)
+        {
+            MainVM VMToReturn = new MainVM();
+
+            VMToReturn = workoutcontext.getMainVM(userID);
+
+            return VMToReturn;
         }
 
         public void TestMethodGet()
         {
             workoutcontext.GetAllWorkoutSessions("PetterTest");
         }
+
+        
 
     }
 }

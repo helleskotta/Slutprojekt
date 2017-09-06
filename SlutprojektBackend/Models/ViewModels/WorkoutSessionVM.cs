@@ -14,5 +14,6 @@ namespace SlutprojektBackend.Models.ViewModels
         public int? Duration { get; set; }
         public double? Distance { get; set; }
         public string SessionUserNote { get; set; }
+        public string SessionName { get; set; }
     }
 }
