@@ -81,6 +81,8 @@ namespace SlutprojektBackend.Models.Entities
 
         private List<StatisticsMainVM> GetStatisticsForMain(string userID)
         {
+            List<StatisicsVM> statsForMain = new List<StatisicsVM>();
+            
             throw new NotImplementedException();
         }
 
