@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace SlutprojektBackend.Models.ViewModels
 {
-    public class StatisicsVM
+    public class WrapperStatisticsVM
     {
-        public string TypeOfWorkoutSession { get; set; }
-        public Stats stats { get; set; }
+        public List<StatisicsVM> Statistics { get; set; }
 
     }
 }
