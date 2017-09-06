@@ -15,7 +15,7 @@ namespace SlutprojektBackend.Models.ViewModels
         public List<CalendarMainVM> Calendar;
 
         // Random statistik
-        public List<GoalVM> Goals { get; set; }
+        //public List<GoalVM> Goals { get; set; }
         
 
         // Grön knapp

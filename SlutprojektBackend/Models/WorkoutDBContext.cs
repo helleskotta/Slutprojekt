@@ -52,7 +52,7 @@ namespace SlutprojektBackend.Models.Entities
             mainVMToReturn.Statistics = GetStatisticsForMain(userID);
 
             //Hämtar #Goals
-            mainVMToReturn.Goals = GetGoalsForMain(userID);
+           // mainVMToReturn.Goals = GetGoalsForMain(userID);
 
             // 3 dagar i boxar
             mainVMToReturn.Calendar = GetCalendarForMain(userID);
