@@ -1,4 +1,5 @@
 ﻿using SlutprojektBackend.Models.Entities;
+using SlutprojektBackend.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,28 +9,32 @@ namespace SlutprojektBackend.Models
 {
     public class DataManager
     {
-        // Listor, data och metoder för att hantera datan
-        static List<UserSettings> userSettings = new List<UserSettings>()
-        {
-                new UserSettings {Id = 1, UserId = "Daniel", Gender = "Male"},
-                new UserSettings {Id = 2, UserId = "Helen", Gender = "Female"},
-                new UserSettings {Id = 3, UserId = "Petter", Gender = "Male"},
-        };
+        WorkoutDBContext workoutcontext;
 
-        static List<UserWeight> userWeight = new List<UserWeight>()
+        public DataManager(WorkoutDBContext context)
         {
-                new UserWeight {Id = 1, UserId = "Daniel", UserWeight1 = 4},
-                new UserWeight {Id = 2, UserId = "Helen", UserWeight1 = 5},
-                new UserWeight {Id = 3, UserId = "Peter", UserWeight1 = 6}
-        };
+            workoutcontext = context;
+        }
 
-        static List<Goal> goal = new List<Goal>()
+        public void TestMethodAddWorkoutSession()
         {
-                new Goal {Id = 1, UserId = "Daniel", Type = "Jag vill gå ner 3 kg"},
-                new Goal {Id = 2, UserId = "Helen", Type = "Jag vill få mer muskler"},
-                new Goal {Id = 3, UserId = "Petter", Type = "Jag vill få mer muskler"},
-        };
+            string user = "PetterTest";
+            List<SetVM> setView = new List<SetVM>();
+            setView.Add(new SetVM { Reps = 10, UserComment = "", Weight = 50 });
+            setView.Add(new SetVM { Reps = 81, UserComment = "", Weight = 55 });
 
+            List<ExerciseVM> exerciseView = new List<ExerciseVM>();
+            exerciseView.Add(new ExerciseVM { Name="Test",Sets=setView });
+
+            WorkoutSessionVM viewModel = new WorkoutSessionVM { Date = DateTime.Now, Exercises = exerciseView, Type = "NewTest" };
+            workoutcontext.AddWorkoutSessionStrength(user, viewModel);
+
+        }
+
+        public void TestMethodGet()
+        {
+            workoutcontext.GetAllWorkoutSessions("PetterTest");
+        }
 
     }
 }
