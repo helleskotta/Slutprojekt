@@ -52,7 +52,7 @@ namespace SlutprojektBackend.Models.Entities
             mainVMToReturn.Statistics = GetStatisticsForMain(userID);
 
             //Hämtar #Goals
-           // mainVMToReturn.Goals = GetGoalsForMain(userID);
+            // mainVMToReturn.Goals = GetGoalsForMain(userID);
 
             // 3 dagar i boxar
             mainVMToReturn.Calendar = GetCalendarForMain(userID);
@@ -82,7 +82,7 @@ namespace SlutprojektBackend.Models.Entities
         private List<StatisticsMainVM> GetStatisticsForMain(string userID)
         {
             List<StatisicsVM> statsForMain = new List<StatisicsVM>();
-            
+
             throw new NotImplementedException();
         }
 
@@ -98,9 +98,9 @@ namespace SlutprojektBackend.Models.Entities
                     Date = w.Date,
                     Distance = w.Distance,
                     Duration = w.Duration,
-                    SessionName=w.SessionName,
-                    SessionUserNote=w.SessionUserNote,
-                    Type=w.Type,
+                    SessionName = w.SessionName,
+                    SessionUserNote = w.SessionUserNote,
+                    Type = w.Type,
                     Exercises =
                     w.Exercise.Select(
                         z => new ExerciseVM
@@ -112,6 +112,22 @@ namespace SlutprojektBackend.Models.Entities
                 })
                 .ToList();
             return listOfWorkoutToReturn;
+        }
+
+        public List<CalendarVM> GetCalendar(string userID)
+        {
+            var calandarList = WorkoutSession
+                .Where(i => i.UserId == userID)
+                .Select(c => new CalendarVM()
+                {
+                    NameOfWorkoutSession = c.SessionName,
+                    TypeOfWorkoutSession = c.Type,
+                    Date = c.Date
+                })
+                .OrderBy(c => c.Date)
+                .ToList();
+
+            return calandarList;
         }
 
         // C# 7 Synatx

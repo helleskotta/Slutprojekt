@@ -33,6 +33,13 @@ namespace SlutprojektBackend.Controllers
             return Json(viewModel);
         }
 
+        [HttpGet]
+        public IActionResult Calendar()
+        {
+            var test = userManager.GetUserId(HttpContext.User);
+            var viewModel = dataManager.GetMainViewModel(test);
+            return Json(viewModel);
+        }
 
         public IActionResult Index()
         {
