@@ -19,50 +19,50 @@ a {
     color: #333;
 }
 
-a:hover {
-    color:#999;
-}
+    a:hover {
+        color: #999;
+    }
 
 .app {
-    background: transparent; 
-    position: absolute;             
+    background: transparent;
+    position: absolute;
     left: 50%;
     top: 0;
-    height: 80%;                  
-    width: 225px;                   
+    height: 80%;
+    width: 225px;
     text-align: center;
-    padding-top: 120px;     
+    padding-top: 120px;
     margin: -115px 0 0 -112px;
 }
 
 #wrapper {
-    padding:20px;
-    height:100%;
+    padding: 20px;
+    height: 100%;
 }
 
 #header {
-    margin:auto;
+    margin: auto;
 }
 
 h1 {
-    font-size:28px;
-    font-weight:bold;
-    margin:0;
-    overflow:visible;
-    padding:0;
-    text-align:center;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0;
+    overflow: visible;
+    padding: 0;
+    text-align: center;
     font-family: 'Open Sans';
 }
 
 h2 {
     font-size: 16px;
-    text-transform:uppercase;
-    text-align:center;
-    font-weight:normal;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: normal;
 }
 
 h3 {
-    text-align:center;
+    text-align: center;
 }
 
 /*.event {
@@ -111,11 +111,11 @@ input[type=text], [type=password], [type=email] {
 }
 
 input[type=number] {
-    width:15%;
+    width: 15%;
 }
 
 
-input[type=text]:focus,[type=password]:focus, [type=email]:focus {
+input[type=text]:focus, [type=password]:focus, [type=email]:focus {
     border-color: #333;
 }
 
@@ -129,8 +129,8 @@ input[type=submit], [type=button] {
     font-size: 14px;
     text-transform: uppercase;
     font-family: 'Open Sans';
-    width:100%;
-    text-align:center;
+    width: 100%;
+    text-align: center;
 }
 
     input[type=submit]:hover, [type=button]:hover {
@@ -141,6 +141,7 @@ input[type=submit], [type=button] {
 label {
     font-size: 14px;
 }
+
 select {
     border: 2px solid #ccc;
     -webkit-border-radius: 5px;
@@ -163,17 +164,17 @@ select {
 
 #date {
     font-size: 30px;
-    text-align:center;
+    text-align: center;
     font-family: 'Open Sans';
-    font-weight:bold;
+    font-weight: bold;
     color: black;
-    margin-top:-10px;
+    margin-top: -10px;
 }
 
 .module {
-    background:white;
+    background: white;
     height: 70%;
-    padding:10px;
+    padding: 10px;
 }
 
 #box1, #box2, #box3 {
@@ -190,11 +191,11 @@ select {
 
 #box2 {
     margin: auto;
-    margin-top:0;
+    margin-top: 0;
 }
 
 #box3 {
-    float:right;
+    float: right;
 }
 
 #footer {
@@ -203,12 +204,12 @@ select {
     position: fixed;
     bottom: 0;
     height: 10%;
-    border-top:1px solid #999;
+    border-top: 1px solid #999;
 }
 
 #statsicon, #homeicon, #calendaricon {
     width: 30%;
-    height:95%;
+    height: 95%;
     padding: 10px 5px;
     border-radius: 2px;
 }
@@ -303,19 +304,46 @@ select {
     border-radius: 2px;
 }
 
-#hamburgermenu ul {
-    background:white;
-    margin-top:10px;
-    padding: 15px 0 10px 10px;
-}
+    #hamburgermenu ul {
+        background: white;
+        margin-top: 10px;
+        padding: 15px 0 10px 10px;
+    }
 
     #hamburgermenu li {
         list-style-type: none;
         padding: 10px 30px 20px 5px;
-        text-align:left;
+        text-align: left;
     }
 
 #hamburgericon {
-    margin-left:20px;
-    margin-top:20px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+#calendarlist {
+    background: transparent;
+    margin-left:-40px;
+    margin-bottom:10%;
+}
+
+    #calendarlist li {
+        background:white;
+        list-style-type: none;
+        padding: 20px 30px 20px 20px;
+        margin-bottom:10px;
+    }
+
+.listdate {
+    font-size:13px;
+    font-weight:bold;
+    text-align:center;
+    width:10%;
+}
+
+.listcontent {
+    padding: 10px;
+    text-align:right;
+    position:relative;
+    left:10%;
 }

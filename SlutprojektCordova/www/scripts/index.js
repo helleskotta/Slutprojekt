@@ -15,6 +15,7 @@
         $("#register").hide();
         $("#welcome").hide();
         $("#addstats").hide();
+
         //// TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
         //var parentElement = document.getElementById('deviceready');
         //var listeningElement = parentElement.querySelector('.listening');
@@ -41,23 +42,6 @@ $("#redirect").click(function () {
     $("#addstats").hide();
 });
 
-//$("#stats").click(function () {
-//    $.ajax({
-//        url: "http://localhost:49902",
-//        method: "POST",
-//        success: function (result) {
-//            console.log(result);
-//        }
-
-//    })
-
-//    //$("#login").hide();
-//    //$("#welcome").show();
-//    //$("#register").hide();
-//    //$("#addstats").hide();
-//});
-
-
 $("#mystats").click(function () {
     $("#login").hide();
     $("#welcome").hide();
@@ -68,7 +52,6 @@ $("#mystats").click(function () {
 $("#main").click(function () {
     window.location = "main.html";
 });
-
 
 
 $("#loginTest").click(function () {
@@ -99,13 +82,6 @@ $("#add").click(function () {
             "Password": $("#newPassword").val(),
             "ConfirmPassword": $("#confirmPassword").val(),
         },
-        //xhrFields: {
-        //    withCredentials: true
-        //},
-        //crossDomain: true,
-        //headers: {
-        //    Cookie: mycookies
-        //},
         success: function (result) {
             alert("Register successfull: " + result);
 
@@ -158,12 +134,32 @@ var d = new Date();
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 window.onload = function () {
-    document.getElementById("date").innerHTML = d.getDate() + " " + months[d.getMonth()];
+    //document.getElementById("date").innerHTML = d.getDate() + " " + months[d.getMonth()];
+    $("#date").html(d.getDate() + " " + months[d.getMonth()]);
     $("#addmenu").hide();
     $("#addmenu2").hide();
     $("#menuToggle").hide();
     $("#hamburger").show();
     $("#hamburgermenu").hide();
+
+    if (document.getElementById("boxes")) {
+        $("#homeicon").addClass("selectedicon");
+        $("#calendaricon").removeClass("selectedicon");
+        $("#statsicon").removeClass("selectedicon");
+    }
+
+    if (document.getElementById("calendarlist")) {
+        $("#homeicon").removeClass("selectedicon");
+        $("#calendaricon").addClass("selectedicon");
+        $("#statsicon").removeClass("selectedicon");
+    }
+
+
+    //if (document.getElementById("listdate")) {
+    //    $("#homeicon").removeClass("selectedicon");
+    //    $("#calendaricon").addClass("selectedicon");
+    //    $("#statsicon").removeClass("selectedicon");
+    //}
 }
 
 //////////////////////////////////////////////////////////////////// ADD BUTTON
@@ -183,9 +179,21 @@ $("#wrapper").click(function () {
     $("#hamburgermenu").hide();
 });
 
+
+//////////////////////////////////////////////////////////////////// SETTINGS MENU
 $("#hamburgericon").click(function () {
     $("#wrapper").addClass("clickadd");
     $("#addmenu").hide();
     $("#addmenu2").hide();
     $("#hamburgermenu").show();
+});
+
+
+//////////////////////////////////////////////////////////////////// FOOTER BUTTON CLICKS
+$("#homeicon").click(function () {
+    window.location = "main.html";
+});
+
+$("#calendaricon").click(function () {
+    window.location = "calendar.html";
 });
