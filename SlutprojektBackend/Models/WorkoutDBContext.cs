@@ -70,7 +70,44 @@ namespace SlutprojektBackend.Models.Entities
 
         private List<CalendarMainVM> GetCalendarForMain(string userID)
         {
-            throw new NotImplementedException();
+            var listToReturn = new List<CalendarMainVM>();
+            var firstListitem= WorkoutSession
+            .Where(i => i.UserId==userID)
+            .Select(c => new CalendarMainVM()
+            {
+                Date = c.Date,
+                SessionName = c.SessionName,
+                TypeOfWorkoutSession = c.Type
+            })
+            .Where(d=>d.Date.Day<DateTime.Now.Day)
+            .First();
+
+            var todayListitem = WorkoutSession
+            .Where(i => i.UserId == userID)
+            .Select(c => new CalendarMainVM()
+            {
+                Date = c.Date,
+                SessionName = c.SessionName,
+                TypeOfWorkoutSession = c.Type
+            })
+            .Where(d => d.Date.Day == DateTime.Now.Day)
+            .First();
+
+            var lastListitem = WorkoutSession
+            .Where(i => i.UserId == userID)
+            .Select(c => new CalendarMainVM()
+            {
+                Date = c.Date,
+                SessionName = c.SessionName,
+                TypeOfWorkoutSession = c.Type
+            })
+            .Where(d => d.Date.Day > DateTime.Now.Day)
+            .First();
+
+            listToReturn.Add(firstListitem);
+            listToReturn.Add(todayListitem);
+            listToReturn.Add(lastListitem);
+            return listToReturn;
         }
 
         private List<GoalVM> GetGoalsForMain(string userID)
@@ -82,6 +119,8 @@ namespace SlutprojektBackend.Models.Entities
         private List<StatisticsMainVM> GetStatisticsForMain(string userID)
         {
             List<StatisicsVM> statsForMain = new List<StatisicsVM>();
+            //statsForMain.Add(new StatisicsVM() {TypeOfWorkoutSession })
+
 
             throw new NotImplementedException();
         }
@@ -110,6 +149,7 @@ namespace SlutprojektBackend.Models.Entities
                             q => new SetVM { Reps = q.Reps, UserComment = q.UserNote, Weight = Convert.ToInt32(q.UsedWeight) }).ToList()
                         }).ToList()
                 })
+                .OrderBy(c => c.Date)
                 .ToList();
             return listOfWorkoutToReturn;
         }
