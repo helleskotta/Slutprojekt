@@ -12,8 +12,10 @@
     <title>SlutprojektCordova</title>
 </head>
 <body>
-            <div id="hamburgericon"><img src="images/hamburgericon.png" /></div>
+    <div id="hamburgericon"><img src="images/hamburgericon.png" /></div>
     <div id="wrapper">
+
+        <div id="firstmainpage">
         <div id="header">
             <h1>
                 <img src="images/logo-color.png" style="height:40px; margin:auto;" />
@@ -22,83 +24,102 @@
         <div id="date" style="text-transform:lowercase;">
         </div>
 
-        <!------------- YESTERDAY TODAY TOMORROW BOXES ------------->
-        <div id="boxes">
-
-            <!-- BOX 1: YESTERDAY -->
-            <div id="box1">
-                <h3>previous</h3>
-                <div id="box1content">
-                    <!-- info från Javascript -->
+            <!------------- YESTERDAY TODAY TOMORROW BOXES ------------->
+            <div id="boxes">
+                <!-- BOX 1: YESTERDAY -->
+                <div id="box1">
+                    <h3>previous</h3>
+                    <div id="box1content">
+                        <!-- info från Javascript -->
+                    </div>
                 </div>
-            </div>
 
-            <!-- BOX 3:TOMORROW -->
-            <div id="box3">
-                <h3>next</h3>
-                <div id="box3content">
-                    <!-- info från Javascript -->
-                    <!-- <i>You have not added a workout session in the near future. Click here to add</i> -->
+                <!-- BOX 3:TOMORROW -->
+                <div id="box3">
+                    <h3>next</h3>
+                    <div id="box3content">
+                        <!-- info från Javascript -->
+                        <!-- <i>You have not added a workout session in the near future. Click here to add</i> -->
+                    </div>
                 </div>
-            </div>
 
-            <!-- BOX 2: TOADY -->
-            <div id="box2">
-                <h3>today</h3>
-                <div id="box2content">
-                    <!-- info från Javascript -->
-                    <!-- or -->
-                    <!-- <i>You have not added a workout session today. Click here to add</i> -->
+                <!-- BOX 2: TOADY -->
+                <div id="box2">
+                    <h3>today</h3>
+                    <div id="box2content">
+                        <!-- info från Javascript -->
+                        <!-- or -->
+                        <!-- <i>You have not added a workout session today. Click here to add</i> -->
+                    </div>
                 </div>
+
             </div>
-
+            <!------------- end boxes ------------->
+            <!------------- RANDOM STATS MODULE ------------->
+            <div class="module">
+                <h1>Här är random info</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et velit vitae mauris scelerisque posuere ut ut est. Suspendisse sit amet sapien id lacus facilisis laoreet et sed mi. Aenean ac rutrum sem, gravida vehicula nisi. Duis sed elit id odio ullamcorper tempor nec non orci. Aenean et venenatis nibh. </p>
+            </div>
+            <!------------- end random stats ------------->
+            <!------------- ANOTHER RANDOM STATS MODULE ------------->
+            <div class="module">
+                <h1>Här är mer random info</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et velit vitae mauris scelerisque posuere ut ut est. Suspendisse sit amet sapien id lacus facilisis laoreet et sed mi. Aenean ac rutrum sem, gravida vehicula nisi. Duis sed elit id odio ullamcorper tempor nec non orci. Aenean et venenatis nibh. </p>
+            </div>
+            <!------------- end random stats ------------->
         </div>
-        <!------------- end boxes ------------->
 
+        <div id="addweightwrapper">
+            <h1>Add measurements</h1>
 
-        <!------------- RANDOM STATS MODULE ------------->
-        <div class="module">
-            <h1>Här är random info</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et velit vitae mauris scelerisque posuere ut ut est. Suspendisse sit amet sapien id lacus facilisis laoreet et sed mi. Aenean ac rutrum sem, gravida vehicula nisi. Duis sed elit id odio ullamcorper tempor nec non orci. Aenean et venenatis nibh. </p>
+            <div id="addnew">
+                <!-- WEIGHT VIEW -->
+                <div id="weightadd">
+                    <form>
+                        <input type="text" class="datepicker" style="width:47%;" placeholder=" Date">
+                        <input type="text" id="weightbox" style="width:47%;" placeholder=" Weight" />
+                        <br /><br />
+                        <input type="text" id="chestlog" style="width:31%;" placeholder=" Chest">
+                        <input type="text" id="waistlog" style="width:31%;" placeholder=" Waist" />
+                        <input type="text" id="hipslog" style="width:31%;" placeholder=" Hips" />
+                        <br /><br />
+                        <input type="text" placeholder=" Notes" />
+                        <br /><br />
+                        <input type="button" id="saveweight" value="SAVE" />
+                    </form>
+                </div>
+                <!-- end weight view -->
+            </div>
         </div>
-        <!------------- end random stats ------------->
-
-
-        <!------------- ANOTHER RANDOM STATS MODULE ------------->
-        <div class="module">
-            <h1>Här är mer random info</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et velit vitae mauris scelerisque posuere ut ut est. Suspendisse sit amet sapien id lacus facilisis laoreet et sed mi. Aenean ac rutrum sem, gravida vehicula nisi. Duis sed elit id odio ullamcorper tempor nec non orci. Aenean et venenatis nibh. </p>
         </div>
-        <!------------- end random stats ------------->
-    </div>
     <!-- wrapper end -->
 
     <!------------- ADD MENU ------------->
-    <div id="addmenu">
-        <ul>
-            <li>+ Add a favorite</li>
-            <li>+ Add a favorite</li>
-            <li>+ Add a favorite</li>
-            <li>+ Add a favorite</li>
-            <li>+ Add a favorite</li>
-        </ul>
-    </div>
+    <div id="addbtnmenu">
+        <div id="addmenu">
+            <ul>
+                <li><b>+</b> Add a favorite</li>
+                <li><b>+</b> Add a favorite</li>
+                <li><b>+</b> Add a favorite</li>
+                <li><b>+</b> Add a favorite</li>
+                <li>My killer leg program</li>
+            </ul>
+        </div>
 
-    <div id="addmenu2">
-        <span><img src="images/other.png" /></span>
-        <span><img src="images/cardio.png" /></span>
-        <span><img src="images/strength.png" /></span>
-    </div>
+        <div id="addmenu2">
+            <img src="images/weight.png" id="toaddweight" /> <img id="toaddwo" src="images/addwo.png" />
+        </div>
 
-    <div id="addbutton">
-        <img src="images/add40.png" />
+        <div id="addbutton">
+            <img src="images/add40.png" />
+        </div>
     </div>
-
     <!------------- end add menu ------------->
 
+    <!------------- SETTINGS HAMBURGER MENU ------------->
     <div id="hamburgermenu">
         <br /><br /><br />
-        <img src="images/profilepics.png" style="border-radius:50%; border:1px dotted black; height:70px; width:70px; margin-left:10px;" align="left"/>
+        <img src="images/profilepics.png" style="border-radius:50%; border:1px dotted black; height:70px; width:70px; margin-left:10px;" align="left" />
         <h2 align="right" style="text-align:left; margin-bottom: -10px; margin-top:30px; margin-left:10px; padding-left:10px;">NAME</h2>
         <p style="text-align:left; margin-left:10px;" align="right">7 days streak</p>
         <ul>
@@ -110,6 +131,8 @@
             <li>Somestuff</li>
         </ul>
     </div>
+    <!------------- end settings hamburger menu ------------->
+
     <!-- FOOTER -->
     <div id="footer">
 
@@ -131,8 +154,9 @@
     </div>
     <!-- footer end -->
 
-        
+    <!------------- SCRIPTS------------->
     <script src="scripts/jquery-3.1.1.min.js"></script>
+    <script src="scripts/jQueryUI.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="scripts/platformOverrides.js"></script>
     <script type="text/javascript" src="scripts/index.js"></script>
