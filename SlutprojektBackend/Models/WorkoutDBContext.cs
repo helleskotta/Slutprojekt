@@ -192,6 +192,12 @@ namespace SlutprojektBackend.Models.Entities
             return calandarList;
         }
 
+        internal void AddUserFavorite(string userID, string favoriteToAdd)
+        {
+            UserFavorites.Add(new UserFavorites() { UserId = userID, Favorite = favoriteToAdd });
+            SaveChanges();
+        }
+
         // C# 7 Synatx
         //public List<WorkoutSessionVM> GetAllWorkoutSessions(string userID) =>
         //    WorkoutSession
