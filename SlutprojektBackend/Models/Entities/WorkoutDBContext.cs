@@ -137,5 +137,11 @@ namespace SlutprojektBackend.Models.Entities
                     .HasMaxLength(450);
             });
         }
+
+        internal void AddUserFavorite(string userId, string favoriteToAdd)
+        {
+            UserFavorites.Add(new UserFavorites() { Favorite = favoriteToAdd, UserId = userId });
+            SaveChanges();
+        }
     }
 }

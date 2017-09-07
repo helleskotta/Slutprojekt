@@ -69,7 +69,6 @@ namespace SlutprojektBackend.Models.Entities
             return UserFavorites.Where(c => c.UserId == userID).OrderBy(o => o.Id).Select(f => f.Favorite).ToList();
         }
 
-
         private List<CalendarMainVM> GetCalendarForMain(string userID)
         {
             var listToReturn = new List<CalendarMainVM>();
@@ -222,6 +221,5 @@ namespace SlutprojektBackend.Models.Entities
         {
 
         }
-        //Lägg till metoder
     }
 }

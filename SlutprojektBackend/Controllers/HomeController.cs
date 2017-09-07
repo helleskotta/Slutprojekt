@@ -23,6 +23,7 @@ namespace SlutprojektBackend
             //await identityDbContext.Database.EnsureCreatedAsync();
             //dataManager.TestAddWeight();
             dataManager.GetMainViewModel("PetterTest");
+            //dataManager.TestAddFavorite();
             return "ok";
         }
     }
