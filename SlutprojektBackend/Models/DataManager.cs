@@ -37,12 +37,12 @@ namespace SlutprojektBackend.Models
             workoutcontext.AddWorkoutSessionStrength(user, viewModel);
         }
 
-        internal void TestAddFavorite()
-        {
-            workoutcontext.AddUserFavorite("PetterTest", "MyFavoriteWorkout!");
-            workoutcontext.AddUserFavorite("PetterTest", "MySecondFavoriteWorkout!");
-            workoutcontext.AddUserFavorite("PetterTest", "MyLeastFavoriteWorkout!");
-        }
+        //internal void TestAddFavorite()
+        //{
+        //    workoutcontext.AddUserFavorite("PetterTest", "MyFavoriteWorkout!");
+        //    workoutcontext.AddUserFavorite("PetterTest", "MySecondFavoriteWorkout!");
+        //    workoutcontext.AddUserFavorite("PetterTest", "MyLeastFavoriteWorkout!");
+        //}
 
         internal WrapperStatisticsVM GetStatisticsForUser(string userID)
         {
