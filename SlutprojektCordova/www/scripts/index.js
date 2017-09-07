@@ -140,6 +140,7 @@ window.onload = function () {
     $("#cardioprogram").hide();
     $("#ui-datepicker-div").hide();
     $("#otherprogram").hide();
+    $("#addweightwrapper").hide();
     
 
     // Klicka på hem
@@ -148,47 +149,47 @@ window.onload = function () {
         $("#calendaricon").removeClass("selectedicon");
         $("#statsicon").removeClass("selectedicon");
 
-        $.ajax({
-            url: "http://localhost:49902/Member/Main",
-            type: "GET",
+        //$.ajax({
+        //    url: "http://localhost:49902/Member/Main",
+        //    type: "GET",
 
-            success: function (result) {
-                var prevContent = "<b>" + result.calendar[0].sessionName + "</b>";
-                prevContent += "<br /><p>" + result.calendar[0].typeOfWorkoutSession + "</p> ";
-                prevContent += "<p>" + result.calendar[0].date + "</p>";
+        //    success: function (result) {
+        //        var prevContent = "<b>" + result.calendar[0].sessionName + "</b>";
+        //        prevContent += "<br /><p>" + result.calendar[0].typeOfWorkoutSession + "</p> ";
+        //        prevContent += "<p>" + result.calendar[0].date + "</p>";
 
-                $("#box1content").html(prevContent);
-
-
-                var todayContent = "<b>" + result.calendar[1].sessionName + "</b>";
-                todayContent += "<br /><p>" + result.calendar[1].typeOfWorkoutSession + "</p> ";
-
-                $("#box2content").html(todayContent);
+        //        $("#box1content").html(prevContent);
 
 
-                var nextContent = "<b>" + result.calendar[2].sessionName + "</b>";
-                nextContent += "<br /><p>" + result.calendar[2].typeOfWorkoutSession + "</p> ";
-                nextContent += "<p>" + result.calendar[2].date + "</p>";
+        //        var todayContent = "<b>" + result.calendar[1].sessionName + "</b>";
+        //        todayContent += "<br /><p>" + result.calendar[1].typeOfWorkoutSession + "</p> ";
 
-                $("#box3content").html(nextContent);
-            },
-            error: function (result) {
-                alert("AJAJAJ - something went wrong: " + result);
-            }
-        })
+        //        $("#box2content").html(todayContent);
 
-        $.ajax({
-            url: "http://localhost:49902/Member/Index",
-            type: "GET",
-            success: function (result) {
+
+        //        var nextContent = "<b>" + result.calendar[2].sessionName + "</b>";
+        //        nextContent += "<br /><p>" + result.calendar[2].typeOfWorkoutSession + "</p> ";
+        //        nextContent += "<p>" + result.calendar[2].date + "</p>";
+
+        //        $("#box3content").html(nextContent);
+        //    },
+        //    error: function (result) {
+        //        alert("AJAJAJ - something went wrong: " + result);
+        //    }
+        //})
+
+        //$.ajax({
+        //    url: "http://localhost:49902/Member/Index",
+        //    type: "GET",
+        //    success: function (result) {
                 
-                storage.setItem("WorkoutSessions", JSON.stringify(result));
-                var temp = JSON.parse(storage.getItem("WorkoutSessions"));
-            },
-            error: function (result) {
-                alert("Fel vid storage")
-            }
-        });
+        //        storage.setItem("WorkoutSessions", JSON.stringify(result));
+        //        var temp = JSON.parse(storage.getItem("WorkoutSessions"));
+        //    },
+        //    error: function (result) {
+        //        alert("Fel vid storage")
+        //    }
+        //});
     }
 
     // Klicka på Kalender
@@ -218,6 +219,7 @@ window.onload = function () {
 
 //////////////////////////////////////////////////////////////////// ADD BUTTON
 
+// Klicka på gröna plusset
 $("#addbutton").click(function () {
     $("#wrapper").addClass("clickadd");
     $("#addmenu").show();
@@ -225,12 +227,33 @@ $("#addbutton").click(function () {
     $("#hamburgermenu").hide();
 });
 
-
+// Klicka utanför gröna plusset
 $("#wrapper").click(function () {
     $("#wrapper").removeClass("clickadd");
     $("#addmenu").hide();
     $("#addmenu2").hide();
     $("#hamburgermenu").hide();
+});
+
+// Klicka på add work out
+$("#toaddwo").click(function () {
+    window.location = "add.html";
+});
+
+// Klicka på add weight
+$("#toaddweight").click(function () {
+    $("#firstmainpage").hide();
+    $("#addweightwrapper").show();
+    $("#wrapper").removeClass("clickadd");
+    $("#addmenu").hide();
+    $("#addmenu2").hide();
+    $("#hamburgermenu").hide();
+});
+
+// Klicka på spara weight
+$("#saveweight").click(function () {
+    // TODO: SPARA NER DATAN --------------------------------------------------------------------------- !
+    location.reload(); 
 });
 
 
@@ -277,17 +300,47 @@ $("#otherbtn").click(function () {
 });
 
 
+// ADD STRENGTH WORKOUT
+$("#addwo").click(function () {
+    // TODO: SPARA NER DATAN --------------------------------------------------------------------------- !
+    window.location = "run.html";
+});
+
+// ADD FINISHED STRENGTH WORKOUT
+$("#addfinishedwo").click(function () {
+    // TODO: SPARA NER DATAN --------------------------------------------------------------------------- !
+    window.location = "calendar.html";
+});
+
+// ADD CARDIO WORKOUT
+$("#addcardio").click(function () {
+    // TODO: SPARA NER DATAN --------------------------------------------------------------------------- !
+    window.location = "calendar.html";
+});
+
+// ADD OTHER WORKOUT
+$("#addother").click(function () {
+    // TODO: SPARA NER DATAN --------------------------------------------------------------------------- !
+    window.location = "calendar.html";
+});
+
+
+
 $("#addanother").click(function () {
     var anotherfield = "";
 
-    anotherfield += '<div id="oneexercise"><br /> <select id="exercise" style="width:70%;"> <option value="" disabled selected>Choose an exercise</option> </select> <input id="reps" style="width: 20%;" type="text" placeholder="Sets" /> <input type="button" id="deletefield" style="width:4%; padding: 1px; font-size:20px; background:transparent; color:#888; text-align:right; text-transform:lowercase;" value="x" /> </div>'
+    anotherfield += '<div id="oneexercise"><br /> <select id="exercise" style="width:70%;"> <option value="" disabled selected>Choose an exercise</option> </select> <input id="reps" style="width: 20%;" type="text" placeholder="Sets" /> <input type="button" class="deletefield" style="width:4%; padding: 1px; font-size:20px; background:transparent; color:#888; text-align:right; text-transform:lowercase;" value="x" /> </div>'
     
     $("#exercises").append(anotherfield);
 });
 
-$("#exercises").on('click', '#deletefield', function () {
+$("#exercises").on('click', '.deletefield', function () {
     $(this).parent("#oneexercise").remove();
 }); 
 
+
+//$("#addnew").on('click', '.deletefield', function () {
+//    $(this).parent("#oneexercise").remove(); TODO: hitta rätt element att ta bort --------------------- !
+//}); 
 
 $(".datepicker").datepicker();

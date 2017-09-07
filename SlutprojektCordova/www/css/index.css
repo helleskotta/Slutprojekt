@@ -211,6 +211,10 @@ select {
 /* MAIN CONTAINERS */
 /**********************************************************************************************************/
 
+#firstmainpage {
+    margin-bottom:15%;
+}
+
 #date, #boxes, .module {
     height: 25%;
     margin-top: 10px;
@@ -311,8 +315,8 @@ select {
 
 
     #addmenu2 img {
-        width: 45px;
-        height: 60px;
+        width: 50px;
+        height: 70px;
         margin-left: 20px;
         filter: drop-shadow(3px 2px 5px #888);
     }
