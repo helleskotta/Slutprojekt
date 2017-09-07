@@ -137,6 +137,9 @@ window.onload = function () {
     $("#menuToggle").hide();
     $("#hamburger").show();
     $("#hamburgermenu").hide();
+    $("#cardioprogram").hide();
+    $("#ui-datepicker-div").hide();
+    $("#otherprogram").hide();
     
 
     // Klicka på hem
@@ -252,3 +255,39 @@ $("#calendaricon").click(function () {
 $("#statsicon").click(function () {
     window.location = "statistics.html";
 });
+
+
+//////////////////////////////////////////////////////////////////// ADD
+$("#strengthbtn").click(function () {
+    $("#strengthprogram").show();
+    $("#cardioprogram").hide();
+    $("#otherprogram").hide();
+});
+
+$("#cardiobtn").click(function () {
+    $("#cardioprogram").show();
+    $("#strengthprogram").hide();
+    $("#otherprogram").hide();
+});
+
+$("#otherbtn").click(function () {
+    $("#cardioprogram").hide();
+    $("#strengthprogram").hide();
+    $("#otherprogram").show();
+});
+
+
+$("#addanother").click(function () {
+    var anotherfield = "";
+
+    anotherfield += '<div id="oneexercise"><br /> <select id="exercise" style="width:70%;"> <option value="" disabled selected>Choose an exercise</option> </select> <input id="reps" style="width: 20%;" type="text" placeholder="Sets" /> <input type="button" id="deletefield" style="width:4%; padding: 1px; font-size:20px; background:transparent; color:#888; text-align:right; text-transform:lowercase;" value="x" /> </div>'
+    
+    $("#exercises").append(anotherfield);
+});
+
+$("#exercises").on('click', '#deletefield', function () {
+    $(this).parent("#oneexercise").remove();
+}); 
+
+
+$(".datepicker").datepicker();

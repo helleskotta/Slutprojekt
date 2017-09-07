@@ -156,5 +156,7 @@ namespace SlutprojektBackend.Models.Entities
                     .HasMaxLength(450);
             });
         }
+
+       
     }
 }
