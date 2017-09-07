@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SlutprojektBackend.Models.ViewModels;
+using SlutprojektBackend.Models.ViewModels.Statistics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -116,13 +117,24 @@ namespace SlutprojektBackend.Models.Entities
             return null;
         }
 
-        private List<StatisticsMainVM> GetStatisticsForMain(string userID)
+        private List<Stats> GetStatisticsForMain(string userID)
         {
-            List<StatisicsVM> statsForMain = new List<StatisicsVM>();
+            List<Stats> statsForMain = new List<Stats>();
             //statsForMain.Add(new StatisicsVM() {TypeOfWorkoutSession })
-
+            WeightChangeGrafStat weightChangeGrafStat = GetWeightStat(userID);
 
             throw new NotImplementedException();
+        }
+
+        private WeightChangeGrafStat GetWeightStat(string userID)
+        {
+            var dataToReturn = new WeightChangeGrafStat();
+            var DataPoints = UserWeight
+                .Where(u => u.UserId == userID)
+                .Select(d => new { date = d.Date, userWeight = d.UserWeight1 }).ToArray();
+
+
+            return dataToReturn;
         }
 
         //Gets all workoutsession for a user

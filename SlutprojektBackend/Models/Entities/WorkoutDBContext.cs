@@ -9,6 +9,7 @@ namespace SlutprojektBackend.Models.Entities
         public virtual DbSet<Exercise> Exercise { get; set; }
         public virtual DbSet<Goal> Goal { get; set; }
         public virtual DbSet<Set> Set { get; set; }
+        public virtual DbSet<UserFavorites> UserFavorites { get; set; }
         public virtual DbSet<UserSettings> UserSettings { get; set; }
         public virtual DbSet<UserWeight> UserWeight { get; set; }
         public virtual DbSet<WorkoutSession> WorkoutSession { get; set; }
@@ -72,6 +73,20 @@ namespace SlutprojektBackend.Models.Entities
                     .HasForeignKey(d => d.ExerciseId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Set__ExerciseID__60A75C0F");
+            });
+
+            modelBuilder.Entity<UserFavorites>(entity =>
+            {
+                entity.ToTable("UserFavorites", "logit");
+
+                entity.Property(e => e.Favorite)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .HasColumnName("UserID")
+                    .HasMaxLength(450);
             });
 
             modelBuilder.Entity<UserSettings>(entity =>
