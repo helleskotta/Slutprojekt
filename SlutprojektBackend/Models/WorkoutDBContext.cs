@@ -198,6 +198,80 @@ namespace SlutprojektBackend.Models.Entities
             SaveChanges();
         }
 
+        public WrapperStatisticsVM GetAllStatistics(string userID)
+        {
+
+            WrapperStatisticsVM statsToReturn = new WrapperStatisticsVM();
+            statsToReturn.Statistics = new List<StatisicsVM>();
+
+            //Vikt kurva
+            statsToReturn.Statistics.Add(GetWeightStatFull(userID));
+
+            //Total lyft vikt!
+            statsToReturn.Statistics.Add(GetTotalLiftetWeight(userID));
+
+            //Cardio vs STR
+            statsToReturn.Statistics.Add(GetCardioVsStr(userID));
+
+
+            return statsToReturn;
+        }
+
+        private StatisicsVM GetCardioVsStr(string userID)
+        {
+            var count = WorkoutSession.GroupBy(c => c.Type).Select(c=>c.Count());
+            var names = WorkoutSession.GroupBy(c => c.Type).Select(c=>c.Key).ToArray();
+            StatisicsVM statToReturn = new StatisicsVM();
+            statToReturn.TypeOfWorkoutSession = "General";
+
+            var data = new PieChartStat();
+
+            data.Data = count.ToArray();
+            data.Names = names;
+            statToReturn.Stats = data;
+
+            return statToReturn;
+        }
+
+        private StatisicsVM GetTotalLiftetWeight(string userID)
+        {
+            var temp =WorkoutSession
+                .Where(c => c.UserId == userID)
+                .Select(s => s.Exercise.Select(c => c.Set.Select(k => new  { weight = k.UsedWeight*k.Reps})));
+            StatisicsVM statToReturn = new StatisicsVM();
+            statToReturn.TypeOfWorkoutSession = "Strength";
+
+            var total = 0.0;
+             
+            foreach (var item in temp)
+            {
+                total += Convert.ToDouble(item);
+            }
+            statToReturn.Stats = new TotalStrengthStats() {TotalWeightLifted=total };
+           
+            return statToReturn;
+
+        }
+
+        private StatisicsVM GetWeightStatFull(string userID)
+        {
+            var dataToReturn = new StatisicsVM();
+            dataToReturn.TypeOfWorkoutSession = "General";
+
+            var Data = new WeightChangeGrafStat();
+            Data.DateData = UserWeight
+                .Where(u => u.UserId == userID)
+                .Select(c => c.Date).ToArray();
+
+            Data.WeightData = UserWeight
+               .Where(u => u.UserId == userID)
+               .Select(c => c.UserWeight1).ToArray();
+
+            dataToReturn.Stats = Data;
+
+            return dataToReturn;
+        }
+
         // C# 7 Synatx
         //public List<WorkoutSessionVM> GetAllWorkoutSessions(string userID) =>
         //    WorkoutSession
