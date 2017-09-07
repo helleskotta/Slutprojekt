@@ -64,7 +64,7 @@ namespace SlutprojektBackend.Models.Entities
             return mainVMToReturn;
         }
 
-        private List<string> GetFavoritesForMain(string userID, UserFavorites userFavorites)
+        private List<string> GetFavoritesForMain(string userID)
         {
             return UserFavorites.Where(c => c.UserId == userID).OrderBy(o => o.Id).Select(f => f.Favorite).ToList();
         }
