@@ -9,7 +9,7 @@ namespace SlutprojektBackend.Models.ViewModels
     {
         // Random statistik - lista? Välj ut i DataManager?
        
-        public List<StatisticsMainVM> Statistics { get; set; }
+        public List<Stats> Statistics { get; set; }
 
         // 3 dagar i boxar
         public List<CalendarMainVM> Calendar;
