@@ -1,5 +1,7 @@
 ﻿// To debug code on page load in cordova-simulate or on Android devices/emulators: launch your app, set breakpoints, 
 // and then run "window.location.reload()" in the JavaScript Console.
+var storage = window.localStorage;
+
 (function () {
     "use strict";
 
@@ -135,6 +137,7 @@ window.onload = function () {
     $("#menuToggle").hide();
     $("#hamburger").show();
     $("#hamburgermenu").hide();
+    
 
     // Klicka på hem
     if (document.getElementById("boxes")) {
@@ -170,6 +173,19 @@ window.onload = function () {
                 alert("AJAJAJ - something went wrong: " + result);
             }
         })
+
+        $.ajax({
+            url: "http://localhost:49902/Member/Index",
+            type: "GET",
+            success: function (result) {
+                
+                storage.setItem("WorkoutSessions", JSON.stringify(result));
+                var temp = JSON.parse(storage.getItem("WorkoutSessions"));
+            },
+            error: function (result) {
+                alert("Fel vid storage")
+            }
+        });
     }
 
     // Klicka på Kalender

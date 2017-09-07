@@ -43,7 +43,8 @@ namespace SlutprojektBackend.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return Json(dataManager.TestMethodGet());
+            
         }
 
         public IActionResult Statistics()

@@ -53,9 +53,9 @@ namespace SlutprojektBackend.Models
             return VMToReturn;
         }
 
-        public void TestMethodGet()
+        public List<WorkoutSessionVM> TestMethodGet()
         {
-            workoutcontext.GetAllWorkoutSessions("PetterTest");
+            return workoutcontext.GetAllWorkoutSessions("PetterTest");
         }
 
         public void TestAddWeight()
