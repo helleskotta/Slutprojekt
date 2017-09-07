@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SlutprojektBackend.Models.ViewModels;
+using SlutprojektBackend.Models.ViewModels.Statistics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +50,7 @@ namespace SlutprojektBackend.Models.Entities
             MainVM mainVMToReturn = new MainVM();
 
             //// Random statistik - lista? Välj ut i DataManager?
-            //mainVMToReturn.Statistics = GetStatisticsForMain(userID);
+            mainVMToReturn.Statistics = GetStatisticsForMain(userID);
 
             //Hämtar #Goals
             // mainVMToReturn.Goals = GetGoalsForMain(userID);
@@ -58,14 +59,14 @@ namespace SlutprojektBackend.Models.Entities
             mainVMToReturn.Calendar = GetCalendarForMain(userID);
 
             ////Hämtar favorit pass för användare till add menyn
-            //mainVMToReturn.Favorites = GetFavoritesForMain(userID);
+            mainVMToReturn.Favorites = GetFavoritesForMain(userID);
 
             return mainVMToReturn;
         }
 
         private List<string> GetFavoritesForMain(string userID)
         {
-            throw new NotImplementedException();
+            return UserFavorites.Where(c => c.UserId == userID).OrderBy(o => o.Id).Select(f => f.Favorite).ToList();
         }
 
         private List<CalendarMainVM> GetCalendarForMain(string userID)
@@ -80,7 +81,7 @@ namespace SlutprojektBackend.Models.Entities
                 TypeOfWorkoutSession = c.Type
             })
             .Where(d=>d.Date.Day<DateTime.Now.Day)
-            .First();
+            .FirstOrDefault();
 
             var todayListitem = WorkoutSession
             .Where(i => i.UserId == userID)
@@ -91,7 +92,7 @@ namespace SlutprojektBackend.Models.Entities
                 TypeOfWorkoutSession = c.Type
             })
             .Where(d => d.Date.Day == DateTime.Now.Day)
-            .First();
+            .FirstOrDefault();
 
             var lastListitem = WorkoutSession
             .Where(i => i.UserId == userID)
@@ -102,7 +103,7 @@ namespace SlutprojektBackend.Models.Entities
                 TypeOfWorkoutSession = c.Type
             })
             .Where(d => d.Date.Day > DateTime.Now.Day)
-            .First();
+            .FirstOrDefault();
 
             listToReturn.Add(firstListitem);
             listToReturn.Add(todayListitem);
@@ -116,13 +117,34 @@ namespace SlutprojektBackend.Models.Entities
             return null;
         }
 
-        private List<StatisticsMainVM> GetStatisticsForMain(string userID)
+        internal void AddWeightMeasurment(string userID, double weightData)
         {
-            List<StatisicsVM> statsForMain = new List<StatisicsVM>();
-            //statsForMain.Add(new StatisicsVM() {TypeOfWorkoutSession })
+            UserWeight.Add(new UserWeight() { Date = DateTime.Now, UserId = userID, UserWeight1 = weightData });
+            SaveChanges();
+        }
 
+        private List<Stats> GetStatisticsForMain(string userID)
+        {
+            List<Stats> statsForMain = new List<Stats>();
+            
+            WeightChangeGrafStat weightChangeGrafStat = GetWeightStat(userID);
+            statsForMain.Add(weightChangeGrafStat);
 
-            throw new NotImplementedException();
+            return statsForMain;
+        }
+
+        private WeightChangeGrafStat GetWeightStat(string userID)
+        {
+            var dataToReturn = new WeightChangeGrafStat();
+            dataToReturn.DateData = UserWeight
+                .Where(u => u.UserId == userID)
+                .Select(c => c.Date).ToArray();
+
+            dataToReturn.WeightData = UserWeight
+               .Where(u => u.UserId == userID)
+               .Select(c => c.UserWeight1).ToArray();
+            
+            return dataToReturn;
         }
 
         //Gets all workoutsession for a user
@@ -170,6 +192,12 @@ namespace SlutprojektBackend.Models.Entities
             return calandarList;
         }
 
+        internal void AddUserFavorite(string userID, string favoriteToAdd)
+        {
+            UserFavorites.Add(new UserFavorites() { UserId = userID, Favorite = favoriteToAdd });
+            SaveChanges();
+        }
+
         // C# 7 Synatx
         //public List<WorkoutSessionVM> GetAllWorkoutSessions(string userID) =>
         //    WorkoutSession
@@ -199,6 +227,5 @@ namespace SlutprojektBackend.Models.Entities
         {
 
         }
-        //Lägg till metoder
     }
 }

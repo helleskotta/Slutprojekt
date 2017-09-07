@@ -18,10 +18,12 @@ namespace SlutprojektBackend
         }
         public string Index()
         {
-            dataManager.TestMethodAddWorkoutSession();
+            //dataManager.TestMethodAddWorkoutSession();
             //dataManager.TestMethodGet();
             //await identityDbContext.Database.EnsureCreatedAsync();
-
+            //dataManager.TestAddWeight();
+            dataManager.GetMainViewModel("PetterTest");
+            //dataManager.TestAddFavorite();
             return "ok";
         }
     }
