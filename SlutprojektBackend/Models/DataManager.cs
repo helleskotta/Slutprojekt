@@ -44,6 +44,14 @@ namespace SlutprojektBackend.Models
             workoutcontext.AddUserFavorite("PetterTest", "MyLeastFavoriteWorkout!");
         }
 
+        internal WrapperStatisticsVM GetStatisticsForUser(string userID)
+        {
+            WrapperStatisticsVM statsForStatistics = new WrapperStatisticsVM();
+            statsForStatistics = workoutcontext.GetAllStatistics(userID);
+
+            return statsForStatistics;
+        }
+
         internal MainVM GetMainViewModel(string userID)
         {
             MainVM VMToReturn = new MainVM();
