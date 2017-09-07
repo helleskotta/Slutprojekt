@@ -179,7 +179,7 @@ select {
 
 #box1, #box2, #box3 {
     width: 30%;
-    height: 100px;
+    height: 130px;
     background: white;
     padding: 4px;
     border-radius: 2px;
@@ -196,6 +196,12 @@ select {
 
 #box3 {
     float: right;
+}
+
+#box1content, #box2content, #box3content {
+    padding: 0, 5px;
+    text-align:center;
+    line-height:10px;
 }
 
 #footer {

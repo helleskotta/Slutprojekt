@@ -26,10 +26,10 @@ namespace SlutprojektBackend.Controllers
         [HttpGet]
         public IActionResult Main()
         {
-            var test=userManager.GetUserId(HttpContext.User);
-             
-            //var id = "PetterTest";
-            var viewModel = dataManager.GetMainViewModel(test);
+            //var test = userManager.GetUserId(HttpContext.User);
+
+            var id = "PetterTest";
+            var viewModel = dataManager.GetMainViewModel(id);
             return Json(viewModel);
         }
 

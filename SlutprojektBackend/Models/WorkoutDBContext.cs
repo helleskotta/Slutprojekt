@@ -48,8 +48,8 @@ namespace SlutprojektBackend.Models.Entities
         {
             MainVM mainVMToReturn = new MainVM();
 
-            // Random statistik - lista? Välj ut i DataManager?
-            mainVMToReturn.Statistics = GetStatisticsForMain(userID);
+            //// Random statistik - lista? Välj ut i DataManager?
+            //mainVMToReturn.Statistics = GetStatisticsForMain(userID);
 
             //Hämtar #Goals
            // mainVMToReturn.Goals = GetGoalsForMain(userID);
@@ -57,8 +57,8 @@ namespace SlutprojektBackend.Models.Entities
             // 3 dagar i boxar
             mainVMToReturn.Calendar = GetCalendarForMain(userID);
 
-            //Hämtar favorit pass för användare till add menyn
-            mainVMToReturn.Favorites = GetFavoritesForMain(userID);
+            ////Hämtar favorit pass för användare till add menyn
+            //mainVMToReturn.Favorites = GetFavoritesForMain(userID);
 
             return mainVMToReturn;
         }

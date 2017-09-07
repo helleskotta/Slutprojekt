@@ -18,11 +18,11 @@ namespace SlutprojektBackend
         }
         public string Index()
         {
-            //dataManager.TestMethodAddWorkoutSession();
-            dataManager.TestMethodGet();
+            dataManager.TestMethodAddWorkoutSession();
+            //dataManager.TestMethodGet();
             //await identityDbContext.Database.EnsureCreatedAsync();
 
-            return"ok";
+            return "ok";
         }
     }
 }

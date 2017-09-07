@@ -22,8 +22,6 @@
         //var receivedElement = parentElement.querySelector('.received');
         //listeningElement.setAttribute('style', 'display:none;');
         //receivedElement.setAttribute('style', 'display:block;');
-
-
     }
 
     function onPause() {
@@ -58,9 +56,6 @@ $("#loginTest").click(function () {
     $.ajax({
         url: "http://localhost:49902/Account/LoggedIn",
         type: "POST",
-        //xhrFields: {
-        //    withCredentials: true
-        //},
         success: function (result) {
             console.log("success: " + result);
         },
@@ -134,7 +129,6 @@ var d = new Date();
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 window.onload = function () {
-    //document.getElementById("date").innerHTML = d.getDate() + " " + months[d.getMonth()];
     $("#date").html(d.getDate() + " " + months[d.getMonth()]);
     $("#addmenu").hide();
     $("#addmenu2").hide();
@@ -147,6 +141,35 @@ window.onload = function () {
         $("#homeicon").addClass("selectedicon");
         $("#calendaricon").removeClass("selectedicon");
         $("#statsicon").removeClass("selectedicon");
+
+        $.ajax({
+            url: "http://localhost:49902/Member/Main",
+            type: "GET",
+
+            success: function (result) {
+                var prevContent = "<b>" + result.calendar[0].sessionName + "</b>";
+                prevContent += "<br /><p>" + result.calendar[0].typeOfWorkoutSession + "</p> ";
+                prevContent += "<p>" + result.calendar[0].date + "</p>";
+
+                $("#box1content").html(prevContent);
+
+
+                var todayContent = "<b>" + result.calendar[1].sessionName + "</b>";
+                todayContent += "<br /><p>" + result.calendar[1].typeOfWorkoutSession + "</p> ";
+
+                $("#box2content").html(todayContent);
+
+
+                var nextContent = "<b>" + result.calendar[2].sessionName + "</b>";
+                nextContent += "<br /><p>" + result.calendar[2].typeOfWorkoutSession + "</p> ";
+                nextContent += "<p>" + result.calendar[2].date + "</p>";
+
+                $("#box3content").html(nextContent);
+            },
+            error: function (result) {
+                alert("AJAJAJ - something went wrong: " + result);
+            }
+        })
     }
 
     // Klicka på Kalender
@@ -169,6 +192,9 @@ window.onload = function () {
     //    $("#calendaricon").addClass("selectedicon");
     //    $("#statsicon").removeClass("selectedicon");
     //}
+
+
+
 }
 
 //////////////////////////////////////////////////////////////////// ADD BUTTON

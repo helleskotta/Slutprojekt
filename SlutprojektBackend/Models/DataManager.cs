@@ -25,9 +25,10 @@ namespace SlutprojektBackend.Models
 
             List<ExerciseVM> exerciseView = new List<ExerciseVM>();
             exerciseView.Add(new ExerciseVM { Name="Test",Sets=setView });
-
+            
             WorkoutSessionVM viewModel = new WorkoutSessionVM {
-                Date = DateTime.Now,
+                Date = DateTime.Now.Date.AddDays(1),
+                SessionName = "Next session",
                 Exercises = exerciseView,
                 Type = "NewTest"};
             workoutcontext.AddWorkoutSessionStrength(user, viewModel);
