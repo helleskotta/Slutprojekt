@@ -45,5 +45,15 @@ namespace SlutprojektBackend.Controllers
         {
             return View();
         }
+
+        public IActionResult Statistics()
+        {
+            return View();
+        }
+
+        public IActionResult AddWorkout()
+        {
+            return View();
+        }
     }
 }

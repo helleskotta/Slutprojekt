@@ -11,6 +11,7 @@ namespace SlutprojektBackend.Models
     {
         WorkoutDBContext workoutcontext;
 
+        //Ctor
         public DataManager(WorkoutDBContext context)
         {
             workoutcontext = context;
