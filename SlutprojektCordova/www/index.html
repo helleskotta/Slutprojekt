@@ -12,7 +12,6 @@
     </head>
     <body>
         <div class="app">
-<!--------------------------------------------------------------------------------------------->
             <!--ID LOGIN -->
             <div id="login">
                 <img width="50%" src="images/logo-color.png" />
@@ -37,8 +36,7 @@
                 <br />
                 <input type="button" value="REGISTER" id="redirect" />
             </div>
-            <!-- LOGIN VIEW END -->
-            <!--------------------------------------------------------------------------------------------->
+            <!-- login view end -->
 
             <!-- ID REGISTER -->
             <div id="register">
@@ -73,11 +71,9 @@
                     <input type="button" value="REGISTER" id="add" />
                 </form>
             </div>
-            <!--REGISTER END-->
-            <!--------------------------------------------------------------------------------------------->
+            <!-- register end -->
 
             <!-- ID WELCOME -->
-
             <div id="welcome">
                 <h2><b>Welcome to</b></h2>
                 <img width="50%" src="images/logo-color.png" />
@@ -89,8 +85,7 @@
 
                 <input type="button" value="VIEW APP" id="main" style="background:white; color:#2DA130;" />
             </div>
-            <!-- WELCOME END -->
-            <!--------------------------------------------------------------------------------------------->
+            <!-- welcome end -->
 
             <!--ADD STATS SCREEN-->
             <div id="addstats">
@@ -100,27 +95,25 @@
                 </h1>
                 <br /><br />
                 <form action="">
-                    <label>Height</label><br />
-                    <input type="number" />
-                    <select>
-                        <option>cm</option>
-                        <option>inch</option>
-                    </select>
+                    <div id="weightadd">
+                        <input type="text" class="datepicker" style="width:31%;" placeholder=" Date">
+                        <input type="text" id="weightbox" style="width:31%;" placeholder=" Weight" />
+                        <input type="text" id="heightbox" style="width:31%;" placeholder=" Height" />
+                        <br /><br />
+                        <input type="text" id="chestlog" style="width:31%;" placeholder=" Chest">
+                        <input type="text" id="waistlog" style="width:31%;" placeholder=" Waist" />
+                        <input type="text" id="hipslog" style="width:31%;" placeholder=" Hips" />
+                        <br /><br />
+                        <input type="text" placeholder=" Notes" />
+                        <br /><br />
+                        <input type="button" id="saveweight" value="SAVE" />
+                    </div>
                     <br /><br />
-                    <label>Weight</label><br />
-                    <input type="number" />
-                    <select>
-                        <option>kg</option>
-                        <option>pound</option>
-                    </select><br /><br />
-                    <br />
-                    <label>Chest</label> <label>Waist</label> <label>Hips</label><br />
-                    <input type="number" /> <input type="number" /> <input type="number" /><br /><br />
-                    <input type="submit" value="SUBMIT" />
+                    <input type="button" value="SUBMIT" />
                 </form>
                 <a href="">Add later</a>
             </div>
-            <!--ADD TAG END -->
+            <!--add stats end  -->
 
         </div>
 
