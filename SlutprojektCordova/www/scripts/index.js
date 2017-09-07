@@ -137,6 +137,8 @@ window.onload = function () {
     $("#menuToggle").hide();
     $("#hamburger").show();
     $("#hamburgermenu").hide();
+    $("#cardioprogram").hide();
+    $("#ui-datepicker-div").hide();
     
 
     // Klicka på hem
@@ -256,13 +258,11 @@ $("#statsicon").click(function () {
 
 //////////////////////////////////////////////////////////////////// ADD
 $("#strengthbtn").click(function () {
-    //alert("test");
     $("#strengthprogram").show();
     $("#cardioprogram").hide();
 });
 
 $("#cardiobtn").click(function () {
-    //alert("test");
     $("#cardioprogram").show();
     $("#strengthprogram").hide();
 });
@@ -271,7 +271,7 @@ $("#cardiobtn").click(function () {
 $("#addanother").click(function () {
     var anotherfield = "";
 
-    anotherfield += '<div id="oneexercise"><br /><select id= "exercise" style= "width:60%;"><option value="" disabled selected>Choose an exercise</option></select> <input id="reps" style="width: 25%;" type="text" placeholder="Sets" /> <input type="button" id="deletefield" style="width:5%; padding: 1px; font-size:20px; background:transparent; color:#888;  text-transform:lowercase;" value="x" /></div>'
+    anotherfield += '<div id="oneexercise"><br /> <select id="exercise" style="width:70%;"> <option value="" disabled selected>Choose an exercise</option> </select> <input id="reps" style="width: 20%;" type="text" placeholder="Sets" /> <input type="button" id="deletefield" style="width:4%; padding: 1px; font-size:20px; background:transparent; color:#888; text-align:right; text-transform:lowercase;" value="x" /> </div>'
     
     $("#exercises").append(anotherfield);
 });
@@ -280,3 +280,5 @@ $("#exercises").on('click', '#deletefield', function () {
     $(this).parent("#oneexercise").remove();
 }); 
 
+
+$(".datepicker").datepicker();

@@ -160,6 +160,7 @@ input[type=text], [type=password], [type=email] {
     border-radius: 5px;
     height: 25px;
     width: 100%;
+    font-family: 'Open Sans';
 }
 
 input[type=number] {
@@ -333,6 +334,42 @@ select {
     height:60px;
     margin:2px;
 }
+
+#strengthprogram, #cardioprogram {
+    text-align:left;
+}
+
+/* ADD DATE CALENDAR JQUERY CUSTOM CSS */
+/**********************************************************************************************************/
+#ui-datepicker-div {
+    background: white;
+    opacity: 1;
+    border: 1px solid #C0C0C0;
+    border-radius: 2px;
+    padding: 10px;
+    filter: drop-shadow(3px 2px 5px #888);
+    font-size: 15px;
+}
+
+.ui-datepicker-title {
+    font-weight:bold;
+}
+
+.ui-datepicker-header, .ui-widget-header, .ui-helper-clearfix, .ui-corner-all {
+    text-align:center;
+}
+
+.ui-datepicker-prev {
+    font-size: 10px;
+    text-align: left;
+    padding-right: 70%;
+}
+
+.ui-datepicker-next {
+    font-size: 10px;
+    text-align: right;
+}
+
 
 /* HAMBURGER MENU */
 /**********************************************************************************************************/
