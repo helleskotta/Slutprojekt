@@ -139,6 +139,7 @@ window.onload = function () {
     $("#hamburgermenu").hide();
     $("#cardioprogram").hide();
     $("#ui-datepicker-div").hide();
+    $("#otherprogram").hide();
     
 
     // Klicka på hem
@@ -260,11 +261,19 @@ $("#statsicon").click(function () {
 $("#strengthbtn").click(function () {
     $("#strengthprogram").show();
     $("#cardioprogram").hide();
+    $("#otherprogram").hide();
 });
 
 $("#cardiobtn").click(function () {
     $("#cardioprogram").show();
     $("#strengthprogram").hide();
+    $("#otherprogram").hide();
+});
+
+$("#otherbtn").click(function () {
+    $("#cardioprogram").hide();
+    $("#strengthprogram").hide();
+    $("#otherprogram").show();
 });
 
 
