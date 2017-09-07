@@ -14,6 +14,8 @@ body {
     background-color: #999999;
 }
 
+/* MAIN CONTAINERS */
+/**********************************************************************************************************/
 a {
     text-decoration: none;
     color: #333;
@@ -27,7 +29,7 @@ a {
     background: transparent;
     position: absolute;
     left: 50%;
-    top: 0;
+    top: 10%;
     height: 80%;
     width: 225px;
     text-align: center;
@@ -43,6 +45,53 @@ a {
 #header {
     margin: auto;
 }
+
+/* FOOTER */
+/**********************************************************************************************************/
+
+#footer {
+    background: white;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: 10%;
+    border-top: 1px solid #999;
+}
+
+
+#statsicon {
+    float: left;
+}
+
+#homeicon {
+    margin: auto;
+    margin-top: 0;
+}
+
+#calendaricon {
+    float: right;
+}
+
+#statsicon, #homeicon, #calendaricon {
+    width: 30%;
+    height: 95%;
+    padding: 10px 5px;
+    border-radius: 2px;
+}
+
+    #statsicon img, #homeicon img, #calendaricon img {
+        height: 35px;
+        margin: auto;
+        display: block;
+    }
+
+
+.selectedicon {
+    background: #2DA130;
+}
+
+/* HEADINGS AND TEXT */
+/**********************************************************************************************************/
 
 h1 {
     font-size: 28px;
@@ -102,6 +151,9 @@ h3 {
 }
 */
 
+/* INPUT TYPES */
+/**********************************************************************************************************/
+
 input[type=text], [type=password], [type=email] {
     border: 2px solid #ccc;
     -webkit-border-radius: 5px;
@@ -146,6 +198,7 @@ select {
     border: 2px solid #ccc;
     -webkit-border-radius: 5px;
     border-radius: 5px;
+    height: 32px;
 }
 
     select:focus {
@@ -153,6 +206,9 @@ select {
         -webkit-border-radius: 5px;
         border-radius: 5px;
     }
+
+/* MAIN CONTAINERS */
+/**********************************************************************************************************/
 
 #date, #boxes, .module {
     height: 25%;
@@ -204,44 +260,13 @@ select {
     line-height:10px;
 }
 
-#footer {
+/* ADD CONTAINERS */
+/**********************************************************************************************************/
+
+/* Menu */
+.clickadd { /* Fade main view when clicking menus */
     background: white;
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    height: 10%;
-    border-top: 1px solid #999;
-}
-
-#statsicon, #homeicon, #calendaricon {
-    width: 30%;
-    height: 95%;
-    padding: 10px 5px;
-    border-radius: 2px;
-}
-
-    #statsicon img, #homeicon img, #calendaricon img {
-        height: 35px;
-        margin: auto;
-        display: block;
-    }
-
-
-#statsicon {
-    float: left;
-}
-
-#homeicon {
-    margin: auto;
-    margin-top: 0;
-}
-
-#calendaricon {
-    float: right;
-}
-
-.selectedicon {
-    background: #2DA130;
+    opacity: 0.1;
 }
 
 #addbutton {
@@ -256,11 +281,6 @@ select {
     #addbutton img {
         filter: drop-shadow(3px 2px 5px #333);
     }
-
-.clickadd {
-    background: white;
-    opacity: 0.1;
-}
 
 #addmenu {
     float: right;
@@ -296,6 +316,26 @@ select {
         filter: drop-shadow(3px 2px 5px #888);
     }
 
+/* add view */                                                                                          /* ATM */
+#addnew {
+    background: white;
+    height: 60%;
+    padding: 20px;
+    border-radius: 2px;
+    filter: drop-shadow(3px 2px 5px #888);
+    margin-top:10%;
+    margin-bottom:15%;
+    text-align:center;
+}
+
+#addnew img {
+    width:60px;
+    height:60px;
+    margin:2px;
+}
+
+/* HAMBURGER MENU */
+/**********************************************************************************************************/
 #hamburgermenu {
     float: left;
     position: fixed;
@@ -327,6 +367,10 @@ select {
     margin-top: 20px;
 }
 
+/* CALENDAR CONTAINERS */
+/**********************************************************************************************************/
+
+/* List view */
 #calendarlist {
     background: transparent;
     margin-left:-40px;
@@ -353,3 +397,7 @@ select {
     position:relative;
     left:10%;
 }
+
+/* Week view */
+
+/* Month view */

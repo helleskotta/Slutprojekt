@@ -19,35 +19,64 @@
                 <img src="images/logo-color.png" style="height:40px; float:left;" />
             </h1>
         </div>
+        <h1>Add new program</h1>
+
         <div id="addnew">
-            <h1>Add new program</h1>
+            <!-- TYPE OF EXERCISE BUTTONS -->
+            <table id="icons" style="margin:auto;">
+                <tr>
+                    <td id="strengthbtn" style="padding: 5px 10px;"><img src="images/strengthicon.png" /><br />Strength</td>
+
+                    <td id="cardiobtn" style="padding: 5px 10px;"><img src="images/cardioicon.png" /><br />Cardio</td>
+
+                    <td id="otherbtn" style="padding: 5px 10px;"><img src="images/othericon.png" /><br />Other</td>
+                </tr>
+            </table>
+            <br /><br />
+
+            <!-- STRENGTH VIEW -->
+            <div id="strengthprogram">
+                <label>Favoritprogram / senaste program</label>
+                <select id="latestorfavs" style="width:95%;">
+                    <option></option>
+                </select>
+
+                <br /><br />
+
+                <label>Program name</label>
+                <input id="programname" type="text" style="width:95%;" />
+
+                <br /><br />
+
+                <div id="exercises">
+                    <div id="oneexercise">
+                        <select id="exercise" style="width:60%;">
+                            <option value="" disabled selected>Choose an exercise</option>
+                        </select>
+                        <input id="reps" style="width: 25%;" type="text" placeholder="Sets" />
+                        <input type="button" id="deletefield" style="width:5%; padding: 1px; font-size:20px; background:transparent; color:#888;  text-transform:lowercase;" value="x" />
+                    </div>
+                </div>
+                <br />
+                <div id="addanother">
+                    <img src="images/add40.png" style="text-align:left; float:left; width:20px; height:20px;" />
+                </div>
+
+                <br /><br />
+            </div>
+            <!-- end strength -->
+            <!-- CARDIO VIEW -->
+            <div id="cardioprogram">
+
+            </div>
+
+            <br /><br />
         </div>
+        <!-- end cardio view -->
+
+        <input type="button" value="RUN PROGRAM" />
     </div>
     <!-- wrapper end -->
-
-
-    <!------------- ADD MENU ------------->
-    <div id="addmenu">
-        <ul>
-            <li>+ Add a favorite</li>
-            <li>+ Add a favorite</li>
-            <li>+ Add a favorite</li>
-            <li>+ Add a favorite</li>
-            <li>+ Add a favorite</li>
-        </ul>
-    </div>
-
-    <div id="addmenu2">
-        <span><img src="images/settings.png" /></span>
-        <span><img src="images/cardio.png" /></span>
-        <span><img src="images/strength.png" /></span>
-    </div>
-
-    <div id="addbutton">
-        <img src="images/add40.png" />
-    </div>
-
-    <!------------- end add menu ------------->
 
     <div id="hamburgermenu">
         <br /><br /><br />
