@@ -20,17 +20,19 @@ namespace SlutprojektBackend.Models
         {
             string user = "PetterTest";
             List<SetVM> setView = new List<SetVM>();
-            setView.Add(new SetVM { Reps = 10, UserComment = "", Weight = 50 });
-            setView.Add(new SetVM { Reps = 81, UserComment = "", Weight = 55 });
+            setView.Add(new SetVM { Reps = 10, UserComment = "", Weight = 80 });
+            setView.Add(new SetVM { Reps = 81, UserComment = "", Weight = 85 });
+            setView.Add(new SetVM { Reps = 81, UserComment = "", Weight = 85 });
+            setView.Add(new SetVM { Reps = 81, UserComment = "", Weight = 80 });
 
             List<ExerciseVM> exerciseView = new List<ExerciseVM>();
-            exerciseView.Add(new ExerciseVM { Name="Test",Sets=setView });
+            exerciseView.Add(new ExerciseVM { Name="SQUAT",Sets=setView });
             
             WorkoutSessionVM viewModel = new WorkoutSessionVM {
                 Date = DateTime.Now.Date.AddDays(1),
                 SessionName = "Next session",
                 Exercises = exerciseView,
-                Type = "NewTest"};
+                Type = "Killer leg workout"};
             workoutcontext.AddWorkoutSessionStrength(user, viewModel);
         }
 
@@ -48,7 +50,12 @@ namespace SlutprojektBackend.Models
             workoutcontext.GetAllWorkoutSessions("PetterTest");
         }
 
-        
+        public void TestAddWeight()
+        {
+            workoutcontext.AddWeightMeasurment("PetterTest", 100.0);
+            workoutcontext.AddWeightMeasurment("PetterTest", 105.0);
+            workoutcontext.AddWeightMeasurment("PetterTest", 90.0);
+        }
 
     }
 }

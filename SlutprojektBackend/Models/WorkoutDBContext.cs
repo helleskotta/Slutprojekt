@@ -50,7 +50,7 @@ namespace SlutprojektBackend.Models.Entities
             MainVM mainVMToReturn = new MainVM();
 
             //// Random statistik - lista? Välj ut i DataManager?
-            //mainVMToReturn.Statistics = GetStatisticsForMain(userID);
+            mainVMToReturn.Statistics = GetStatisticsForMain(userID);
 
             //Hämtar #Goals
             // mainVMToReturn.Goals = GetGoalsForMain(userID);
@@ -59,7 +59,7 @@ namespace SlutprojektBackend.Models.Entities
             mainVMToReturn.Calendar = GetCalendarForMain(userID);
 
             ////Hämtar favorit pass för användare till add menyn
-            //mainVMToReturn.Favorites = GetFavoritesForMain(userID);
+            mainVMToReturn.Favorites = GetFavoritesForMain(userID);
 
             return mainVMToReturn;
         }
@@ -82,7 +82,7 @@ namespace SlutprojektBackend.Models.Entities
                 TypeOfWorkoutSession = c.Type
             })
             .Where(d=>d.Date.Day<DateTime.Now.Day)
-            .First();
+            .FirstOrDefault();
 
             var todayListitem = WorkoutSession
             .Where(i => i.UserId == userID)
@@ -93,7 +93,7 @@ namespace SlutprojektBackend.Models.Entities
                 TypeOfWorkoutSession = c.Type
             })
             .Where(d => d.Date.Day == DateTime.Now.Day)
-            .First();
+            .FirstOrDefault();
 
             var lastListitem = WorkoutSession
             .Where(i => i.UserId == userID)
@@ -104,7 +104,7 @@ namespace SlutprojektBackend.Models.Entities
                 TypeOfWorkoutSession = c.Type
             })
             .Where(d => d.Date.Day > DateTime.Now.Day)
-            .First();
+            .FirstOrDefault();
 
             listToReturn.Add(firstListitem);
             listToReturn.Add(todayListitem);
@@ -118,23 +118,33 @@ namespace SlutprojektBackend.Models.Entities
             return null;
         }
 
+        internal void AddWeightMeasurment(string userID, double weightData)
+        {
+            UserWeight.Add(new UserWeight() { Date = DateTime.Now, UserId = userID, UserWeight1 = weightData });
+            SaveChanges();
+        }
+
         private List<Stats> GetStatisticsForMain(string userID)
         {
             List<Stats> statsForMain = new List<Stats>();
-            //statsForMain.Add(new StatisicsVM() {TypeOfWorkoutSession })
+            
             WeightChangeGrafStat weightChangeGrafStat = GetWeightStat(userID);
+            statsForMain.Add(weightChangeGrafStat);
 
-            throw new NotImplementedException();
+            return statsForMain;
         }
 
         private WeightChangeGrafStat GetWeightStat(string userID)
         {
             var dataToReturn = new WeightChangeGrafStat();
-            var DataPoints = UserWeight
+            dataToReturn.DateData = UserWeight
                 .Where(u => u.UserId == userID)
-                .Select(d => new { date = d.Date, userWeight = d.UserWeight1 }).ToArray();
+                .Select(c => c.Date).ToArray();
 
-
+            dataToReturn.WeightData = UserWeight
+               .Where(u => u.UserId == userID)
+               .Select(c => c.UserWeight1).ToArray();
+            
             return dataToReturn;
         }
 
