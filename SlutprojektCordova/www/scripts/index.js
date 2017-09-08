@@ -165,8 +165,6 @@ $(document).ready(function () {
             }
         })
 
-
-
         //$.ajax({
         //    url: "http://localhost:49902/Member/Index",
         //    type: "GET",
@@ -204,7 +202,45 @@ $(document).ready(function () {
     // Run program
     if (document.getElementById("addfinishedwo")) {
         var currentWO = JSON.parse(storage.getItem("currentWO"));
-        alert(currentWO);
+        $("#nameofProgram").html(currentWO.programName);
+
+        var content = "";
+
+        // Alla övningar
+        for (var i = 0; i < currentWO.exerciseandstuff.length; i++) {
+
+            var exerciseString = "";
+            exerciseString += '<div class="exerciseWrapper"><h2 style="font-weight:bold; text-align:left;"> ' + currentWO.exerciseandstuff[i].exerciseChoice + '</h2>' + '<table class="ovning" style="width:100%; border-bottom: 2px dashed #dbdbdb; padding:2px 5px 20px 0;"> <tr> <td style="width:25%;"></td> <td style="width:40%;">Reps</td> <td style="width:40%;">Kg</td> <td style="width:5%;"></td> </tr>';
+
+            // En övning
+            for (var j = 0; j < currentWO.exerciseandstuff[i].sets.length; j++) {
+                var oneRow = '<tr> <td style="font-weight:bold; font-size:14px;">SET' + (j + 1) + '</td> <td>';
+                if (currentWO.exerciseandstuff[i].sets[j].reps===null) {
+                    oneRow += '<input type="number" style="width:50%;" />';
+                } else {
+                    oneRow += '<input value="' + currentWO.exerciseandstuff[i].sets[j].reps +'" type="number" style="width:50%;" />';
+                }
+                oneRow += '</td > <td>';
+                if (currentWO.exerciseandstuff[i].sets[j].weight === null) {
+                    oneRow += '<input type="number" style="width:50%;" />';
+
+                } else {
+                    oneRow += '<input value="' + currentWO.exerciseandstuff[i].sets[j].weight + '" type="number" style="width:50%;" />';
+                }
+
+                oneRow += '</td> <td><input type="button" id="deletefield" style="padding: 1px; font-size:20px; background:transparent; color:#888; text-align:right; text-transform:lowercase;" value="x" /></td> </tr > ';
+                exerciseString += oneRow;
+            }
+
+            var endof = "";
+            endof += '<tr> <td><p style="font-size:8px;">Add another set</p>  <img class="addanotherrun" src="images/add40.png" style="margin:auto; width:20px; height:20px;" /> </td> <td></td><td><input type="button" value="Finish exercise" /></td></tr> </table></div>'
+            exerciseString += endof;
+
+            content += exerciseString;
+        }
+
+        $("#fullprogram").append(content);
+
     }
 
     // Klicka på Kalender
@@ -264,7 +300,7 @@ $("#toaddwo").click(function () {
         });
     }
     window.location = "add.html";
-    
+
 });
 
 // Klicka på add weight
@@ -336,12 +372,19 @@ $("#addwo").click(function () {
         var option = $(element).find("#listOfExercise").val();
         var nrOfSets = $(element).find(".sets").val();
 
+        var setArray = [] // antal reps, antal kilo
+
+        for (var i = 0; i < nrOfSets; i++) {
+
+            setArray.push({ reps: null, weight: null });
+        }
+
         if (index === 0) {
-            exerciseChosen = [{ exerciseChoice: option, sets: nrOfSets }];
+            exerciseChosen = [{ exerciseChoice: option, sets: setArray }];
         }
 
         else {
-            exerciseChosen.push({ exerciseChoice: option, sets: nrOfSets });
+            exerciseChosen.push({ exerciseChoice: option, sets: setArray });
         }
     })
 
@@ -359,7 +402,22 @@ $("#addwo").click(function () {
 
 // ADD FINISHED STRENGTH WORKOUT
 $("#addfinishedwo").click(function () {
-    // TODO: SPARA NER DATAN --------------------------------------------------------------------------- !
+
+    var saveFullProgram = [];
+
+    $(".ovning").each(function (index, element) {
+        var option = $(element).find(".exerciseWrapper").val();
+        var nrOfSets = $(element).find(".sets").val();
+
+        if (index === 0) {
+            exerciseChosen = [{ exerciseChoice: option, sets: nrOfSets }];
+        }
+
+        else {
+            exerciseChosen.push({ exerciseChoice: option, sets: nrOfSets });
+        }
+    })
+
     window.location = "calendar.html";
 });
 
