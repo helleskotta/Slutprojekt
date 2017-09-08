@@ -180,29 +180,29 @@ $(document).ready(function () {
         //    }
         //});
     }
-        if (document.getElementById("listOfExercise")) {
+    if (document.getElementById("listOfExercise")) {
 
 
 
-            var strOptions = "";
-            var cardioOptions = "";
-            var exercises = JSON.parse(storage.getItem("UserExercises"));
-            if (exercises) {
+        var strOptions = "";
+        var cardioOptions = "";
+        var exercises = JSON.parse(storage.getItem("UserExercises"));
+        if (exercises) {
 
-                for (var i = 0; i < exercises.length; i++) {
-                    if (exercises[i].type === "Strenght") {
+            for (var i = 0; i < exercises.length; i++) {
+                if (exercises[i].type === "Strenght") {
 
-                        strOptions += '<option>' + exercises[i].name + '</option>';
-                    } else {
+                    strOptions += '<option>' + exercises[i].name + '</option>';
+                } else {
 
-                        cardioOptions += '<option>' + exercises[i].name + '</option>';
-                    }
+                    cardioOptions += '<option>' + exercises[i].name + '</option>';
                 }
-
-                $("#listOfExercise").append(strOptions);
-                $("#cardioExercises").append(cardioOptions);
             }
+
+            $("#listOfExercise").append(strOptions);
+            $("#cardioExercises").append(cardioOptions);
         }
+    }
 
     // Klicka på Kalender
     if (document.getElementById("calendarlist")) {
@@ -284,7 +284,7 @@ $("#toaddweight").click(function () {
 // Klicka på spara weight
 $("#saveweight").click(function () {
     // TODO: SPARA NER DATAN --------------------------------------------------------------------------- !
-    location.reload(); 
+    location.reload();
 });
 
 
@@ -334,10 +334,29 @@ $("#otherbtn").click(function () {
 // ADD STRENGTH WORKOUT
 $("#addwo").click(function () {
 
+    var exerciseChosen = [];
+
+    $(".oneexercise").each(function (index, element) {
+        var option = $(element).find("#listOfExercise").val();
+        var nrOfSets = $(element).find(".sets").val();
+
+        if (index === 0) {
+            exerciseChosen = [{ exerciseChoice: option, sets: nrOfSets }];
+        }
+
+        else {
+            exerciseChosen.push({ exerciseChoice: option, sets: nrOfSets });
+        }
+    })
 
 
 
-
+    var objectToStore = {
+        programName: $("#programname").val(),
+        date: $(".datepicker").val(),
+        exerciseandstuff: exerciseChosen
+        //typeofexercise 
+    }
 
     // TODO: SPARA NER DATAN --------------------------------------------------------------------------- !
     window.location = "run.html";
@@ -364,18 +383,18 @@ $("#addother").click(function () {
 
 
 $("#addanother").click(function () {
-    var temp = $("#oneexercise").clone().wrap('<p>').parent().html();
+    var temp = $(".oneexercise").clone().wrap('<p>').parent().html();
 
     //var anotherfield = "";
 
     //anotherfield += '<div id="oneexercise"><br /> <select id="exercise" style="width:70%;"> <option value="" disabled selected>Choose an exercise</option> </select> <input id="reps" style="width: 20%;" type="text" placeholder="Sets" /> <input type="button" class="deletefield" style="width:4%; padding: 1px; font-size:20px; background:transparent; color:#888; text-align:right; text-transform:lowercase;" value="x" /> </div>'
-    
+
     $("#exercises").append(temp);
 });
 
 $("#exercises").on('click', '.deletefield', function () {
-    $(this).parent("#oneexercise").remove();
-}); 
+    $(this).parent(".oneexercise").remove();
+});
 
 
 //$("#addnew").on('click', '.deletefield', function () {

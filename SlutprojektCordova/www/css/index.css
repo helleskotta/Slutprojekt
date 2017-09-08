@@ -154,7 +154,7 @@ h3 {
 /* INPUT TYPES */
 /**********************************************************************************************************/
 
-input[type=text], [type=password], [type=email] {
+input[type=text], [type=password], [type=email], [type=number] {
     border: 2px solid #ccc;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -168,7 +168,7 @@ input[type=number] {
 }
 
 
-input[type=text]:focus, [type=password]:focus, [type=email]:focus {
+input[type=text]:focus, [type=password]:focus, [type=email]:focus, [type=number]:focus {
     border-color: #333;
 }
 
