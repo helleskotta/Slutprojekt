@@ -56,5 +56,11 @@ namespace SlutprojektBackend.Controllers
         {
             return View();
         }
+
+        public IActionResult UserExercises()
+        {
+            return Json(dataManager.GetExercises());
+
+        }
     }
 }

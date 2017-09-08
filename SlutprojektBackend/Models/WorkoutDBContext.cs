@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SlutprojektBackend.Models.ViewModels;
 using SlutprojektBackend.Models.ViewModels.Statistics;
+using SlutprojektBackend.Models.ViewModels.WorkoutSession;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -293,6 +294,13 @@ namespace SlutprojektBackend.Models.Entities
         //        .ToList();
 
         //Lägg till metoder
+
+        internal List<ChooseExerciseVM> GetExercises()
+        {
+            return UserExercises
+                .Where(c => c.UserId == "Admin")
+                .Select(s => new ChooseExerciseVM() {Name=s.Name, Type=s.Type }).ToList();
+        }
     }
 
     public partial class AppIdentityDBContext : IdentityDbContext

@@ -1,5 +1,6 @@
 ﻿using SlutprojektBackend.Models.Entities;
 using SlutprojektBackend.Models.ViewModels;
+using SlutprojektBackend.Models.ViewModels.WorkoutSession;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,6 +60,12 @@ namespace SlutprojektBackend.Models
             VMToReturn = workoutcontext.getMainVM(userID);
 
             return VMToReturn;
+        }
+
+        public List<ChooseExerciseVM> GetExercises()
+        {
+
+            return workoutcontext.GetExercises();
         }
 
         public List<WorkoutSessionVM> TestMethodGet()
