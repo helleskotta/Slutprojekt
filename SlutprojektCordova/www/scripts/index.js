@@ -181,9 +181,6 @@ $(document).ready(function () {
         //});
     }
     if (document.getElementById("listOfExercise")) {
-
-
-
         var strOptions = "";
         var cardioOptions = "";
         var exercises = JSON.parse(storage.getItem("UserExercises"));
@@ -193,15 +190,21 @@ $(document).ready(function () {
                 if (exercises[i].type === "Strenght") {
 
                     strOptions += '<option>' + exercises[i].name + '</option>';
-                } else {
+                }
 
+                else {
                     cardioOptions += '<option>' + exercises[i].name + '</option>';
                 }
             }
-
             $("#listOfExercise").append(strOptions);
             $("#cardioExercises").append(cardioOptions);
         }
+    }
+
+    // Run program
+    if (document.getElementById("addfinishedwo")) {
+        var currentWO = JSON.parse(storage.getItem("currentWO"));
+        alert(currentWO);
     }
 
     // Klicka på Kalender
@@ -218,15 +221,11 @@ $(document).ready(function () {
         $("#statsicon").addClass("selectedicon");
     }
 
-
     //if (document.getElementById("listdate")) {
     //    $("#homeicon").removeClass("selectedicon");
     //    $("#calendaricon").addClass("selectedicon");
     //    $("#statsicon").removeClass("selectedicon");
     //}
-
-
-
 });
 
 //////////////////////////////////////////////////////////////////// ADD BUTTON
@@ -264,11 +263,8 @@ $("#toaddwo").click(function () {
             }
         });
     }
-
     window.location = "add.html";
-
-
-
+    
 });
 
 // Klicka på add weight
@@ -349,14 +345,13 @@ $("#addwo").click(function () {
         }
     })
 
-
-
     var objectToStore = {
         programName: $("#programname").val(),
         date: $(".datepicker").val(),
         exerciseandstuff: exerciseChosen
-        //typeofexercise 
     }
+
+    storage.setItem("currentWO", JSON.stringify(objectToStore));
 
     // TODO: SPARA NER DATAN --------------------------------------------------------------------------- !
     window.location = "run.html";
