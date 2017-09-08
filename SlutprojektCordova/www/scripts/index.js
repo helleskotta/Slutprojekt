@@ -215,14 +215,14 @@ $(document).ready(function () {
             // En övning
             for (var j = 0; j < currentWO.exerciseandstuff[i].sets.length; j++) {
                 var oneRow = '<tr> <td style="font-weight:bold; font-size:14px;">SET' + (j + 1) + '</td> <td>';
-                if (currentWO.exerciseandstuff[i].sets[j].reps===null) {
-                    oneRow += '<input type="number" style="width:50%;" />';
+                if (currentWO.exerciseandstuff[i].sets[j].reps === null) {
+                    oneRow += '<input class="repsCount" type="number" style="width:50%;" />';
                 } else {
-                    oneRow += '<input value="' + currentWO.exerciseandstuff[i].sets[j].reps +'" type="number" style="width:50%;" />';
+                    oneRow += '<input class="repsCount" value="' + currentWO.exerciseandstuff[i].sets[j].reps + '" type="number" style="width:50%;" />';
                 }
                 oneRow += '</td > <td>';
                 if (currentWO.exerciseandstuff[i].sets[j].weight === null) {
-                    oneRow += '<input type="number" style="width:50%;" />';
+                    oneRow += '<input class="weightCount" type="number" style="width:50%;" />';
 
                 } else {
                     oneRow += '<input value="' + currentWO.exerciseandstuff[i].sets[j].weight + '" type="number" style="width:50%;" />';
@@ -403,20 +403,38 @@ $("#addwo").click(function () {
 // ADD FINISHED STRENGTH WORKOUT
 $("#addfinishedwo").click(function () {
 
-    var saveFullProgram = [];
+    var exerciseArray = [];
 
-    $(".ovning").each(function (index, element) {
-        var option = $(element).find(".exerciseWrapper").val();
-        var nrOfSets = $(element).find(".sets").val();
+    $(".exerciseWrapper").each(function (index, element) {
+        var setArray = [];
 
-        if (index === 0) {
-            exerciseChosen = [{ exerciseChoice: option, sets: nrOfSets }];
+        var repsCount = [];
+        $(element).find(".repsCount").each(function (repsCountIndex, repsCountElement) {
+            repsCount[repsCountIndex] = $(repsCountElement).val();
+        });
+
+        var weightCount = [];
+        $(element).find(".weightCount").each(function (weightCountIndex, weightCountElement) {
+            weightCount[weightCountIndex] = $(weightCountElement).val();
+        });
+
+        for (var i = 0; i < repsCount.length; i++) {
+
+            setArray.push({ reps: repsCount[i], weight: weightCount[i] });
         }
 
-        else {
-            exerciseChosen.push({ exerciseChoice: option, sets: nrOfSets });
-        }
+        var exerciseName = $(element).find("h2").html();
+        var exercise = {
+            "exerciseName": exerciseName,
+            "sets": setArray,
+        };
+
+        exerciseArray.push(exercise);
     })
+    var saveFullProgram = {
+        "programName": $("#nameofProgram").html(),
+        "exercises": exerciseArray
+    };
 
     window.location = "calendar.html";
 });
