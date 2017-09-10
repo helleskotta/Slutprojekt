@@ -6,12 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using SlutprojektBackend.Models;
 using Microsoft.AspNetCore.Identity;
+using SlutprojektBackend.Models.ViewModels;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SlutprojektBackend.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class MemberController : Controller
     {
         DataManager dataManager;
@@ -50,6 +51,17 @@ namespace SlutprojektBackend.Controllers
         public IActionResult Statistics()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Saveworkout(WorkoutSessionVM newWorkout)
+        {
+            var userID = userManager.GetUserId(HttpContext.User);
+            newWorkout.Date = DateTime.Now;
+            dataManager.AddWorkOutForUser(userID, newWorkout);
+            //Do stuff
+
+            return Content("Workout saved successfully");
         }
 
         public IActionResult AddWorkout()

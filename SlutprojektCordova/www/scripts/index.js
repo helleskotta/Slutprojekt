@@ -1,7 +1,8 @@
 ﻿// To debug code on page load in cordova-simulate or on Android devices/emulators: launch your app, set breakpoints, 
 // and then run "window.location.reload()" in the JavaScript Console.
 var storage = window.localStorage;
-
+var localDomain = "http://localhost:49902";
+var azureDomain = "http://slutprojektbackend.azurewebsites.net/";
 (function () {
     "use strict";
 
@@ -178,6 +179,7 @@ $(document).ready(function () {
         //    }
         //});
     }
+
     if (document.getElementById("listOfExercise")) {
         var strOptions = "";
         var cardioOptions = "";
@@ -202,30 +204,30 @@ $(document).ready(function () {
     // Run program
     if (document.getElementById("addfinishedwo")) {
         var currentWO = JSON.parse(storage.getItem("currentWO"));
-        $("#nameofProgram").html(currentWO.programName);
+        $("#nameofProgram").html(currentWO.SessionName);
 
         var content = "";
 
         // Alla övningar
-        for (var i = 0; i < currentWO.exerciseandstuff.length; i++) {
+        for (var k = 0; k < currentWO.Exercises.length; k++) {
 
             var exerciseString = "";
-            exerciseString += '<div class="exerciseWrapper"><h2 style="font-weight:bold; text-align:left;"> ' + currentWO.exerciseandstuff[i].exerciseChoice + '</h2>' + '<table class="ovning" style="width:100%; border-bottom: 2px dashed #dbdbdb; padding:2px 5px 20px 0;"> <tr> <td style="width:25%;"></td> <td style="width:40%;">Reps</td> <td style="width:40%;">Kg</td> <td style="width:5%;"></td> </tr>';
+            exerciseString += '<div class="exerciseWrapper"><h2 style="font-weight:bold; text-align:left;"> ' + currentWO.Exercises[k].exerciseChoice + '</h2>' + '<table class="ovning" style="width:100%; border-bottom: 2px dashed #dbdbdb; padding:2px 5px 20px 0;"> <tr> <td style="width:25%;"></td> <td style="width:40%;">Reps</td> <td style="width:40%;">Kg</td> <td style="width:5%;"></td> </tr>';
 
             // En övning
-            for (var j = 0; j < currentWO.exerciseandstuff[i].sets.length; j++) {
+            for (var j = 0; j < currentWO.Exercises[k].sets.length; j++) {
                 var oneRow = '<tr> <td style="font-weight:bold; font-size:14px;">SET' + (j + 1) + '</td> <td>';
-                if (currentWO.exerciseandstuff[i].sets[j].reps === null) {
+                if (currentWO.Exercises[k].sets[j].reps === null) {
                     oneRow += '<input class="repsCount" type="number" style="width:50%;" />';
                 } else {
-                    oneRow += '<input class="repsCount" value="' + currentWO.exerciseandstuff[i].sets[j].reps + '" type="number" style="width:50%;" />';
+                    oneRow += '<input class="repsCount" value="' + currentWO.Exercises[k].sets[j].reps + '" type="number" style="width:50%;" />';
                 }
                 oneRow += '</td > <td>';
-                if (currentWO.exerciseandstuff[i].sets[j].weight === null) {
+                if (currentWO.Exercises[k].sets[j].weight === null) {
                     oneRow += '<input class="weightCount" type="number" style="width:50%;" />';
 
                 } else {
-                    oneRow += '<input value="' + currentWO.exerciseandstuff[i].sets[j].weight + '" type="number" style="width:50%;" />';
+                    oneRow += '<input value="' + currentWO.Exercises[k].sets[j].weight + '" type="number" style="width:50%;" />';
                 }
 
                 oneRow += '</td> <td><input type="button" id="deletefield" style="padding: 1px; font-size:20px; background:transparent; color:#888; text-align:right; text-transform:lowercase;" value="x" /></td> </tr > ';
@@ -248,6 +250,12 @@ $(document).ready(function () {
         $("#homeicon").removeClass("selectedicon");
         $("#calendaricon").addClass("selectedicon");
         $("#statsicon").removeClass("selectedicon");
+
+        var allWorkoutSessions = JSON.parse(storage.getItem("WorkoutSessions"));
+
+        //for (var i = 0; i < allWorkoutSessions.length; i++) {
+
+        //}
     }
 
     // Klicka på Statistik
@@ -389,10 +397,11 @@ $("#addwo").click(function () {
     })
 
     var objectToStore = {
-        programName: $("#programname").val(),
-        date: $(".datepicker").val(),
-        exerciseandstuff: exerciseChosen
+        "SessionName": $("#programname").val(),
+        "Date": $(".datepicker").val(),
+        "Exercises": exerciseChosen
     }
+
 
     storage.setItem("currentWO", JSON.stringify(objectToStore));
 
@@ -420,21 +429,48 @@ $("#addfinishedwo").click(function () {
 
         for (var i = 0; i < repsCount.length; i++) {
 
-            setArray.push({ reps: repsCount[i], weight: weightCount[i] });
+            setArray.push({ Reps: repsCount[i], Weight: weightCount[i] });
         }
 
         var exerciseName = $(element).find("h2").html();
         var exercise = {
-            "exerciseName": exerciseName,
-            "sets": setArray,
+            "Name": exerciseName,
+            "Sets": setArray,
         };
 
         exerciseArray.push(exercise);
     })
     var saveFullProgram = {
-        "programName": $("#nameofProgram").html(),
-        "exercises": exerciseArray
+        "SessionName": $("#nameofProgram").html(),
+        "exercises": exerciseArray,
+        "Date": JSON.parse(storage.getItem("currentWO")).date
     };
+
+
+    //Test -----------Denna fungerar, namn på proppar var tvungna att mappa mot vår vymodel där vi tar emot ajax, därför namen är ändrade
+    var jsonObjecToSend = {
+        "Exercises": exerciseArray,
+        "Date": $(".datepicker").val(), //TODO GIVE me a real value please
+        "Type": "Strength",
+        "Duration": null,
+        "Distance": null,
+        "SessionUserNote": "Give me a real value", //TODO
+        "SessionName": $("#nameofProgram").html(),
+    };
+
+    //storage.setItem("currentWO", jsonObjecToSend);
+
+    $.ajax({
+            url: "http://localhost:49902/member/saveworkout",
+            type: "POST",
+            data: jsonObjecToSend,
+            success: function (result) {
+                alert("Workout Saved successfully!")
+            },
+            error: function (result) {
+                alert("Error att save")
+            }
+        });
 
     window.location = "calendar.html";
 });

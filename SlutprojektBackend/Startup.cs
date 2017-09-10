@@ -38,14 +38,14 @@ namespace SlutprojektBackend
             }).AddEntityFrameworkStores<AppIdentityDBContext>()
               .AddDefaultTokenProviders();
 
-            //services.AddCors();
+            services.AddCors();
             //services.ConfigureApplicationCookie(o => o.LoginPath = "/Account/LogIn");
             services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            //app.UseCors(b => b.WithOrigins("*"));
+            app.UseCors(b => b.WithOrigins("*"));
             app.UseAuthentication();
             app.UseDeveloperExceptionPage();
             app.UseMvcWithDefaultRoute();
