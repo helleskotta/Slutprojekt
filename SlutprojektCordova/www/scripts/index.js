@@ -13,18 +13,17 @@ var azureDomain = "http://slutprojektbackend.azurewebsites.net/";
         // Handle the Cordova pause and resume events
         document.addEventListener('pause', onPause.bind(this), false);
         document.addEventListener('resume', onResume.bind(this), false);
-
-        $("#login").show();
-        $("#register").hide();
-        $("#welcome").hide();
-        $("#addstats").hide();
-
+        
         //// TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
         //var parentElement = document.getElementById('deviceready');
         //var listeningElement = parentElement.querySelector('.listening');
         //var receivedElement = parentElement.querySelector('.received');
         //listeningElement.setAttribute('style', 'display:none;');
         //receivedElement.setAttribute('style', 'display:block;');
+        $("#login").show();
+        $("#register").hide();
+        $("#welcome").hide();
+        $("#addstats").hide();
     }
 
     function onPause() {
@@ -68,7 +67,7 @@ $("#add").click(function () {
             "ConfirmPassword": $("#confirmPassword").val(),
         },
         success: function (result) {
-            alert("Register successfull: " + result);
+            alert("Register successful: " + result);
 
             $("#login").hide();
             $("#welcome").show();
@@ -534,7 +533,9 @@ $(".ovning").on('click', '.deletefield', function () { // ----------------------
 //    $(this).parent("#oneexercise").remove(); TODO: hitta rätt element att ta bort --------------------- !
 //}); 
 
-$(".datepicker").datepicker({ dateFormat: 'yy-mm-dd' });
+$(".datepicker").datepicker({ dateFormat: 'yy-mm-dd', firstDay: 1 });
+
+$(".datepicker").datepicker('setDate', new Date());  // Sätter dagens datum som default
 
 $(".datapicker").on("change", function () {
     var fromdate = $(this).val();

@@ -360,6 +360,7 @@ select {
     padding: 10px;
     filter: drop-shadow(3px 2px 5px #888);
     font-size: 15px;
+    margin-right:10px;
 }
 
 .ui-datepicker-title {
