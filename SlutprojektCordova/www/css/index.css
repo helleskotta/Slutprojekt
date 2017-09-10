@@ -59,7 +59,8 @@ a {
 }
 
 
-#statsicon {
+
+icon {
     float: left;
 }
 
@@ -341,6 +342,14 @@ select {
 
 #strengthprogram, #cardioprogram {
     text-align:left;
+}
+
+.finishOneExercise {
+    font-size: 10px;
+    padding: 4px 2px;
+    width: 80%;
+    border-radius: 20px;
+    margin-top: 10px;
 }
 
 /* ADD DATE CALENDAR JQUERY CUSTOM CSS */

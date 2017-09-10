@@ -11,6 +11,5 @@ namespace SlutprojektBackend.Models
         public float Waist { get; set; }
         public float Chest { get; set; }
         public float Hips { get; set; }
-
     }
 }

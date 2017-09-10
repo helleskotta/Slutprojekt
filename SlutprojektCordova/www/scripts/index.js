@@ -230,12 +230,12 @@ $(document).ready(function () {
                     oneRow += '<input value="' + currentWO.Exercises[k].sets[j].weight + '" type="number" style="width:50%;" />';
                 }
 
-                oneRow += '</td> <td><input type="button" id="deletefield" style="padding: 1px; font-size:20px; background:transparent; color:#888; text-align:right; text-transform:lowercase;" value="x" /></td> </tr > ';
+                oneRow += '</td> <td><input type="button" class="deletefield" style="padding: 1px; font-size:20px; background:transparent; color:#888; text-align:right; text-transform:lowercase;" value="x" /></td> </tr > ';
                 exerciseString += oneRow;
             }
 
             var endof = "";
-            endof += '<tr> <td><p style="font-size:8px;">Add another set</p>  <img class="addanotherrun" src="images/add40.png" style="margin:auto; width:20px; height:20px;" /> </td> <td></td><td><input type="button" value="Finish exercise" /></td></tr> </table></div>'
+            endof += '<tr> <td> <img class="addanotherrun" src="images/add40.png" style="margin:auto; width:20px; height:20px;" /> </td> <td></td><td><br /><br /><input type="button" class="finishOneExercise" value="Finish exercise" /></td></tr> </table></div>'
             exerciseString += endof;
 
             content += exerciseString;
@@ -350,7 +350,6 @@ $("#statsicon").click(function () {
     window.location = "statistics.html";
 });
 
-
 //////////////////////////////////////////////////////////////////// ADD
 $("#strengthbtn").click(function () {
     $("#strengthprogram").show();
@@ -447,7 +446,7 @@ $("#addfinishedwo").click(function () {
     };
 
 
-    //Test -----------Denna fungerar, namn på proppar var tvungna att mappa mot vår vymodel där vi tar emot ajax, därför namen är ändrade
+    //Test ----------- Denna fungerar, namn på proppar var tvungna att mappa mot vår vymodel där vi tar emot ajax, därför namen är ändrade
     var jsonObjecToSend = {
         "Exercises": exerciseArray,
         "Date": $(".datepicker").val(), //TODO GIVE me a real value please
@@ -487,20 +486,47 @@ $("#addother").click(function () {
     window.location = "calendar.html";
 });
 
+// ADD WEIGHT MEASUREMENTS
+$("#saveweight").click(function () {
+    var jsonObjecToSend = {
+        "Weight": $("#weightbox").val(),
+        "Date": $(".datepicker").val(), //TODO GIVE me a real value please
+    };
+
+    $.ajax({
+        url: "http://localhost:49902/member/savemeasurements",
+        type: "POST",
+        data: jsonObjecToSend,
+        success: function (result) {
+            alert("Measurements saved successfully!")
+        },
+        error: function (result) {
+            alert("Error att save")
+        }
+    });
+});
 
 
-$("#addanother").click(function () {
+$(".addanother").click(function () {
     var temp = $(".oneexercise").clone().wrap('<p>').parent().html();
-
-    //var anotherfield = "";
-
-    //anotherfield += '<div id="oneexercise"><br /> <select id="exercise" style="width:70%;"> <option value="" disabled selected>Choose an exercise</option> </select> <input id="reps" style="width: 20%;" type="text" placeholder="Sets" /> <input type="button" class="deletefield" style="width:4%; padding: 1px; font-size:20px; background:transparent; color:#888; text-align:right; text-transform:lowercase;" value="x" /> </div>'
-
     $("#exercises").append(temp);
 });
 
+// Add-knapp i run
+//$(".addanotherrun").click(function () { // -------------------------------- FUNKAR INTE pga tabell 
+//    var temp = $(".oneexercise").clone().wrap('<p>').parent().html();
+//    $("#exercises").append(temp);
+//});
+
+
+
 $("#exercises").on('click', '.deletefield', function () {
     $(this).parent(".oneexercise").remove();
+});
+
+// Remove-knapp i run
+$(".ovning").on('click', '.deletefield', function () { // ---------------------------------------- FUNKAR INTE
+    $(this).parent("tr").remove();
 });
 
 
@@ -508,4 +534,8 @@ $("#exercises").on('click', '.deletefield', function () {
 //    $(this).parent("#oneexercise").remove(); TODO: hitta rätt element att ta bort --------------------- !
 //}); 
 
-$(".datepicker").datepicker();
+$(".datepicker").datepicker({ dateFormat: 'yy-mm-dd' });
+
+$(".datapicker").on("change", function () {
+    var fromdate = $(this).val();
+});

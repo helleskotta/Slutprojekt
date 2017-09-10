@@ -40,7 +40,6 @@ namespace SlutprojektBackend.Models
 
         internal void AddWorkOutForUser(string userID, WorkoutSessionVM newWorkout)
         {
-
             workoutcontext.AddWorkoutSessionStrength(userID, newWorkout);
         }
 
@@ -79,11 +78,9 @@ namespace SlutprojektBackend.Models
             return workoutcontext.GetAllWorkoutSessions("PetterTest");
         }
 
-        public void TestAddWeight()
+        public void TestAddWeight(string userID, UserWeight userWeight)
         {
             workoutcontext.AddWeightMeasurment("PetterTest", 100.0);
-            workoutcontext.AddWeightMeasurment("PetterTest", 105.0);
-            workoutcontext.AddWeightMeasurment("PetterTest", 90.0);
         }
 
     }

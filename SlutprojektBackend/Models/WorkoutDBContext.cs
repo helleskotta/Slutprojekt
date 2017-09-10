@@ -120,7 +120,12 @@ namespace SlutprojektBackend.Models.Entities
 
         internal void AddWeightMeasurment(string userID, double weightData)
         {
-            UserWeight.Add(new UserWeight() { Date = DateTime.Now, UserId = userID, UserWeight1 = weightData });
+            UserWeight.Add(new UserWeight()
+            {
+                Date = DateTime.Now,
+                UserId = userID,
+                UserWeight1 = weightData
+            });
             SaveChanges();
         }
 
