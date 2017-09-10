@@ -96,11 +96,11 @@ $("#loginbtn").click(function () {
         success: function (result) {
             alert("Login successful: " + result);
 
-            if (result === "Logged in!") { // TODO: HÅRDKODAD STRÄNG!! ---------------------------------------- !
+            if (result === "Logged in!") { // TODO: HÅRDKODAD STRÄNG!! ---------------------------- !
                 window.location = "main.html";
             }
             else {
-                // TODO: SHOW ERROR MESSAGES ---------------------------------------------------------------- !
+                // TODO: SHOW ERROR MESSAGES --------------------------------------------------- !
             }
         },
         error: function (result) {
@@ -250,11 +250,14 @@ $(document).ready(function () {
         $("#calendaricon").addClass("selectedicon");
         $("#statsicon").removeClass("selectedicon");
 
-        var allWorkoutSessions = JSON.parse(storage.getItem("WorkoutSessions"));
+        var allWorkoutSessions = JSON.parse(storage.getItem("WorkoutSession")); // --------------- STORAGE?
 
-        //for (var i = 0; i < allWorkoutSessions.length; i++) {
-
-        //}
+        var listviewfull = "";
+        
+        for (var i = 0; i < allWorkoutSessions.length; i++) {
+            listviewfull += '<li><span class="listdate">' + allWorkoutSessions.Date + '</span><span class="listcontent">' + allWorkoutSessions.SessionName + '</span></li>'
+        }
+        $("#calList").append(listviewfull);
     }
 
     // Klicka på Statistik
@@ -399,8 +402,6 @@ $("#addwo").click(function () {
         "Date": $(".datepicker").val(),
         "Exercises": exerciseChosen
     }
-
-
     storage.setItem("currentWO", JSON.stringify(objectToStore));
 
     // TODO: SPARA NER DATAN --------------------------------------------------------------------------- !
@@ -443,7 +444,6 @@ $("#addfinishedwo").click(function () {
         "exercises": exerciseArray,
         "Date": JSON.parse(storage.getItem("currentWO")).date
     };
-
 
     //Test ----------- Denna fungerar, namn på proppar var tvungna att mappa mot vår vymodel där vi tar emot ajax, därför namen är ändrade
     var jsonObjecToSend = {
@@ -533,10 +533,9 @@ $(".ovning").on('click', '.deletefield', function () { // ----------------------
 //    $(this).parent("#oneexercise").remove(); TODO: hitta rätt element att ta bort --------------------- !
 //}); 
 
+// KALENDER
 $(".datepicker").datepicker({ dateFormat: 'yy-mm-dd', firstDay: 1 });
-
-$(".datepicker").datepicker('setDate', new Date());  // Sätter dagens datum som default
-
+$(".datepicker").datepicker('setDate', new Date());
 $(".datapicker").on("change", function () {
     var fromdate = $(this).val();
 });

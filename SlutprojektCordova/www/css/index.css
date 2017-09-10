@@ -416,6 +416,44 @@ select {
     margin-top: 20px;
 }
 
+#profile {
+    text-align: left;
+    padding-left:10px;
+    padding-bottom:20px;
+    
+}
+
+#profile h2 {
+    text-align: left;
+    margin-bottom: -10px;
+    margin-top: 30px;
+    margin-left: 30%;
+    padding-left: 10px;
+    font-weight:bold;
+    color:white;
+}
+
+#profile img {
+    border-radius: 50%;
+    border: 1px dotted black;
+    height: 70px;
+    width: 70px;
+    margin-left: 10px;
+    text-align:left;
+    background:white;
+    padding:10px;
+}
+
+#sidemenu {
+    border-radius:2px;
+    font-size:12px;
+}
+
+#sidemenu ul {
+    border-radius: 2px;
+    font-size: 14px;
+}
+
 /* CALENDAR CONTAINERS */
 /**********************************************************************************************************/
 
