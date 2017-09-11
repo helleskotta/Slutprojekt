@@ -76,15 +76,15 @@ namespace SlutprojektBackend.Models.Entities
         private List<CalendarMainVM> GetCalendarForMain(string userID)
         {
             var listToReturn = new List<CalendarMainVM>();
-            var firstListitem= WorkoutSession
-            .Where(i => i.UserId==userID)
+            var firstListitem = WorkoutSession
+            .Where(i => i.UserId == userID)
             .Select(c => new CalendarMainVM()
             {
                 Date = c.Date,
                 SessionName = c.SessionName,
                 TypeOfWorkoutSession = c.Type
             })
-            .Where(d=>d.Date.Day<DateTime.Now.Day)
+            .Where(d => d.Date.Day < DateTime.Now.Day)
             .FirstOrDefault();
 
             var todayListitem = WorkoutSession
@@ -135,7 +135,7 @@ namespace SlutprojektBackend.Models.Entities
         private List<Stats> GetStatisticsForMain(string userID)
         {
             List<Stats> statsForMain = new List<Stats>();
-            
+
             WeightChangeGrafStat weightChangeGrafStat = GetWeightStat(userID);
             statsForMain.Add(weightChangeGrafStat);
 
@@ -152,7 +152,7 @@ namespace SlutprojektBackend.Models.Entities
             dataToReturn.WeightData = UserWeight
                .Where(u => u.UserId == userID)
                .Select(c => c.UserWeight1).ToArray();
-            
+
             return dataToReturn;
         }
 
@@ -228,8 +228,8 @@ namespace SlutprojektBackend.Models.Entities
 
         private StatisicsVM GetCardioVsStr(string userID)
         {
-            var count = WorkoutSession.GroupBy(c => c.Type).Select(c=>c.Count());
-            var names = WorkoutSession.GroupBy(c => c.Type).Select(c=>c.Key).ToArray();
+            var count = WorkoutSession.GroupBy(c => c.Type).Select(c => c.Count());
+            var names = WorkoutSession.GroupBy(c => c.Type).Select(c => c.Key).ToArray();
             StatisicsVM statToReturn = new StatisicsVM();
             statToReturn.TypeOfWorkoutSession = "General";
 
@@ -244,20 +244,20 @@ namespace SlutprojektBackend.Models.Entities
 
         private StatisicsVM GetTotalLiftetWeight(string userID)
         {
-            var temp =WorkoutSession
-                .Where(c => c.UserId == userID)
-                .Select(s => s.Exercise.Select(c => c.Set.Select(k => new  { weight = k.UsedWeight*k.Reps})));
+            var workOutSessions = WorkoutSession
+                .Where(c => c.UserId == userID && c.Type == "Strength")
+                .Select(x => x.Exercise
+                    .Select(y => y.Set.Sum(z => z.Reps * z.UsedWeight)))
+                        .Select(w => w.Sum())
+                .Sum();
+
+            double total = 0.0;
+
             StatisicsVM statToReturn = new StatisicsVM();
             statToReturn.TypeOfWorkoutSession = "Strength";
 
-            var total = 0.0;
-             
-            foreach (var item in temp)
-            {
-                total += Convert.ToDouble(item);
-            }
-            statToReturn.Stats = new TotalStrengthStats() {TotalWeightLifted=total };
-           
+            statToReturn.Stats = new TotalStrengthStats() { TotalWeightLifted = total };
+
             return statToReturn;
 
         }
@@ -307,7 +307,7 @@ namespace SlutprojektBackend.Models.Entities
         {
             return UserExercises
                 .Where(c => c.UserId == "Admin")
-                .Select(s => new ChooseExerciseVM() {Name=s.Name, Type=s.Type }).ToList();
+                .Select(s => new ChooseExerciseVM() { Name = s.Name, Type = s.Type }).ToList();
         }
     }
 

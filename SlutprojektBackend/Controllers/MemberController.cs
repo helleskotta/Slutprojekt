@@ -69,7 +69,9 @@ namespace SlutprojektBackend.Controllers
 
         public IActionResult Statistics()
         {
-            return View();
+
+            var statsToReturn =dataManager.GetStatisticsForUser(GetUserID());
+            return Json(statsToReturn);
         }
 
         [HttpPost]

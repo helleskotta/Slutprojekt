@@ -5,9 +5,19 @@
         $("#calendaricon").removeClass("selectedicon");
         $("#statsicon").addClass("selectedicon");
 
-    //if (document.getElementById("listdate")) {
-    //    $("#homeicon").removeClass("selectedicon");
-    //    $("#calendaricon").addClass("selectedicon");
-    //    $("#statsicon").removeClass("selectedicon");
-    //}
+
+        $.ajax({
+            url: "http://localhost:49902/member/Statistics",
+            type: "POST",
+            
+            success: function(result) {
+                console.log("Stats aquired successfully!");
+
+            },
+            error: function(result) {
+                alert("Error att save")
+            }
+        });
+
+
 });
