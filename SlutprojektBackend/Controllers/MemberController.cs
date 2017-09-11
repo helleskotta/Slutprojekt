@@ -68,13 +68,13 @@ namespace SlutprojektBackend.Controllers
             return Content("Workout saved successfully");
         }
         [HttpPost] // TODO: FIXA!
-        public IActionResult SaveMeasurements(UserWeight userweight)
+        public IActionResult SaveMeasurements(UserWeight userWeight)
         {
             var userID = userManager.GetUserId(HttpContext.User);
-            userweight.Date = DateTime.Now;
-            dataManager.AddWeight(userID, userweight);
+            //userWeight.Date = DateTime.Now;
+            dataManager.AddWeight(userID, userWeight);
 
-            return Content("Workout saved successfully");
+            return Content("Weight saved successfully");
         }
 
         public IActionResult AddWorkout()

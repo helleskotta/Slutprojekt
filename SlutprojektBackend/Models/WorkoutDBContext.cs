@@ -70,6 +70,8 @@ namespace SlutprojektBackend.Models.Entities
             return UserFavorites.Where(c => c.UserId == userID).OrderBy(o => o.Id).Select(f => f.Favorite).ToList();
         }
 
+
+        //Ska ej användas
         private List<CalendarMainVM> GetCalendarForMain(string userID)
         {
             var listToReturn = new List<CalendarMainVM>();
@@ -118,13 +120,13 @@ namespace SlutprojektBackend.Models.Entities
             return null;
         }
 
-        internal void AddWeightMeasurment(string userID, double weightData)
+        internal void AddWeightMeasurment(string userID, UserWeight userWeight)
         {
             UserWeight.Add(new UserWeight()
             {
-                Date = DateTime.Now,
+                Date = userWeight.Date,
                 UserId = userID,
-                UserWeight1 = weightData
+                UserWeight1 = userWeight.UserWeight1
             });
             SaveChanges();
         }

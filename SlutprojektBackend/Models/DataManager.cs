@@ -87,7 +87,7 @@ namespace SlutprojektBackend.Models
 
         public void AddWeight(string userID, UserWeight userWeight)
         {
-            workoutcontext.AddWeightMeasurment(userID, 100.0);
+            workoutcontext.AddWeightMeasurment(userID, userWeight);
         }
 
     }
