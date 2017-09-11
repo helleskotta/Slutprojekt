@@ -13,7 +13,6 @@ document.addEventListener("deviceready", function () {
     $("#hamburgermenu").hide();
     $("#cardioprogram").hide();
     $("#otherprogram").hide();
-    $("#addweightwrapper").hide();
 
     // Klicka på gröna plusset
     $("#addbutton").click(function () {
@@ -54,14 +53,32 @@ document.addEventListener("deviceready", function () {
 
     // Klicka på add weight
     $("#toaddweight").click(function () {
-        $("#firstmainpage").hide();
-        $("#addweightwrapper").show();
-        $("#wrapper").removeClass("clickadd");
-        $("#addmenu").hide();
-        $("#addmenu2").hide();
-        $("#hamburgermenu").hide();
+        window.location = "measurements.html";
     });
 
+    // Klicka på spara weight
+    $("#saveweight").click(function () {
+
+        var temp = JSON.stringify(new Date($(".datepicker").val()));
+        var weightToSend = {
+            "bodyWeight": $("#weightbox").val(),
+            "date": JSON.parse(temp),
+        }
+
+        $.ajax({
+            url: "http://localhost:49902/Member/SaveMeasurements",
+            type: "POST",
+            data: weightToSend,
+            success: function (result) {
+                console.log("Det gick bra att spara");
+                window.location = "main.html";
+            },
+            error: function (result) {
+                alert("Kunde inte logga vikt");
+            }
+        });
+        // TODO: SPARA NER DATAN --------------------------------------------------------------------------- !
+    });
 
     //////////////////////////////////////////////////////////////////// SETTINGS MENU
     $("#hamburgericon").click(function () {

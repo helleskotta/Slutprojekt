@@ -123,30 +123,6 @@ document.addEventListener("deviceready", function () {
         }
     });
 
-        // Klicka på spara weight
-        $("#saveweight").click(function () {
-
-            var temp = JSON.stringify(new Date($(".datepicker").val()));
-            var weightToSend = {
-                "bodyWeight": $("#weightbox").val(),
-                "date": JSON.parse(temp),
-            }
-
-            $.ajax({
-                url: "http://localhost:49902/Member/SaveMeasurements",
-                type: "POST",
-                data: weightToSend,
-                success: function (result) {
-                    console.log("Det gick bra att spara");
-                    location.reload();
-                },
-                error: function (result) {
-                    alert("Kunde inte logga vikt");
-                }
-            });
-            // TODO: SPARA NER DATAN --------------------------------------------------------------------------- !
-        });
-
     //// ADD WEIGHT MEASUREMENTS
     //$("#saveweight").click(function () {
     //    var jsonObjecToSend = {
