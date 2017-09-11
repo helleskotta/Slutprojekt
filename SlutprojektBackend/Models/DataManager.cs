@@ -1,5 +1,6 @@
 ﻿using SlutprojektBackend.Models.Entities;
 using SlutprojektBackend.Models.ViewModels;
+using SlutprojektBackend.Models.ViewModels.Main;
 using SlutprojektBackend.Models.ViewModels.WorkoutSession;
 using System;
 using System.Collections.Generic;
@@ -85,9 +86,9 @@ namespace SlutprojektBackend.Models
             return workoutcontext.GetAllWorkoutSessions("PetterTest");
         }
 
-        public void AddWeight(string userID, UserWeight userWeight)
+        public void AddWeight(string userID, BodyMeasurmentsVM bodyMeasurments)
         {
-            workoutcontext.AddWeightMeasurment(userID, userWeight);
+            workoutcontext.AddWeightMeasurment(userID, bodyMeasurments);
         }
 
     }

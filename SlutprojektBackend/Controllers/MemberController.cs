@@ -8,12 +8,14 @@ using SlutprojektBackend.Models;
 using Microsoft.AspNetCore.Identity;
 using SlutprojektBackend.Models.ViewModels;
 using SlutprojektBackend.Models.Entities;
+using SlutprojektBackend.Models.ViewModels.Main;
+using Microsoft.AspNetCore.Http;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SlutprojektBackend.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class MemberController : Controller
     {
         DataManager dataManager;
@@ -28,9 +30,9 @@ namespace SlutprojektBackend.Controllers
         [HttpGet]
         public IActionResult Main()
         {
-            //var test = userManager.GetUserId(HttpContext.User);
+            var id = userManager.GetUserId(HttpContext.User);
 
-            var id = "PetterTest";
+            //var id = "PetterTest";
             var viewModel = dataManager.GetMainViewModel(id);
             return Json(viewModel);
         }
@@ -47,9 +49,22 @@ namespace SlutprojektBackend.Controllers
         public IActionResult Index()
         {
             //var userID = userManager.GetUserId(User); //Får in null, därför ajax går dåligt
-            var userID = userManager.GetUserId(HttpContext.User);
+            
+            var userID = GetUserID();
             return Json(dataManager.GetAllWorkoutsForUser(userID));
             
+        }
+
+        private string GetUserID()
+        {
+            if (HttpContext.Session.GetString("UserID")!=null)
+            {
+                return HttpContext.Session.GetString("UserID");
+            }
+            else
+            {
+                return userManager.GetUserId(HttpContext.User);
+            }
         }
 
         public IActionResult Statistics()
@@ -68,11 +83,11 @@ namespace SlutprojektBackend.Controllers
             return Content("Workout saved successfully");
         }
         [HttpPost] // TODO: FIXA!
-        public IActionResult SaveMeasurements(UserWeight userWeight)
+        public IActionResult SaveMeasurements(BodyMeasurmentsVM bodyMeasurments)
         {
             var userID = userManager.GetUserId(HttpContext.User);
             //userWeight.Date = DateTime.Now;
-            dataManager.AddWeight(userID, userWeight);
+            dataManager.AddWeight(userID, bodyMeasurments);
 
             return Content("Weight saved successfully");
         }

@@ -30,7 +30,6 @@ namespace SlutprojektBackend
             services.AddDbContext<AppIdentityDBContext>(o => o.UseSqlServer(connString));
             services.AddDbContext<WorkoutDBContext>(o => o.UseSqlServer(connString));
 
-
             services.AddIdentity<IdentityUser, IdentityRole>(o =>
             {
                 o.Password.RequireNonAlphanumeric = false;
@@ -41,10 +40,13 @@ namespace SlutprojektBackend
             services.AddCors();
             //services.ConfigureApplicationCookie(o => o.LoginPath = "/Account/LogIn");
             services.AddMvc();
+            services.AddSession();
+            services.AddMemoryCache();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSession();
             app.UseCors(b => b.WithOrigins("*"));
             app.UseAuthentication();
             app.UseDeveloperExceptionPage();

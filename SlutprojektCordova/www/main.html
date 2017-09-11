@@ -2,7 +2,10 @@
 <html>
 <head>
     <!-- STÄLL IN ANROP HÄR!!! -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; connect-src 'self' http://localhost:49902"> 
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; connect-src 'self' http://localhost:49902"> 
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; connect-src 'self' http://localhost:49902">--> 
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
@@ -60,7 +63,7 @@
             <!------------- RANDOM STATS MODULE ------------->
             <div class="module">
                 <h1>Här är random info</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et velit vitae mauris scelerisque posuere ut ut est. Suspendisse sit amet sapien id lacus facilisis laoreet et sed mi. Aenean ac rutrum sem, gravida vehicula nisi. Duis sed elit id odio ullamcorper tempor nec non orci. Aenean et venenatis nibh. </p>
+                <input type="button" value="testknapp" id="testknapp" />
             </div>
             <!------------- end random stats ------------->
             <!------------- ANOTHER RANDOM STATS MODULE ------------->
@@ -169,6 +172,7 @@
     <script src="scripts/jQueryUI.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="scripts/platformOverrides.js"></script>
-    <script type="text/javascript" src="scripts/index.js"></script>
+    <script type="text/javascript" src="scripts/Main.js"></script>
+    <script type="text/javascript" src="scripts/general.js"></script>
 </body>
 </html>

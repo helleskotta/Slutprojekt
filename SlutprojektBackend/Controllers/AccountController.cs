@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using SlutprojektBackend.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -47,6 +48,16 @@ namespace SlutprojektBackend.Controllers
                 return Content("no");
             }
             var r = await signInManager.PasswordSignInAsync(viewModel.UserName, viewModel.Password, true, false);
+
+            if (!r.Succeeded)
+            {
+                return Content("no");
+            }
+            else
+            {
+                HttpContext.Session.SetString("UserID", userManager.GetUserId(HttpContext.User));
+            }
+
             return Content("Yes");
             //return result;
 
@@ -67,7 +78,12 @@ namespace SlutprojektBackend.Controllers
             {
                 return Content("no");
             }
-            
+            else
+            {
+                HttpContext.Session.SetString("UserID", userManager.GetUserId(HttpContext.User));
+            }
+
+
             return Content("Logged in!");
         }
 

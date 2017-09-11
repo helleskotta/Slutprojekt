@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SlutprojektBackend.Models.ViewModels;
+using SlutprojektBackend.Models.ViewModels.Main;
 using SlutprojektBackend.Models.ViewModels.Statistics;
 using SlutprojektBackend.Models.ViewModels.WorkoutSession;
 using System;
@@ -120,13 +121,13 @@ namespace SlutprojektBackend.Models.Entities
             return null;
         }
 
-        internal void AddWeightMeasurment(string userID, UserWeight userWeight)
+        internal void AddWeightMeasurment(string userID, BodyMeasurmentsVM bodyMeasurments)
         {
             UserWeight.Add(new UserWeight()
             {
-                Date = userWeight.Date,
+                Date = bodyMeasurments.Date,
                 UserId = userID,
-                UserWeight1 = userWeight.UserWeight1
+                UserWeight1 = bodyMeasurments.BodyWeight
             });
             SaveChanges();
         }
