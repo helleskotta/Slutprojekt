@@ -5,13 +5,13 @@ var azureDomain = "http://slutprojektbackend.azurewebsites.net/";
 
 document.addEventListener("deviceready", function () {
 
+    $("#ui-datepicker-div").hide();
     $("#addmenu").hide();
     $("#addmenu2").hide();
     $("#menuToggle").hide();
     $("#hamburger").show();
     $("#hamburgermenu").hide();
     $("#cardioprogram").hide();
-    $("#ui-datepicker-div").hide();
     $("#otherprogram").hide();
     $("#addweightwrapper").hide();
 

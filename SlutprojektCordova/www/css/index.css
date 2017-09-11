@@ -361,7 +361,8 @@ select {
     padding: 10px;
     filter: drop-shadow(3px 2px 5px #888);
     font-size: 15px;
-    margin-right:10px;
+    margin-right: 10px;
+    display: none;
 }
 
 .ui-datepicker-title {
