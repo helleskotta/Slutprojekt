@@ -75,13 +75,68 @@
 
     // ADD CARDIO WORKOUT
     $("#addcardio").click(function () {
+
+        var datePickerDate = JSON.stringify(new Date($(".datepicker").val()));
+
+        var dateToSave = JSON.parse(datePickerDate);
+
+        var jsonObjecToSend = {
+            "exercises": null,
+            "date": dateToSave,
+            "type": "Cardio",
+            "duration": $('#cardiotime').val(),
+            "distance": $('#distance').val(),
+            "sessionUserNote": $('#cardionotes').val(), 
+            "sessionName": $("#cardioExercises").val(),
+        };
+
+
+        $.ajax({
+            url: "http://localhost:49902/member/saveworkout",
+            type: "POST",
+            data: jsonObjecToSend,
+            success: function (result) {
+                alert("Workout Saved successfully!")
+                window.location = "main.html";
+            },
+            error: function (result) {
+                alert("Error at save")
+            }
+        });
         // TODO: SPARA NER DATAN --------------------------------------------------------------------------- !
-        window.location = "calendar.html";
     });
 
     // ADD OTHER WORKOUT
-    $("#addother").click(function () {
+    $("#addother").click(function() {
+
+        var datePickerDate = JSON.stringify(new Date($(".datepicker").val()));
+
+        var dateToSave = JSON.parse(datePickerDate);
+
+        var jsonObjecToSend = {
+            "exercises": null,
+            "date": dateToSave,
+            "type": "Other",
+            "duration": $('#othertime').val(),
+            "distance": null,
+            "sessionUserNote": $('#othernotes').val(),
+            "sessionName": $("#othername").val(),
+        };
+
+
+        $.ajax({
+            url: "http://localhost:49902/member/saveworkout",
+            type: "POST",
+            data: jsonObjecToSend,
+            success: function(result) {
+                alert("Workout Saved successfully!")
+                window.location = "main.html";
+            },
+            error: function(result) {
+                alert("Error at save")
+            }
+        });
         // TODO: SPARA NER DATAN --------------------------------------------------------------------------- !
-        window.location = "calendar.html";
+      
     });
 });
