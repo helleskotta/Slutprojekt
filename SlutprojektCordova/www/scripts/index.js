@@ -137,93 +137,160 @@ $(document).ready(function () {
         $("#statsicon").removeClass("selectedicon");
 
         $.ajax({
-            url: "http://localhost:49902/Member/Main",
-            type: "GET",
-
-            success: function (result) {
-                var prevContent = "";
-                var todayContent = "";
-                var nextContent = "";
-
-                if (result.calendar[0] != null) {
-                    var prevContent = "<b>" + result.calendar[0].sessionName + "</b>";
-                    prevContent += "<br /><p>" + result.calendar[0].typeOfWorkoutSession + "</p> ";
-                    prevContent += "<p>" + result.calendar[0].date + "</p>";
-
-                    //// TODO: Kom till rätt pass vid klick
-                    //$("#box1").click(function () {
-                    //    window.location = "add.html";
-                    //});
-                }
-
-                else {
-                    prevContent = '<i>You haven not logged any previous workout.Click to add a workout session.<br /><br /> <font size="20px">+</font></i>';
-
-                    $("#box1").click(function () {
-                        window.location = "add.html";
-                    });
-                }
-
-                $("#box1content").html(prevContent);
-
-
-                if (result.calendar[1] != null) {
-                    todayContent = "<b>" + result.calendar[1].sessionName + "</b>";
-                    todayContent += "<br /><p>" + result.calendar[1].typeOfWorkoutSession + "</p> ";
-
-                    //// TODO: Kom till rätt pass vid klick
-                    //$("#box2").click(function () {
-                    //    window.location = "add.html";
-                    //});
-                }
-
-                else {
-                    todayContent = '<i>You have no workout planned today. Click to add a workout session.<br /><br /><font size="20px">+</font></i>';
-
-                    $("#box2").click(function () {
-                        window.location = "add.html";
-                    });
-                }
-
-                $("#box2content").html(todayContent);
-
-
-                if (result.calendar[2] != null) {
-                    nextContent = "<b>" + result.calendar[2].sessionName + "</b>";
-                    nextContent += "<br /><p>" + result.calendar[2].typeOfWorkoutSession + "</p> ";
-                    nextContent += "<p>" + result.calendar[2].date + "</p>";
-
-                    //// TODO: Kom till rätt pass vid klick
-                    //$("#box2").click(function () {
-                    //    window.location = "add.html";
-                    //});
-                }
-                else {
-                    nextContent = '<i>You have no upcoming workout planned. Click to add a workout session.<br /><br /><font size="20px">+</font></i>';
-
-                    $("#box3").click(function () {
-                        window.location = "add.html";
-                    });
-                }
-                $("#box3content").html(nextContent);
-            },
-            error: function (result) {
-                alert("AJAJAJ - something went wrong: " + result);
-            }
-        });
-
-        $.ajax({
             url: "http://localhost:49902/Member/Index",
             type: "get",
             success: function (result) {
 
                 storage.setItem("WorkoutSessions", JSON.stringify(result));
-                var temp = JSON.parse(storage.getItem("WorkoutSessions"));
             },
             error: function (result) {
                 alert("fel vid storage")
             }
         });
+
+        var result = JSON.parse(storage.getItem("WorkoutSessions"));
+        var prevContent = "";
+        var todayContent = "";
+        var nextContent = "";
+
+        if (result.calendar[0] !== null) {
+            prevContent = "<b>" + result.calendar[0].sessionName + "</b>";
+            prevContent += "<br /><p>" + result.calendar[0].typeOfWorkoutSession + "</p> ";
+            prevContent += "<p>" + result.calendar[0].date + "</p>";
+
+            //// TODO: Kom till rätt pass vid klick
+            //$("#box1").click(function () {
+            //    window.location = "add.html";
+            //});
+        }
+
+        else {
+            prevContent = '<i>You haven not logged any previous workout.Click to add a workout session.<br /><br /> <font size="20px">+</font></i>';
+
+            $("#box1").click(function () {
+                window.location = "add.html";
+            });
+        }
+
+        $("#box1content").html(prevContent);
+
+
+        if (result.calendar[1] !== null) {
+            todayContent = "<b>" + result.calendar[1].sessionName + "</b>";
+            todayContent += "<br /><p>" + result.calendar[1].typeOfWorkoutSession + "</p> ";
+
+            //// TODO: Kom till rätt pass vid klick
+            //$("#box2").click(function () {
+            //    window.location = "add.html";
+            //});
+        }
+
+        else {
+            todayContent = '<i>You have no workout planned today. Click to add a workout session.<br /><br /><font size="20px">+</font></i>';
+
+            $("#box2").click(function () {
+                window.location = "add.html";
+            });
+        }
+
+        $("#box2content").html(todayContent);
+
+
+        if (result.calendar[2] !== null) {
+            nextContent = "<b>" + result.calendar[2].sessionName + "</b>";
+            nextContent += "<br /><p>" + result.calendar[2].typeOfWorkoutSession + "</p> ";
+            nextContent += "<p>" + result.calendar[2].date + "</p>";
+
+            //// TODO: Kom till rätt pass vid klick
+            //$("#box2").click(function () {
+            //    window.location = "add.html";
+            //});
+        }
+        else {
+            nextContent = '<i>You have no upcoming workout planned. Click to add a workout session.<br /><br /><font size="20px">+</font></i>';
+
+            $("#box3").click(function () {
+                window.location = "add.html";
+            });
+        }
+        $("#box3content").html(nextContent);
+
+        //$.ajax({
+        //    url: "http://localhost:49902/Member/Main",
+        //    type: "GET",
+
+        //    success: function (result) {
+        //        var prevContent = "";
+        //        var todayContent = "";
+        //        var nextContent = "";
+
+        //        if (result.calendar[0] != null) {
+        //            var prevContent = "<b>" + result.calendar[0].sessionName + "</b>";
+        //            prevContent += "<br /><p>" + result.calendar[0].typeOfWorkoutSession + "</p> ";
+        //            prevContent += "<p>" + result.calendar[0].date + "</p>";
+
+        //            //// TODO: Kom till rätt pass vid klick
+        //            //$("#box1").click(function () {
+        //            //    window.location = "add.html";
+        //            //});
+        //        }
+
+        //        else {
+        //            prevContent = '<i>You haven not logged any previous workout.Click to add a workout session.<br /><br /> <font size="20px">+</font></i>';
+
+        //            $("#box1").click(function () {
+        //                window.location = "add.html";
+        //            });
+        //        }
+
+        //        $("#box1content").html(prevContent);
+
+
+        //        if (result.calendar[1] != null) {
+        //            todayContent = "<b>" + result.calendar[1].sessionName + "</b>";
+        //            todayContent += "<br /><p>" + result.calendar[1].typeOfWorkoutSession + "</p> ";
+
+        //            //// TODO: Kom till rätt pass vid klick
+        //            //$("#box2").click(function () {
+        //            //    window.location = "add.html";
+        //            //});
+        //        }
+
+        //        else {
+        //            todayContent = '<i>You have no workout planned today. Click to add a workout session.<br /><br /><font size="20px">+</font></i>';
+
+        //            $("#box2").click(function () {
+        //                window.location = "add.html";
+        //            });
+        //        }
+
+        //        $("#box2content").html(todayContent);
+
+
+        //        if (result.calendar[2] != null) {
+        //            nextContent = "<b>" + result.calendar[2].sessionName + "</b>";
+        //            nextContent += "<br /><p>" + result.calendar[2].typeOfWorkoutSession + "</p> ";
+        //            nextContent += "<p>" + result.calendar[2].date + "</p>";
+
+        //            //// TODO: Kom till rätt pass vid klick
+        //            //$("#box2").click(function () {
+        //            //    window.location = "add.html";
+        //            //});
+        //        }
+        //        else {
+        //            nextContent = '<i>You have no upcoming workout planned. Click to add a workout session.<br /><br /><font size="20px">+</font></i>';
+
+        //            $("#box3").click(function () {
+        //                window.location = "add.html";
+        //            });
+        //        }
+        //        $("#box3content").html(nextContent);
+        //    },
+        //    error: function (result) {
+        //        alert("AJAJAJ - something went wrong: " + result);
+        //    }
+        //});
+
     }
 
     if (document.getElementById("listOfExercise")) {
@@ -446,7 +513,7 @@ $("#addwo").click(function () {
 
     var objectToStore = {
         "SessionName": $("#programname").val(),
-        "Date": $(".datepicker").val(),
+        "Date": new Date($(".datepicker").val()),
         "Exercises": exerciseChosen
     }
     storage.setItem("currentWO", JSON.stringify(objectToStore));
@@ -486,16 +553,11 @@ $("#addfinishedwo").click(function () {
 
         exerciseArray.push(exercise);
     })
-    var saveFullProgram = {
-        "SessionName": $("#nameofProgram").html(),
-        "exercises": exerciseArray,
-        "Date": JSON.parse(storage.getItem("currentWO")).date
-    };
 
-    //Test ----------- Denna fungerar, namn på proppar var tvungna att mappa mot vår vymodel där vi tar emot ajax, därför namen är ändrade
+    // Spara ner passet till databasen
     var jsonObjecToSend = {
         "Exercises": exerciseArray,
-        "Date": $(".datepicker").val(), //TODO GIVE me a real value please
+        "Date": JSON.parse(storage.getItem("currentWO")).Date,
         "Type": "Strength",
         "Duration": null,
         "Distance": null,
