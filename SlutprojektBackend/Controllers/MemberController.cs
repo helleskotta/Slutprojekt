@@ -72,7 +72,7 @@ namespace SlutprojektBackend.Controllers
         {
             var userID = userManager.GetUserId(HttpContext.User);
             userweight.Date = DateTime.Now;
-            dataManager.TestAddWeight(userID, userweight);
+            dataManager.AddWeight(userID, userweight);
 
             return Content("Workout saved successfully");
         }

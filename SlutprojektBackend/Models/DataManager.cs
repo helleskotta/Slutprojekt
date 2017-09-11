@@ -85,9 +85,9 @@ namespace SlutprojektBackend.Models
             return workoutcontext.GetAllWorkoutSessions("PetterTest");
         }
 
-        public void TestAddWeight(string userID, UserWeight userWeight)
+        public void AddWeight(string userID, UserWeight userWeight)
         {
-            workoutcontext.AddWeightMeasurment("PetterTest", 100.0);
+            workoutcontext.AddWeightMeasurment(userID, 100.0);
         }
 
     }
