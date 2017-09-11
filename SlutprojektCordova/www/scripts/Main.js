@@ -1,8 +1,9 @@
 ﻿var d = new Date();
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 document.addEventListener("deviceready", function () {
-    $("#date").html(d.getDate() + " " + months[d.getMonth()]);
+    $("#date").html(days[d.getDay()] + " " + d.getDate() + " " + months[d.getMonth()]);
 
     $("#homeicon").addClass("selectedicon");
     $("#calendaricon").removeClass("selectedicon");
@@ -22,9 +23,8 @@ document.addEventListener("deviceready", function () {
     });
 
 
-   // var result = JSON.parse(storage.getItem("WorkoutSessions"));
-  
-
+    //// Hämta data från localstorage för 3 boxar
+    // var result = JSON.parse(storage.getItem("WorkoutSessions"));
     //var temp = new Date();
 
     //var newList = result.map(function (x) {
@@ -45,6 +45,7 @@ document.addEventListener("deviceready", function () {
     //    return year && date && month;
     //});
 
+
     // Hämta data till 3 boxar
     $.ajax({
         url: "http://localhost:49902/member/main",
@@ -56,9 +57,23 @@ document.addEventListener("deviceready", function () {
             var nextContent = "";
 
             if (result.calendar[0] !== null) {
-                prevContent = "<b>" + result.calendar[0].sessionName + "</b>";
-                prevContent += "<br /><p>" + result.calendar[0].typeOfWorkoutSession + "</p> ";
-                prevContent += "<p>" + result.calendar[0].date + "</p>";
+                var displayDate = new Date(result.calendar[0].date).getDate();
+                var displayMonth = months[new Date(result.calendar[0].date).getMonth()];
+
+                prevContent = "<p>" + displayDate + " " + displayMonth + "</p>";
+                prevContent += "<b>" + result.calendar[0].sessionName + "</b>";
+
+                if (result.calendar[0].typeOfWorkoutSession === "Strength") {
+                    prevContent += '<br /><br /><img style="width:30px;" src="images/strengthicon.png" />';
+                }
+
+                else if (result.calendar[0].typeOfWorkoutSession === "Cardio") {
+                    prevContent += '<br /><br /><img style="width:30px;" src="images/cardioicon.png" />';
+                }
+
+                else {
+                    prevContent += '<br /><br /><img style="width:30px;" src="images/othericon.png" />';
+                }
 
                 //// TODO: Kom till rätt pass vid klick
                 //$("#box1").click(function () {
@@ -78,8 +93,19 @@ document.addEventListener("deviceready", function () {
 
 
             if (result.calendar[1] !== null) {
-                todayContent = "<b>" + result.calendar[1].sessionName + "</b>";
-                todayContent += "<br /><p>" + result.calendar[1].typeOfWorkoutSession + "</p> ";
+                todayContent = "<p>upcoming</p> <b>" + result.calendar[1].sessionName + "</b>";
+
+                if (result.calendar[1].typeOfWorkoutSession === "Strength") {
+                    todayContent += '<br /><br /><img style="width:30px;" src="images/strengthicon.png" />';
+                }
+
+                else if (result.calendar[1].typeOfWorkoutSession === "Cardio") {
+                    todayContent += '<br /><br /><img style="width:30px;" src="images/cardioicon.png" />';
+                }
+
+                else {
+                    todayContent += '<br /><br /><img style="width:30px;" src="images/othericon.png" />';
+                }
 
                 //// TODO: Kom till rätt pass vid klick
                 //$("#box2").click(function () {
@@ -105,7 +131,19 @@ document.addEventListener("deviceready", function () {
 
                 nextContent = "<p>" + displayDate + " " + displayMonth + "</p>";
                 nextContent += "<b>" + result.calendar[2].sessionName + "</b>";
-                nextContent += "<br /><p>" + result.calendar[2].typeOfWorkoutSession + "</p> ";
+
+                if (result.calendar[2].typeOfWorkoutSession === "Strength") {
+                    nextContent += '<br /><br /><img style="width:30px;" src="images/strengthicon.png" />';
+                }
+
+                else if (result.calendar[2].typeOfWorkoutSession === "Cardio") {
+                    nextContent += '<br /><br /><img style="width:30px;" src="images/cardioicon.png" />';
+                }
+
+                else {
+                    nextContent += '<br /><br /><img style="width:30px;" src="images/othericon.png" />';
+                }
+            
 
                 //// TODO: Kom till rätt pass vid klick
                 //$("#box2").click(function () {
