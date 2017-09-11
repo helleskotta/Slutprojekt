@@ -1,8 +1,9 @@
-﻿document.addEventListener("deviceready", function() {
+﻿document.addEventListener("deviceready", function () {
 
     // Run program
 
     var currentWO = JSON.parse(storage.getItem("currentWO"));
+    var test = 1;
     $("#nameofProgram").html(currentWO.sessionName);
 
     var content = "";
@@ -15,7 +16,7 @@
 
         // En övning
         for (var j = 0; j < currentWO.exercises[k].sets.length; j++) {
-            var oneRow = '<tr> <td style="font-weight:bold; font-size:14px;">SET' + (j + 1) + '</td> <td>';
+            var oneRow = '<tr> <td style="font-weight:bold; font-size:14px;">SET ' + test++ + '</td> <td>';
             if (currentWO.exercises[k].sets[j].reps === null) {
                 oneRow += '<input class="repsCount" type="number" style="width:50%;" />';
             } else {
@@ -29,12 +30,12 @@
                 oneRow += '<input value="' + currentWO.exercises[k].sets[j].weight + '" type="number" style="width:50%;" />';
             }
 
-            oneRow += '</td> <td><input type="button" class="deletefield" style="padding: 1px; font-size:20px; background:transparent; color:#888; text-align:right; text-transform:lowercase;" value="x" /></td> </tr > ';
+            oneRow += '</td> <td><input type="button" class="deletefield" value="x" /></td> </tr > ';
             exerciseString += oneRow;
         }
 
         var endof = "";
-        endof += '<tr> <td> <img class="addanotherrun" src="images/add40.png" style="margin:auto; width:20px; height:20px;" /> </td> <td></td><td><br /><br /><input type="button" class="finishOneExercise" value="Finish exercise" /></td></tr> </table></div>'
+        endof += '<tfoot><tr> <td> <img class="addanotherrun" src="images/add40.png" style="margin:auto; width:20px; height:20px;" /> </td> <td></td><td><br /><br /><input type="button" class="finishOneExercise" value="Finish exercise" /></td></tr></tfoot> </table></div>'
         exerciseString += endof;
 
         content += exerciseString;
@@ -42,23 +43,50 @@
 
     $("#fullprogram").append(content);
 
+    // Remove-knapp i run
+    $(".ovning").on('click', '.deletefield', function () {
+        $(this).closest('tr').remove();
+    });
 
+
+    $(".addanotherrun").click(function () {
+        var clone = "";
+        clone += '<tr> <td style="font-weight:bold; font-size:14px;">SET ';
+        clone += test++;
+        clone += '</td>';
+        clone += '<td><input class="repsCount" type="number" style="width:50%;"></td> <td><input class="weightCount" type="number" style="width:50%;"></td> <td><input type="button" class="deletefield" value="x"></td> </tr>';
+        $('tbody').append(clone);
+    });
+
+
+    //// Add-knapp i run
+    //$(".addanotherrun").click(function () { 
+    //    $(this).closest("<tr>").clone().wrap("<tr>").closest().html();
+    //    $(".ovning").append(temp);
+    //});
+
+
+    //// Add-knapp i run
+    //$(".addanotherrun").click(function () {
+    //    var temp = $(".oneexercise").clone().wrap('<p>').closest().html();
+    //    $("#exercises").append(temp);
+    //});
 
     // ADD FINISHED STRENGTH WORKOUT
-    $("#addfinishedwo").click(function() {
+    $("#addfinishedwo").click(function () {
 
         var exerciseArray = [];
 
-        $(".exerciseWrapper").each(function(index, element) {
+        $(".exerciseWrapper").each(function (index, element) {
             var setArray = [];
 
             var repsCount = [];
-            $(element).find(".repsCount").each(function(repsCountIndex, repsCountElement) {
+            $(element).find(".repsCount").each(function (repsCountIndex, repsCountElement) {
                 repsCount[repsCountIndex] = $(repsCountElement).val();
             });
 
             var weightCount = [];
-            $(element).find(".weightCount").each(function(weightCountIndex, weightCountElement) {
+            $(element).find(".weightCount").each(function (weightCountIndex, weightCountElement) {
                 weightCount[weightCountIndex] = $(weightCountElement).val();
             });
 
@@ -93,11 +121,11 @@
             url: "http://localhost:49902/member/saveworkout",
             type: "POST",
             data: jsonObjecToSend,
-            success: function(result) {
+            success: function (result) {
                 alert("Workout Saved successfully!")
                 window.location = "main.html";
             },
-            error: function(result) {
+            error: function (result) {
                 alert("Error att save")
             }
         });

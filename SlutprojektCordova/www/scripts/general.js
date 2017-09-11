@@ -108,24 +108,10 @@ document.addEventListener("deviceready", function () {
     });
 
 
-    // Add-knapp i run
-    //$(".addanotherrun").click(function () { // -------------------------------- FUNKAR INTE pga tabell 
-    //    var temp = $(".oneexercise").clone().wrap('<p>').parent().html();
-    //    $("#exercises").append(temp);
-    //});
-
     $("#exercises").on('click', '.deletefield', function () {
         $(this).parent(".oneexercise").remove();
     });
 
-    // Remove-knapp i run
-    $(".ovning").on('click', '.deletefield', function () { // ---------------------------------------- FUNKAR INTE
-        $(this).parent("tr").remove();
-    });
-
-    //$("#addnew").on('click', '.deletefield', function () {
-    //    $(this).parent("#oneexercise").remove(); TODO: hitta rätt element att ta bort --------------------- !
-    //}); 
 
     // Datepicker
     $(".datepicker").datepicker({ dateFormat: 'yy-mm-dd', firstDay: 1 });

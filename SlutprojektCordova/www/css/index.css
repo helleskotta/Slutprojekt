@@ -44,6 +44,9 @@ a {
 
 #header {
     margin: auto;
+    top: 2%;
+    position: absolute;
+    left: 47%;
 }
 
 /* FOOTER */
@@ -101,6 +104,10 @@ h1 {
     text-align: center;
     font-family: 'Open Sans';
 }
+
+    h1 img {
+        vertical-align: text-top;
+    }
 
 h2 {
     font-size: 16px;
@@ -211,7 +218,7 @@ select {
 /**********************************************************************************************************/
 
 #firstmainpage {
-    margin-bottom:15%;
+    margin-bottom: 15%;
 }
 
 #date, #boxes, .module {
@@ -244,6 +251,10 @@ select {
     padding: 4px;
     border-radius: 2px;
 }
+
+    #box1 h3, #box2 h3, #box3 h3 {
+        letter-spacing:6px;
+    }
 
 #box1 {
     float: left;
@@ -321,26 +332,26 @@ select {
         filter: drop-shadow(3px 2px 5px #888);
     }
 
-/* add view */                                                                                          /* ATM */
+/* add view */ /* ATM */
 #addnew {
     background: white;
     height: 60%;
     padding: 20px;
     border-radius: 2px;
     filter: drop-shadow(3px 2px 5px #888);
-    margin-top:10%;
-    margin-bottom:15%;
-    text-align:center;
+    margin-top: 10%;
+    margin-bottom: 15%;
+    text-align: center;
 }
 
-#addnew img {
-    width:60px;
-    height:60px;
-    margin:2px;
-}
+    #addnew img {
+        width: 60px;
+        height: 60px;
+        margin: 2px;
+    }
 
 #strengthprogram, #cardioprogram {
-    text-align:left;
+    text-align: left;
 }
 
 .finishOneExercise {
@@ -349,6 +360,23 @@ select {
     width: 80%;
     border-radius: 20px;
     margin-top: 10px;
+}
+
+#strengthbtn, #cardiobtn, #otherbtn {
+    padding: 5px 10px;
+}
+
+.selectedE {
+    border-bottom: 2px solid #2DA130;
+}
+
+.deletefield {
+    padding: 1px;
+    font-size: 20px;
+    background: transparent;
+    color: #888;
+    text-align: right;
+    text-transform: lowercase;
 }
 
 /* ADD DATE CALENDAR JQUERY CUSTOM CSS */
@@ -366,11 +394,11 @@ select {
 }
 
 .ui-datepicker-title {
-    font-weight:bold;
+    font-weight: bold;
 }
 
 .ui-datepicker-header, .ui-widget-header, .ui-helper-clearfix, .ui-corner-all {
-    text-align:center;
+    text-align: center;
 }
 
 .ui-datepicker-prev {
@@ -420,41 +448,40 @@ select {
 
 #profile {
     text-align: left;
-    padding-left:10px;
-    padding-bottom:20px;
-    
-}
-
-#profile h2 {
-    text-align: left;
-    margin-bottom: -10px;
-    margin-top: 30px;
-    margin-left: 30%;
     padding-left: 10px;
-    font-weight:bold;
-    color:white;
+    padding-bottom: 20px;
 }
 
-#profile img {
-    border-radius: 50%;
-    border: 1px dotted black;
-    height: 70px;
-    width: 70px;
-    margin-left: 10px;
-    text-align:left;
-    background:white;
-    padding:10px;
-}
+    #profile h2 {
+        text-align: left;
+        margin-bottom: -10px;
+        margin-top: 30px;
+        margin-left: 30%;
+        padding-left: 10px;
+        font-weight: bold;
+        color: white;
+    }
+
+    #profile img {
+        border-radius: 50%;
+        border: 1px dotted black;
+        height: 70px;
+        width: 70px;
+        margin-left: 10px;
+        text-align: left;
+        background: white;
+        padding: 10px;
+    }
 
 #sidemenu {
-    border-radius:2px;
-    font-size:12px;
+    border-radius: 2px;
+    font-size: 12px;
 }
 
-#sidemenu ul {
-    border-radius: 2px;
-    font-size: 14px;
-}
+    #sidemenu ul {
+        border-radius: 2px;
+        font-size: 14px;
+    }
 
 /* CALENDAR CONTAINERS */
 /**********************************************************************************************************/
@@ -462,29 +489,29 @@ select {
 /* List view */
 #calendarlist {
     background: transparent;
-    margin-left:-40px;
-    margin-bottom:10%;
+    margin-left: -40px;
+    margin-bottom: 10%;
+    margin-top: -40px;
 }
 
     #calendarlist li {
-        background:white;
+        background: white;
         list-style-type: none;
         padding: 20px 30px 20px 20px;
-        margin-bottom:10px;
     }
 
 .listdate {
-    font-size:13px;
-    font-weight:bold;
-    text-align:center;
-    width:10%;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    width: 10%;
 }
 
 .listcontent {
     padding: 10px;
-    text-align:right;
-    position:relative;
-    left:10%;
+    text-align: right;
+    position: relative;
+    left: 10%;
 }
 
 /* Week view */
