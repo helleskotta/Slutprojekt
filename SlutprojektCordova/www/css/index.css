@@ -260,8 +260,9 @@ select {
 
 #box1content, #box2content, #box3content {
     padding: 0, 5px;
-    text-align:center;
-    line-height:10px;
+    text-align: center;
+    line-height: 13px;
+    margin-top: -10px;
 }
 
 /* ADD CONTAINERS */

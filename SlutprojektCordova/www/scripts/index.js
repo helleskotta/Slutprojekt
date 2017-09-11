@@ -13,7 +13,7 @@ var azureDomain = "http://slutprojektbackend.azurewebsites.net/";
         // Handle the Cordova pause and resume events
         document.addEventListener('pause', onPause.bind(this), false);
         document.addEventListener('resume', onResume.bind(this), false);
-        
+
         //// TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
         //var parentElement = document.getElementById('deviceready');
         //var listeningElement = parentElement.querySelector('.listening');
@@ -141,23 +141,70 @@ $(document).ready(function () {
             type: "GET",
 
             success: function (result) {
-                var prevContent = "<b>" + result.calendar[0].sessionName + "</b>";
-                prevContent += "<br /><p>" + result.calendar[0].typeOfWorkoutSession + "</p> ";
-                prevContent += "<p>" + result.calendar[0].date + "</p>";
+                var prevContent = "";
+                var todayContent = "";
+                var nextContent = "";
+
+                if (result.calendar[0] != null) {
+                    var prevContent = "<b>" + result.calendar[0].sessionName + "</b>";
+                    prevContent += "<br /><p>" + result.calendar[0].typeOfWorkoutSession + "</p> ";
+                    prevContent += "<p>" + result.calendar[0].date + "</p>";
+
+                    //// TODO: Kom till rätt pass vid klick
+                    //$("#box1").click(function () {
+                    //    window.location = "add.html";
+                    //});
+                }
+
+                else {
+                    prevContent = '<i>You haven not logged any previous workout.Click to add a workout session.<br /><br /> <font size="20px">+</font></i>';
+
+                    $("#box1").click(function () {
+                        window.location = "add.html";
+                    });
+                }
 
                 $("#box1content").html(prevContent);
 
 
-                var todayContent = "<b>" + result.calendar[1].sessionName + "</b>";
-                todayContent += "<br /><p>" + result.calendar[1].typeOfWorkoutSession + "</p> ";
+                if (result.calendar[1] != null) {
+                    todayContent = "<b>" + result.calendar[1].sessionName + "</b>";
+                    todayContent += "<br /><p>" + result.calendar[1].typeOfWorkoutSession + "</p> ";
+
+                    //// TODO: Kom till rätt pass vid klick
+                    //$("#box2").click(function () {
+                    //    window.location = "add.html";
+                    //});
+                }
+
+                else {
+                    todayContent = '<i>You have no workout planned today. Click to add a workout session.<br /><br /><font size="20px">+</font></i>';
+
+                    $("#box2").click(function () {
+                        window.location = "add.html";
+                    });
+                }
 
                 $("#box2content").html(todayContent);
 
 
-                var nextContent = "<b>" + result.calendar[2].sessionName + "</b>";
-                nextContent += "<br /><p>" + result.calendar[2].typeOfWorkoutSession + "</p> ";
-                nextContent += "<p>" + result.calendar[2].date + "</p>";
+                if (result.calendar[2] != null) {
+                    nextContent = "<b>" + result.calendar[2].sessionName + "</b>";
+                    nextContent += "<br /><p>" + result.calendar[2].typeOfWorkoutSession + "</p> ";
+                    nextContent += "<p>" + result.calendar[2].date + "</p>";
 
+                    //// TODO: Kom till rätt pass vid klick
+                    //$("#box2").click(function () {
+                    //    window.location = "add.html";
+                    //});
+                }
+                else {
+                    nextContent = '<i>You have no upcoming workout planned. Click to add a workout session.<br /><br /><font size="20px">+</font></i>';
+
+                    $("#box3").click(function () {
+                        window.location = "add.html";
+                    });
+                }
                 $("#box3content").html(nextContent);
             },
             error: function (result) {
@@ -253,7 +300,7 @@ $(document).ready(function () {
         var allWorkoutSessions = JSON.parse(storage.getItem("WorkoutSessions")); // --------------- STORAGE?
 
         var listviewfull = "";
-        
+
         for (var i = 0; i < allWorkoutSessions.length; i++) {
             listviewfull += '<li><span class="listdate">' + allWorkoutSessions[i].date + '</span><span class="listcontent">' + allWorkoutSessions[i].sessionName + '</span></li>'
         }
@@ -459,16 +506,16 @@ $("#addfinishedwo").click(function () {
     //storage.setItem("currentWO", jsonObjecToSend);
 
     $.ajax({
-            url: "http://localhost:49902/member/saveworkout",
-            type: "POST",
-            data: jsonObjecToSend,
-            success: function (result) {
-                alert("Workout Saved successfully!")
-            },
-            error: function (result) {
-                alert("Error att save")
-            }
-        });
+        url: "http://localhost:49902/member/saveworkout",
+        type: "POST",
+        data: jsonObjecToSend,
+        success: function (result) {
+            alert("Workout Saved successfully!")
+        },
+        error: function (result) {
+            alert("Error att save")
+        }
+    });
 
     window.location = "calendar.html";
 });
