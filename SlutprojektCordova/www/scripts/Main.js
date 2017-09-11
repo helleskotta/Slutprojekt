@@ -99,9 +99,13 @@ document.addEventListener("deviceready", function () {
 
 
             if (result.calendar[2] !== null) {
-                nextContent = "<b>" + result.calendar[2].sessionName + "</b>";
+
+                var displayDate = new Date(result.calendar[2].date).getDate();
+                var displayMonth = months[new Date(result.calendar[2].date).getMonth()];
+
+                nextContent = "<p>" + displayDate + " " + displayMonth + "</p>";
+                nextContent += "<b>" + result.calendar[2].sessionName + "</b>";
                 nextContent += "<br /><p>" + result.calendar[2].typeOfWorkoutSession + "</p> ";
-                nextContent += "<p>" + result.calendar[2].date + "</p>";
 
                 //// TODO: Kom till rätt pass vid klick
                 //$("#box2").click(function () {
