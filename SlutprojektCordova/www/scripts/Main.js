@@ -50,7 +50,7 @@ document.addEventListener("deviceready", function () {
         url: "http://localhost:49902/member/main",
         type: "get",
         success: function (result) {
-            alert("Gick bra");
+            console.log("Gick bra");
             var prevContent = "";
             var todayContent = "";
             var nextContent = "";
@@ -133,15 +133,14 @@ document.addEventListener("deviceready", function () {
                 type: "POST",
                 data: weightToSend,
                 success: function (result) {
-                    var jsonString =
-                        storage.setItem("UserExercises", JSON.stringify(result));
+                    console.log("Det gick bra att spara");
+                    location.reload();
                 },
                 error: function (result) {
-                    alert("Fel vid inhämtning av övningar");
+                    alert("Kunde inte logga vikt");
                 }
             });
             // TODO: SPARA NER DATAN --------------------------------------------------------------------------- !
-            location.reload();
         });
 
     //// ADD WEIGHT MEASUREMENTS
