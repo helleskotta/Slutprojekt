@@ -1,15 +1,21 @@
-﻿document.addEventListener("deviceready", function () {
+﻿var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-        $("#homeicon").removeClass("selectedicon");
-        $("#calendaricon").addClass("selectedicon");
-        $("#statsicon").removeClass("selectedicon");
+document.addEventListener("deviceready", function() {
 
-        var allWorkoutSessions = JSON.parse(storage.getItem("WorkoutSessions")); // --------------- STORAGE?
+    $("#homeicon").removeClass("selectedicon");
+    $("#calendaricon").addClass("selectedicon");
+    $("#statsicon").removeClass("selectedicon");
 
-        var listviewfull = "";
+    var allWorkoutSessions = JSON.parse(storage.getItem("WorkoutSessions")); // --------------- STORAGE?
 
-        for (var i = allWorkoutSessions.length-1; i > 0 ; i--) {
-            listviewfull += '<li><span class="listdate">' + allWorkoutSessions[i].date + '</span><span class="listcontent">' + allWorkoutSessions[i].sessionName + '</span></li>'
-        }
-        $("#calList").append(listviewfull);
+    var listviewfull = "";
+
+    for (var i = allWorkoutSessions.length - 1; i > 0; i--) {
+        var displayDate = new Date(allWorkoutSessions[i].date).getDate();
+        var displayMonth = months[new Date(allWorkoutSessions[i].date).getMonth()];
+        var displayDM = displayDate + " " + displayMonth;
+
+        listviewfull += '<li><span class="listdate">' + displayDM + '</span><span class="listcontent">' + allWorkoutSessions[i].sessionName + '</span></li>'
+    }
+    $("#calList").append(listviewfull);
 });
