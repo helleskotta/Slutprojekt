@@ -46,8 +46,8 @@ namespace SlutprojektBackend.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var userID = userManager.GetUserId(User); //Får in null, därför ajax går dåligt
-
+            //var userID = userManager.GetUserId(User); //Får in null, därför ajax går dåligt
+            var userID = userManager.GetUserId(HttpContext.User);
             return Json(dataManager.GetAllWorkoutsForUser(userID));
             
         }
@@ -61,7 +61,7 @@ namespace SlutprojektBackend.Controllers
         public IActionResult Saveworkout(WorkoutSessionVM newWorkout)
         {
             var userID = userManager.GetUserId(HttpContext.User);
-            newWorkout.Date = DateTime.Now;
+            newWorkout.Date = DateTime.Parse(newWorkout.Date.ToString());
             dataManager.AddWorkOutForUser(userID, newWorkout);
             //Do stuff
 
