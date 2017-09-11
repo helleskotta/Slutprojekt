@@ -11,7 +11,7 @@
             type: "POST",
             
             success: function(result) {
-                console.log("Stats aquired successfully!");
+                console.log("Stats acquired successfully!");
 
             },
             error: function(result) {

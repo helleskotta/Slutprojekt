@@ -67,7 +67,7 @@ document.addEventListener("deviceready", function () {
             }
 
             else {
-                prevContent = '<i>You haven not logged any previous workout.Click to add a workout session.<br /><br /> <font size="20px">+</font></i>';
+                prevContent = '<i>You have not logged any previous workout.Click to add a workout session.<br /><br /> <font size="20px">+</font></i>';
 
                 $("#box1").click(function () {
                     window.location = "add.html";
