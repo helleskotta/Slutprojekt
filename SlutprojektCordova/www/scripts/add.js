@@ -1,4 +1,5 @@
 ﻿document.addEventListener("deviceready", function () {
+    $("#strengthbtn").addClass("selectedE");
     // Ladda in övningar till add-vy
     var strOptions = "";
     var cardioOptions = "";
@@ -23,18 +24,27 @@
         $("#strengthprogram").show();
         $("#cardioprogram").hide();
         $("#otherprogram").hide();
+        $("#strengthbtn").addClass("selectedE");
+        $("#cardiobtn").removeClass("selectedE");
+        $("#otherbtn").removeClass("selectedE");
     });
 
     $("#cardiobtn").click(function () {
         $("#cardioprogram").show();
         $("#strengthprogram").hide();
         $("#otherprogram").hide();
+        $("#strengthbtn").removeClass("selectedE");
+        $("#cardiobtn").addClass("selectedE");
+        $("#otherbtn").removeClass("selectedE");
     });
 
     $("#otherbtn").click(function () {
         $("#cardioprogram").hide();
         $("#strengthprogram").hide();
         $("#otherprogram").show();
+        $("#strengthbtn").removeClass("selectedE");
+        $("#cardiobtn").removeClass("selectedE");
+        $("#otherbtn").addClass("selectedE");
     });
 
     // ADD STRENGTH WORKOUT
