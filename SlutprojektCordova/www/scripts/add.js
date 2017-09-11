@@ -63,9 +63,9 @@
         })
 
         var objectToStore = {
-            "SessionName": $("#programname").val(),
-            "Date": new Date($(".datepicker").val()),
-            "Exercises": exerciseChosen
+            "sessionName": $("#programname").val(),
+            "date": new Date($(".datepicker").val()),
+            "exercises": exerciseChosen
         }
         storage.setItem("currentWO", JSON.stringify(objectToStore));
 

@@ -1,32 +1,32 @@
 ﻿document.addEventListener("deviceready", function () {
 
     // Run program
-    if (document.getElementById("addfinishedwo")) {
+    
         var currentWO = JSON.parse(storage.getItem("currentWO"));
-        $("#nameofProgram").html(currentWO.SessionName);
+        $("#nameofProgram").html(currentWO.sessionName);
 
         var content = "";
 
         // Alla övningar
-        for (var k = 0; k < currentWO.Exercises.length; k++) {
+        for (var k = 0; k < currentWO.exercises.length; k++) {
 
             var exerciseString = "";
-            exerciseString += '<div class="exerciseWrapper"><h2 style="font-weight:bold; text-align:left;"> ' + currentWO.Exercises[k].exerciseChoice + '</h2>' + '<table class="ovning" style="width:100%; border-bottom: 2px dashed #dbdbdb; padding:2px 5px 20px 0;"> <tr> <td style="width:25%;"></td> <td style="width:40%;">Reps</td> <td style="width:40%;">Kg</td> <td style="width:5%;"></td> </tr>';
+            exerciseString += '<div class="exerciseWrapper"><h2 style="font-weight:bold; text-align:left;"> ' + currentWO.exercises[k].exerciseChoice + '</h2>' + '<table class="ovning" style="width:100%; border-bottom: 2px dashed #dbdbdb; padding:2px 5px 20px 0;"> <tr> <td style="width:25%;"></td> <td style="width:40%;">Reps</td> <td style="width:40%;">Kg</td> <td style="width:5%;"></td> </tr>';
 
             // En övning
-            for (var j = 0; j < currentWO.Exercises[k].sets.length; j++) {
+            for (var j = 0; j < currentWO.exercises[k].sets.length; j++) {
                 var oneRow = '<tr> <td style="font-weight:bold; font-size:14px;">SET' + (j + 1) + '</td> <td>';
-                if (currentWO.Exercises[k].sets[j].reps === null) {
+                if (currentWO.exercises[k].sets[j].reps === null) {
                     oneRow += '<input class="repsCount" type="number" style="width:50%;" />';
                 } else {
-                    oneRow += '<input class="repsCount" value="' + currentWO.Exercises[k].sets[j].reps + '" type="number" style="width:50%;" />';
+                    oneRow += '<input class="repsCount" value="' + currentWO.exercises[k].sets[j].reps + '" type="number" style="width:50%;" />';
                 }
                 oneRow += '</td > <td>';
-                if (currentWO.Exercises[k].sets[j].weight === null) {
+                if (currentWO.exercises[k].sets[j].weight === null) {
                     oneRow += '<input class="weightCount" type="number" style="width:50%;" />';
 
                 } else {
-                    oneRow += '<input value="' + currentWO.Exercises[k].sets[j].weight + '" type="number" style="width:50%;" />';
+                    oneRow += '<input value="' + currentWO.exercises[k].sets[j].weight + '" type="number" style="width:50%;" />';
                 }
 
                 oneRow += '</td> <td><input type="button" class="deletefield" style="padding: 1px; font-size:20px; background:transparent; color:#888; text-align:right; text-transform:lowercase;" value="x" /></td> </tr > ';
@@ -42,7 +42,7 @@
 
         $("#fullprogram").append(content);
 
-    }
+    
 
     // ADD FINISHED STRENGTH WORKOUT
     $("#addfinishedwo").click(function () {
@@ -69,8 +69,8 @@
 
             var exerciseName = $(element).find("h2").html();
             var exercise = {
-                "Name": exerciseName,
-                "Sets": setArray,
+                "name": exerciseName,
+                "sets": setArray,
             };
 
             exerciseArray.push(exercise);
@@ -78,13 +78,13 @@
 
         // Spara ner passet till databasen
         var jsonObjecToSend = {
-            "Exercises": exerciseArray,
-            "Date": JSON.parse(storage.getItem("currentWO")).Date,
-            "Type": "Strength",
-            "Duration": null,
-            "Distance": null,
-            "SessionUserNote": "Give me a real value", //TODO
-            "SessionName": $("#nameofProgram").html(),
+            "exercises": exerciseArray,
+            "date": JSON.parse(storage.getItem("currentWO")).date,
+            "type": "Strength",
+            "duration": null,
+            "distance": null,
+            "sessionUserNote": "Give me a real value", //TODO
+            "sessionName": $("#nameofProgram").html(),
         };
 
         //storage.setItem("currentWO", jsonObjecToSend);
@@ -101,6 +101,6 @@
             }
         });
 
-        window.location = "calendar.html";
+        window.location = "main.html";
     });
 });

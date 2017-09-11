@@ -8,7 +8,7 @@
 
         var listviewfull = "";
 
-        for (var i = 0; i < allWorkoutSessions.length; i++) {
+        for (var i = allWorkoutSessions.length-1; i > 0 ; i--) {
             listviewfull += '<li><span class="listdate">' + allWorkoutSessions[i].date + '</span><span class="listcontent">' + allWorkoutSessions[i].sessionName + '</span></li>'
         }
         $("#calList").append(listviewfull);

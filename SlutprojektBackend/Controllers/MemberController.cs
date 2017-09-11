@@ -76,7 +76,7 @@ namespace SlutprojektBackend.Controllers
         public IActionResult Saveworkout(WorkoutSessionVM newWorkout)
         {
             var userID = userManager.GetUserId(HttpContext.User);
-            newWorkout.Date = DateTime.Parse(newWorkout.Date.ToString());
+            newWorkout.Date = DateTime.Parse(newWorkout.Date.ToShortDateString());
             dataManager.AddWorkOutForUser(userID, newWorkout);
             //Do stuff
 
@@ -86,6 +86,7 @@ namespace SlutprojektBackend.Controllers
         public IActionResult SaveMeasurements(BodyMeasurmentsVM bodyMeasurments)
         {
             var userID = userManager.GetUserId(HttpContext.User);
+            bodyMeasurments.Date = DateTime.Parse(bodyMeasurments.Date.ToShortDateString());
             //userWeight.Date = DateTime.Now;
             dataManager.AddWeight(userID, bodyMeasurments);
 

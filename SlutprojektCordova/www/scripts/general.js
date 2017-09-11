@@ -33,7 +33,7 @@ document.addEventListener("deviceready", function () {
 
     // Klicka på add work out
     $("#toaddwo").click(function () {
-        if (storage.getItem("UserExercises") === null) {
+        //if (storage.getItem("UserExercises") === null) {
 
             $.ajax({
                 url: "http://localhost:49902/Member/UserExercises",
@@ -47,7 +47,7 @@ document.addEventListener("deviceready", function () {
                     alert("Fel vid inhämtning av övningar");
                 }
             });
-        }
+       // }
         window.location = "add.html";
 
     });
