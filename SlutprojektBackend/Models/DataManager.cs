@@ -43,6 +43,13 @@ namespace SlutprojektBackend.Models
             workoutcontext.AddWorkoutSessionStrength(userID, newWorkout);
         }
 
+        internal List<WorkoutSessionVM> GetAllWorkoutsForUser(string userID)
+        {
+
+            return workoutcontext.GetAllWorkoutSessions(userID);
+
+        }
+
         //internal void TestAddFavorite()
         //{
         //    workoutcontext.AddUserFavorite("PetterTest", "MyFavoriteWorkout!");

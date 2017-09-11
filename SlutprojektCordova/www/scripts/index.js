@@ -163,20 +163,20 @@ $(document).ready(function () {
             error: function (result) {
                 alert("AJAJAJ - something went wrong: " + result);
             }
-        })
+        });
 
-        //$.ajax({
-        //    url: "http://localhost:49902/Member/Index",
-        //    type: "GET",
-        //    success: function (result) {
+        $.ajax({
+            url: "http://localhost:49902/Member/Index",
+            type: "get",
+            success: function (result) {
 
-        //        storage.setItem("WorkoutSessions", JSON.stringify(result));
-        //        var temp = JSON.parse(storage.getItem("WorkoutSessions"));
-        //    },
-        //    error: function (result) {
-        //        alert("Fel vid storage")
-        //    }
-        //});
+                storage.setItem("WorkoutSessions", JSON.stringify(result));
+                var temp = JSON.parse(storage.getItem("WorkoutSessions"));
+            },
+            error: function (result) {
+                alert("fel vid storage")
+            }
+        });
     }
 
     if (document.getElementById("listOfExercise")) {
@@ -250,12 +250,12 @@ $(document).ready(function () {
         $("#calendaricon").addClass("selectedicon");
         $("#statsicon").removeClass("selectedicon");
 
-        var allWorkoutSessions = JSON.parse(storage.getItem("WorkoutSession")); // --------------- STORAGE?
+        var allWorkoutSessions = JSON.parse(storage.getItem("WorkoutSessions")); // --------------- STORAGE?
 
         var listviewfull = "";
         
         for (var i = 0; i < allWorkoutSessions.length; i++) {
-            listviewfull += '<li><span class="listdate">' + allWorkoutSessions.Date + '</span><span class="listcontent">' + allWorkoutSessions.SessionName + '</span></li>'
+            listviewfull += '<li><span class="listdate">' + allWorkoutSessions[i].date + '</span><span class="listcontent">' + allWorkoutSessions[i].sessionName + '</span></li>'
         }
         $("#calList").append(listviewfull);
     }

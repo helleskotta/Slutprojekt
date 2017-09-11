@@ -43,9 +43,12 @@ namespace SlutprojektBackend.Controllers
             return Json(viewModel);
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
-            return Json(dataManager.TestMethodGet());
+            var userID = userManager.GetUserId(User); //Får in null, därför ajax går dåligt
+
+            return Json(dataManager.GetAllWorkoutsForUser(userID));
             
         }
 
