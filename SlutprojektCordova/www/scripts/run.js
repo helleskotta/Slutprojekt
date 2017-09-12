@@ -12,7 +12,7 @@
     for (var k = 0; k < currentWO.exercises.length; k++) {
 
         var exerciseString = "";
-        exerciseString += '<div class="exerciseWrapper"><h2 style="font-weight:bold; text-align:left;"> ' + currentWO.exercises[k].exerciseChoice + '</h2>' + '<table class="ovning" style="width:100%; border-bottom: 2px dashed #dbdbdb; padding:2px 5px 20px 0;"> <tr> <td style="width:25%;"></td> <td style="width:40%;">Reps</td> <td style="width:40%;">Kg</td> <td style="width:5%;"></td> </tr>';
+        exerciseString += '<div class="exerciseWrapper"><h2 style="font-weight:bold; text-align:left;"> ' + currentWO.exercises[k].name + '</h2><h3 class="totalSets"></h3>' + '<table class="ovning" style="width:100%; border-bottom: 2px dashed #dbdbdb; padding:2px 5px 20px 0;"> <tr> <td style="width:25%;"></td> <td style="width:40%;">Reps</td> <td style="width:40%;">Kg</td> <td style="width:5%;"></td> </tr>';
 
         // En övning
         for (var j = 0; j < currentWO.exercises[k].sets.length; j++) {
@@ -22,107 +22,76 @@
             } else {
                 oneRow += '<input class="repsCount" value="' + currentWO.exercises[k].sets[j].reps + '" type="number" style="width:50%;" />';
             }
+
             oneRow += '</td > <td>';
+
             if (currentWO.exercises[k].sets[j].weight === null) {
                 oneRow += '<input class="weightCount" type="number" style="width:50%;" />';
 
             } else {
-                oneRow += '<input value="' + currentWO.exercises[k].sets[j].weight + '" type="number" style="width:50%;" />';
+                oneRow += '<input class="weightCount" value="' + currentWO.exercises[k].sets[j].weight + '" type="number" style="width:50%;" />';
             }
 
-            oneRow += '</td> <td><input type="button" class="deletefield" value="x" /></td> </tr > ';
+            oneRow += '</td> <td><input type="button" class="deletefield" style="width:100%;" value="x" /></td> </tr > ';
             exerciseString += oneRow;
+
         }
 
         var endof = "";
-        endof += '<tfoot><tr> <td> <img class="addanotherrun" src="images/add40.png" style="margin:auto; width:20px; height:20px;" /> </td> <td></td><td><br /><br /><input type="button" class="finishOneExercise" value="Finish exercise" /></td></tr></tfoot> </table></div>'
+        endof += '<tfoot><tr> <td> <img class="addanotherrun" src="images/add40.png" style="margin:auto; width:20px; height:20px;" /> </td> <td style="width:280px;"></td><td><br /><br /><input type="button" class="finishOneExercise" value="Finish exercise" /></td></tr></tfoot> </table></div>'
         exerciseString += endof;
 
         content += exerciseString;
+        test = 1;
     }
 
     $("#fullprogram").append(content);
+    $(".totalSets").hide();
 
     // Remove-knapp i run
     $(".ovning").on('click', '.deletefield', function () {
         $(this).closest('tr').remove();
     });
 
-
+    // lägg till ett till set
     $(".addanotherrun").click(function () {
         var clone = "";
+        test = $(this).parents().eq(3).find("tbody >tr").length;
         clone += '<tr> <td style="font-weight:bold; font-size:14px;">SET ';
-        clone += test++;
+        clone += test;
         clone += '</td>';
-        clone += '<td><input class="repsCount" type="number" style="width:50%;"></td> <td><input class="weightCount" type="number" style="width:50%;"></td> <td><input type="button" class="deletefield" value="x"></td> </tr>';
-        $('tbody').append(clone);
+        clone += '<td><input class="repsCount" type="number" style="width:50%;"></td> <td><input class="weightCount" type="number" style="width:50%;"></td> <td><input style="width:100%;" type="button" class="deletefield" value="x"></td> </tr>';
+        $(this).parents().eq(3).find("tbody").append(clone);
     });
 
+    // Spara (local storage) och dölj en övning 
+    $(".finishOneExercise").click(function () {
+        storage.setItem("currentWO", JSON.stringify(logIt()));
 
-    //// Add-knapp i run
-    //$(".addanotherrun").click(function () { 
-    //    $(this).closest("<tr>").clone().wrap("<tr>").closest().html();
-    //    $(".ovning").append(temp);
-    //});
+        $(this).parent().parent().parent().parent().find("tbody").toggle();
+        $(this).parent().parent().find(".addanotherrun").toggle();
+        $(this).parents().eq(4).find(".totalSets").toggle().html("Sets: " + ($(this).parents().eq(3).find("tbody >tr").length - 1));
+    });
 
-
-    //// Add-knapp i run
-    //$(".addanotherrun").click(function () {
-    //    var temp = $(".oneexercise").clone().wrap('<p>').closest().html();
-    //    $("#exercises").append(temp);
-    //});
+    // CANCEL WORKOUT
+    $("#cancelWO").click(function () {
+        // NY "VY": Are you sure you want to cancel your workout? à la View app yada
+        storage.removeItem("currentWO");
+    });
 
     // ADD FINISHED STRENGTH WORKOUT
     $("#addfinishedwo").click(function () {
-
-        var exerciseArray = [];
-
-        $(".exerciseWrapper").each(function (index, element) {
-            var setArray = [];
-
-            var repsCount = [];
-            $(element).find(".repsCount").each(function (repsCountIndex, repsCountElement) {
-                repsCount[repsCountIndex] = $(repsCountElement).val();
-            });
-
-            var weightCount = [];
-            $(element).find(".weightCount").each(function (weightCountIndex, weightCountElement) {
-                weightCount[weightCountIndex] = $(weightCountElement).val();
-            });
-
-            for (var i = 0; i < repsCount.length; i++) {
-
-                setArray.push({ Reps: repsCount[i], Weight: weightCount[i] });
-            }
-
-            var exerciseName = $(element).find("h2").html();
-            var exercise = {
-                "name": exerciseName,
-                "sets": setArray,
-            };
-
-            exerciseArray.push(exercise);
-        })
-
-        // Spara ner passet till databasen
-        var jsonObjecToSend = {
-            "exercises": exerciseArray,
-            "date": JSON.parse(storage.getItem("currentWO")).date,
-            "type": "Strength",
-            "duration": null,
-            "distance": null,
-            "sessionUserNote": "Give me a real value", //TODO
-            "sessionName": $("#nameofProgram").html(),
-        };
+        var jsonObjectToSend = logIt();
 
         //storage.setItem("currentWO", jsonObjecToSend);
 
         $.ajax({
             url: "http://localhost:49902/member/saveworkout",
             type: "POST",
-            data: jsonObjecToSend,
+            data: jsonObjectToSend,
             success: function (result) {
                 alert("Workout Saved successfully!")
+                storage.removeItem("currentWO");
                 window.location = "main.html";
             },
             error: function (result) {
@@ -132,3 +101,48 @@
 
     });
 });
+
+function logIt() {
+
+    var exerciseArray = [];
+
+    $(".exerciseWrapper").each(function (index, element) {
+        var setArray = [];
+
+        var repsCount = [];
+        $(element).find(".repsCount").each(function (repsCountIndex, repsCountElement) {
+            repsCount[repsCountIndex] = $(repsCountElement).val();
+        });
+
+        var weightCount = [];
+        $(element).find(".weightCount").each(function (weightCountIndex, weightCountElement) {
+            weightCount[weightCountIndex] = $(weightCountElement).val();
+        });
+
+        for (var i = 0; i < repsCount.length; i++) {
+
+            setArray.push({ reps: repsCount[i], weight: weightCount[i] });
+        }
+
+        var exerciseName = $(element).find("h2").html();
+        var exercise = {
+            "name": exerciseName,
+            "sets": setArray,
+        };
+
+        exerciseArray.push(exercise);
+
+    })
+    var jsonObjectToSend = {
+        "exercises": exerciseArray,
+        "date": JSON.parse(storage.getItem("currentWO")).date,
+        "type": "Strength",
+        "duration": null,
+        "distance": null,
+        "sessionUserNote": "Give me a real value", //TODO
+        "sessionName": $("#nameofProgram").html(),
+    };
+
+    return jsonObjectToSend;
+
+};

@@ -241,7 +241,8 @@ select {
 .module {
     background: white;
     height: 70%;
-    padding: 10px;
+    padding: 20px;
+    text-align:center;
 }
 
 #box1, #box2, #box3 {
@@ -253,7 +254,8 @@ select {
 }
 
     #box1 h3, #box2 h3, #box3 h3 {
-        letter-spacing:6px;
+        letter-spacing:2px;
+        text-transform:uppercase;
     }
 
 #box1 {
@@ -377,6 +379,7 @@ select {
     color: #888;
     text-align: right;
     text-transform: lowercase;
+    width: 5%;
 }
 
 /* ADD DATE CALENDAR JQUERY CUSTOM CSS */
@@ -490,7 +493,7 @@ select {
 #calendarlist {
     background: transparent;
     margin-left: -40px;
-    margin-bottom: 10%;
+    margin-bottom: 15%;
     margin-top: -40px;
 }
 

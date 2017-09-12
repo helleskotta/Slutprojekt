@@ -5,6 +5,14 @@ var days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 document.addEventListener("deviceready", function () {
     $("#date").html(days[d.getDay()] + " " + d.getDate() + " " + months[d.getMonth()]);
 
+    if (storage.getItem("currentWO") === null) {
+        $("#unsavedWO").hide();
+    }
+
+    else {
+        $("#unsavedWO").show();
+    }
+
     $("#homeicon").addClass("selectedicon");
     $("#calendaricon").removeClass("selectedicon");
     $("#statsicon").removeClass("selectedicon");
@@ -22,6 +30,9 @@ document.addEventListener("deviceready", function () {
         }
     });
 
+    $("#continueUnsavedWO").click(function () {
+        window.location = "run.html";
+    });
 
     //// Hämta data från localstorage för 3 boxar
     // var result = JSON.parse(storage.getItem("WorkoutSessions"));

@@ -64,11 +64,11 @@
             }
 
             if (index === 0) {
-                exerciseChosen = [{ exerciseChoice: option, sets: setArray }];
+                exerciseChosen = [{ name: option, sets: setArray }];
             }
 
             else {
-                exerciseChosen.push({ exerciseChoice: option, sets: setArray });
+                exerciseChosen.push({ name: option, sets: setArray });
             }
         })
 
