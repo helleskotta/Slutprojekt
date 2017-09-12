@@ -120,6 +120,11 @@ h3 {
     text-align: center;
 }
 
+#totalweightlifted {
+    font-size: 100px;
+    height:150px;
+}
+
 /*.event {
     border-radius:4px;
     -webkit-border-radius:4px;
