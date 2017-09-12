@@ -257,12 +257,12 @@ namespace SlutprojektBackend.Models.Entities
                         .Select(w => w.Sum())
                 .Sum();
 
-            double total = 0.0;
+           
 
             StatisicsVM statToReturn = new StatisicsVM();
             statToReturn.TypeOfWorkoutSession = "Strength";
 
-            statToReturn.Stats = new TotalStrengthStats() { TotalWeightLifted = total };
+            statToReturn.Stats = new TotalStrengthStats() { TotalWeightLifted = workOutSessions };
 
             return statToReturn;
 
@@ -276,10 +276,12 @@ namespace SlutprojektBackend.Models.Entities
             var Data = new WeightChangeGrafStat();
             Data.DateData = UserWeight
                 .Where(u => u.UserId == userID)
+                .OrderBy(e=>e.Date)
                 .Select(c => c.Date).ToArray();
 
             Data.WeightData = UserWeight
                .Where(u => u.UserId == userID)
+                .OrderBy(e => e.Date)
                .Select(c => c.UserWeight1).ToArray();
 
             dataToReturn.Stats = Data;
