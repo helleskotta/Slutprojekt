@@ -387,6 +387,16 @@ select {
     width: 5%;
 }
 
+    #mainstats {
+    background: transparent;
+    height: 60%;
+    padding: 20px;
+    border-radius: 2px;
+    filter: drop-shadow(3px 2px 5px #888);
+    margin-bottom: 15%;
+    text-align: center;
+}
+
 /* ADD DATE CALENDAR JQUERY CUSTOM CSS */
 /**********************************************************************************************************/
 #ui-datepicker-div {

@@ -14,47 +14,66 @@
             console.log("Stats acquired successfully!");
             storage.setItem("statistics", JSON.stringify(result));
 
-            //var weightStat = result.statistics[0].stats;
-            ////weightCurve(weightStat);
+            // Total weights lifted number
+            $("#totalweightlifted").attr("data-count", result.statistics[1].stats.totalWeightLifted);
+            $('.counter').each(function () {
+                var $this = $(this),
+                    countTo = $this.attr('data-count');
 
-            //var dataset = [];
+                $({ countNum: $this.text() }).animate({
+                    countNum: countTo
+                },
+                    {
+                        duration: 2000,
+                        easing: 'linear',
+                        step: function () {
+                            $this.text(Math.floor(this.countNum));
+                        },
+                        complete: function () {
+                            $this.text(this.countNum);
+                            //alert('finished');
+                        }
+                    });
+            });
 
-            //for (var i = 0; i < weightStat.weightData.length; i++) {
-            //    dataset.push({ "x": weightStat.dateData[i], "y": weightStat.weightData[i] });
-            //}
+            // Type of exercise chart
+            var myNewChart;
+            var strengthVal = 60;
+            var cardioVal = 30;
+            var otherVal = 2;
 
-            //var ctx = document.getElementById("testChart").getContext('2d');
-            //var testChart = new Chart(ctx, {
-            //    type: 'line',
-            //    data: dataset,
-            //    options: {
-            //        scales: {
-            //            xAxes: [{
-            //                type: 'time',
-            //                time: {
-            //                    displayFormats: {
-            //                        'millisecond': 'MMM DD',
-            //                        'second': 'MMM DD',
-            //                        'minute': 'MMM DD',
-            //                        'hour': 'MMM DD',
-            //                        'day': 'MMM DD',
-            //                        'week': 'MMM DD',
-            //                        'month': 'MMM DD',
-            //                        'quarter': 'MMM DD',
-            //                        'year': 'MMM DD',
-            //                    }
-            //                }
-            //            }],
-            //            yAxes: [{
-            //                ticks: {
-            //                    min: 0,
-            //                    max: 160
-            //                }
-            //            }]
-            //        }
-            //    }
-            //});
 
+            var data = [
+                {
+                    label: "Strength",
+                    value: strengthVal,
+                    color: "#0054A6"
+                }, {
+                    label: "Cardio",
+                    value: cardioVal,
+                    color: "#FF7611"
+                }, {
+                    label: "Other",
+                    value: otherVal,
+                    color: "#630460"
+                },
+            ];
+
+            var options = {
+                legend: { display: true },
+                animation: true,
+                animationSteps: 80
+            };
+
+            var ctx2 = document.getElementById("percentPieChart").getContext("2d");
+
+            myNewChart = new Chart(ctx2, {
+                type: 'pie',
+                data: data,
+                options: options
+            });
+
+            // Weight stats
             var labels = result.statistics[0].stats.dateData;
             var dataRight = result.statistics[0].stats.weightData;
 
@@ -121,23 +140,4 @@
         }
     });
 
-    $('.counter').each(function () {
-        var $this = $(this),
-            countTo = $this.attr('data-count');
-
-        $({ countNum: $this.text() }).animate({
-            countNum: countTo
-        },
-            {
-                duration: 2000,
-                easing: 'linear',
-                step: function () {
-                    $this.text(Math.floor(this.countNum));
-                },
-                complete: function () {
-                    $this.text(this.countNum);
-                    //alert('finished');
-                }
-            });
-    });
 });
