@@ -37,40 +37,27 @@
             });
 
             // Type of exercise chart
-            var myNewChart;
-            var strengthVal = 60;
-            var cardioVal = 30;
-            var otherVal = 2;
-
-
-            var data = [
-                {
-                    label: "Strength",
-                    value: strengthVal,
-                    color: "#0054A6"
-                }, {
-                    label: "Cardio",
-                    value: cardioVal,
-                    color: "#FF7611"
-                }, {
-                    label: "Other",
-                    value: otherVal,
-                    color: "#630460"
-                },
-            ];
-
-            var options = {
-                legend: { display: true },
-                animation: true,
-                animationSteps: 80
+            var pieData = {
+                labels: [
+                    "Strength",
+                    "Cardio",
+                    "Other"],
+                datasets: [
+                    {
+                        data: [20, 40, 10],
+                        backgroundColor: [
+                            "#0054A6",
+                            "#FF7611",
+                            "#630460"
+                        ]
+                    }]
             };
 
-            var ctx2 = document.getElementById("percentPieChart").getContext("2d");
+            var ctx = document.getElementById("percentPieChart").getContext("2d");
 
-            myNewChart = new Chart(ctx2, {
+            var pieChart = new Chart(ctx, {
                 type: 'pie',
-                data: data,
-                options: options
+                data: pieData
             });
 
             // Weight stats
