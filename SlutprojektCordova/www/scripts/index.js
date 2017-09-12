@@ -3,6 +3,7 @@
 var storage = window.localStorage;
 var localDomain = "http://localhost:49902";
 var azureDomain = "http://slutprojektbackend.azurewebsites.net/";
+var currentDomain = azureDomain;
 
 (function () {
     "use strict";
@@ -61,7 +62,7 @@ $("#main").click(function () {
 $("#add").click(function () {
 
     $.ajax({
-        url: "http://localhost:49902/Account/Register",
+        url: currentDomain + "/Account/Register",
         type: "POST",
         data: {
             "UserName": $("#newUserName").val(),
@@ -89,7 +90,7 @@ $("#add").click(function () {
 $("#loginbtn").click(function () {
 
     $.ajax({
-        url: "http://localhost:49902/Account/Login",
+        url: currentDomain + "/Account/Login",
         type: "POST",
         data: {
             "UserName": $("#username").val(), /* Username or Email */

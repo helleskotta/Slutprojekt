@@ -86,7 +86,7 @@
         //storage.setItem("currentWO", jsonObjecToSend);
 
         $.ajax({
-            url: "http://localhost:49902/member/saveworkout",
+            url: currentDomain + "/member/saveworkout",
             type: "POST",
             data: jsonObjectToSend,
             success: function (result) {

@@ -1,6 +1,7 @@
 ﻿var storage = window.localStorage;
 var localDomain = "http://localhost:49902";
 var azureDomain = "http://slutprojektbackend.azurewebsites.net/";
+var currentDomain = azureDomain;
 
 
 document.addEventListener("deviceready", function () {
@@ -35,7 +36,7 @@ document.addEventListener("deviceready", function () {
         if (storage.getItem("UserExercises") === null) {
 
             $.ajax({
-                url: "http://localhost:49902/Member/UserExercises",
+                url: currentDomain + "/Member/UserExercises",
                 type: "GET",
 
                 success: function (result) {
@@ -66,7 +67,7 @@ document.addEventListener("deviceready", function () {
         }
 
         $.ajax({
-            url: "http://localhost:49902/Member/SaveMeasurements",
+            url: currentDomain + "/Member/SaveMeasurements",
             type: "POST",
             data: weightToSend,
             success: function (result) {

@@ -1,4 +1,8 @@
-﻿document.addEventListener("deviceready", function () {
+﻿var localDomain = "http://localhost:49902";
+var azureDomain = "http://slutprojektbackend.azurewebsites.net/";
+var currentDomain = azureDomain;
+
+document.addEventListener("deviceready", function () {
     $("#strengthbtn").addClass("selectedE");
 
     // Ladda in övningar till add-vy
@@ -103,7 +107,7 @@
 
 
         $.ajax({
-            url: "http://localhost:49902/member/saveworkout",
+            url: currentDomain + "/member/saveworkout",
             type: "POST",
             data: jsonObjecToSend,
             success: function (result) {
@@ -136,7 +140,7 @@
 
 
         $.ajax({
-            url: "http://localhost:49902/member/saveworkout",
+            url: currentDomain + "/member/saveworkout",
             type: "POST",
             data: jsonObjecToSend,
             success: function(result) {

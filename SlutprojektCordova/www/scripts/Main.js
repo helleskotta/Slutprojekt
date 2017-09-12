@@ -19,7 +19,7 @@ document.addEventListener("deviceready", function () {
 
     // Hämta alla användarens inlagda pass (workout sessions)
     $.ajax({
-        url: "http://localhost:49902/Member/Index",
+        url: currentDomain + "/Member/Index",
         type: "get",
         success: function (result) {
             //console.log("Ok" + result);
@@ -59,7 +59,7 @@ document.addEventListener("deviceready", function () {
 
     // Hämta data till 3 boxar
     $.ajax({
-        url: "http://localhost:49902/member/main",
+        url: currentDomain + "/member/main",
         type: "get",
         success: function (result) {
             console.log("Gick bra");
@@ -180,7 +180,7 @@ document.addEventListener("deviceready", function () {
     //    };
 
     //    $.ajax({
-    //        url: "http://localhost:49902/member/savemeasurements",
+    //        url: currentDomain + "/member/savemeasurements",
     //        type: "POST",
     //        data: jsonObjecToSend,
     //        success: function (result) {

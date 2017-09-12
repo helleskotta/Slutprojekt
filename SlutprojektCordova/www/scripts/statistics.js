@@ -7,7 +7,7 @@
 
 
     $.ajax({
-        url: "http://localhost:49902/member/Statistics",
+        url: currentDomain + "/member/Statistics",
         type: "GET",
 
         success: function (result) {
@@ -37,9 +37,9 @@
             });
 
             // Type of exercise chart
-            var strengthVal = result.statistics[2].stats.data[2];
-            var cardioVal = result.statistics[2].stats.data[0];
-            var otherVal = result.statistics[2].stats.data[1];
+            var strengthVal = result.statistics[2].stats.data[0];
+            var cardioVal = result.statistics[2].stats.data[1];
+            var otherVal = result.statistics[2].stats.data[2];
 
             var pieData = {
                 labels: [
