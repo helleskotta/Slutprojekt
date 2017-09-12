@@ -84,7 +84,8 @@ namespace SlutprojektBackend.Models.Entities
                 SessionName = c.SessionName,
                 TypeOfWorkoutSession = c.Type
             })
-            .Where(d => d.Date.Day < DateTime.Now.Day)
+            .Where(d => (d.Date.DayOfYear < DateTime.Now.DayOfYear) && (d.Date.Year <= DateTime.Now.Year))
+            .OrderBy(c => c.Date)
             .FirstOrDefault();
 
             var todayListitem = WorkoutSession
@@ -95,7 +96,7 @@ namespace SlutprojektBackend.Models.Entities
                 SessionName = c.SessionName,
                 TypeOfWorkoutSession = c.Type
             })
-            .Where(d => d.Date.Day == DateTime.Now.Day)
+            .Where(d => d.Date.Day == DateTime.Now.Day && d.Date.Month==DateTime.Now.Month && d.Date.Year == DateTime.Now.Year)
             .FirstOrDefault();
 
             var lastListitem = WorkoutSession
@@ -106,6 +107,7 @@ namespace SlutprojektBackend.Models.Entities
                 SessionName = c.SessionName,
                 TypeOfWorkoutSession = c.Type
             })
+            .OrderBy(c => c.Date)
             .Where(d => d.Date.Day > DateTime.Now.Day)
             .FirstOrDefault();
 
