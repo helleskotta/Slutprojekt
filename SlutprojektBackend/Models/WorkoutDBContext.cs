@@ -147,12 +147,16 @@ namespace SlutprojektBackend.Models.Entities
         private WeightChangeGrafStat GetWeightStat(string userID)
         {
             var dataToReturn = new WeightChangeGrafStat();
+            
+
             dataToReturn.DateData = UserWeight
                 .Where(u => u.UserId == userID)
+                .OrderBy(e =>e.Date)
                 .Select(c => c.Date).ToArray();
 
             dataToReturn.WeightData = UserWeight
                .Where(u => u.UserId == userID)
+               .OrderBy(e => e.Date)
                .Select(c => c.UserWeight1).ToArray();
 
             return dataToReturn;
