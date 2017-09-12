@@ -37,6 +37,11 @@
             });
 
             // Type of exercise chart
+
+            var strengthVal = result.statistics[2].stats.data[2];
+            var cardioVal = result.statistics[2].stats.data[0];
+            var otherVal = result.statistics[2].stats.data[1];
+
             var pieData = {
                 labels: [
                     "Strength",
@@ -44,7 +49,7 @@
                     "Other"],
                 datasets: [
                     {
-                        data: [20, 40, 10],
+                        data: [strengthVal, cardioVal, otherVal],
                         backgroundColor: [
                             "#0054A6",
                             "#FF7611",
@@ -57,7 +62,10 @@
 
             var pieChart = new Chart(ctx, {
                 type: 'pie',
-                data: pieData
+                data: pieData,
+                options: {
+                    legend: { position: "bottom" }
+                }
             });
 
             // Weight stats
