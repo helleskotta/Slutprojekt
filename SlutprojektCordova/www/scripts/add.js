@@ -1,5 +1,6 @@
 ﻿document.addEventListener("deviceready", function () {
     $("#strengthbtn").addClass("selectedE");
+
     // Ladda in övningar till add-vy
     var strOptions = "";
     var cardioOptions = "";

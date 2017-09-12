@@ -37,7 +37,6 @@
             });
 
             // Type of exercise chart
-
             var strengthVal = result.statistics[2].stats.data[2];
             var cardioVal = result.statistics[2].stats.data[0];
             var otherVal = result.statistics[2].stats.data[1];
