@@ -234,15 +234,31 @@ namespace SlutprojektBackend.Models.Entities
 
         private StatisicsVM GetCardioVsStr(string userID)
         {
-            var count = WorkoutSession.GroupBy(c => c.Type).Select(c => c.Count());
-            var names = WorkoutSession.GroupBy(c => c.Type).Select(c => c.Key).ToArray();
+            int [] countArray = new int [3];
+
+            var countStrength = WorkoutSession
+                .Where(b => b.UserId==userID && b.Type== "Strength").Count();
+            countArray[0] =countStrength;
+
+            var countCardio = WorkoutSession
+                .Where(b => b.UserId == userID && b.Type == "Cardio").Count();
+            countArray[1] = countCardio;
+
+
+            var countOther = WorkoutSession
+                .Where(b => b.UserId == userID && b.Type == "Other").Count();
+            countArray[2] = countOther;
+
+
+            string [] namesArray = new string[3] { "Strength", "Cardio", "Other" };
+           
             StatisicsVM statToReturn = new StatisicsVM();
             statToReturn.TypeOfWorkoutSession = "General";
 
             var data = new PieChartStat();
 
-            data.Data = count.ToArray();
-            data.Names = names;
+            data.Data = countArray;
+            data.Names = namesArray;
             statToReturn.Stats = data;
 
             return statToReturn;
