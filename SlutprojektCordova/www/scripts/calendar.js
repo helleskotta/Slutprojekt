@@ -12,7 +12,7 @@ document.addEventListener("deviceready", function () {
 
     var listviewfull = "";
 
-    for (var i = allWorkoutSessions.length - 1; i > 0; i--) {
+    for (var i = allWorkoutSessions.length - 1; i >= 0; i--) {
         var displayDate = new Date(allWorkoutSessions[i].date).getDate() + " " + months[new Date(allWorkoutSessions[i].date).getMonth()];
 
         var weekday = days[new Date(allWorkoutSessions[i].date).getDay()];

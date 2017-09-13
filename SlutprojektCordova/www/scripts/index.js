@@ -3,7 +3,7 @@
 var storage = window.localStorage;
 var localDomain = "http://localhost:49902";
 var azureDomain = "http://slutprojektbackend.azurewebsites.net";
-var currentDomain = azureDomain;
+var currentDomain = localDomain;
 
 (function () {
     "use strict";

@@ -25,7 +25,7 @@ namespace SlutprojektBackend
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            var connString = conf["connStringLocal"];
+            var connString = conf["connString"];
             services.AddTransient<DataManager>();
             services.AddDbContext<AppIdentityDBContext>(o => o.UseSqlServer(connString));
             services.AddDbContext<WorkoutDBContext>(o => o.UseSqlServer(connString));
