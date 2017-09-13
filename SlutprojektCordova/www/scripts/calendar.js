@@ -1,14 +1,13 @@
 ﻿var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 var days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-
 document.addEventListener("deviceready", function () {
 
     $("#homeicon").removeClass("selectedicon");
     $("#calendaricon").addClass("selectedicon");
     $("#statsicon").removeClass("selectedicon");
 
-    var allWorkoutSessions = JSON.parse(storage.getItem("WorkoutSessions")); // --------------- STORAGE?
+    var allWorkoutSessions = JSON.parse(storage.getItem("WorkoutSessions"));
 
     var listviewfull = "";
 
@@ -36,15 +35,21 @@ document.addEventListener("deviceready", function () {
             icon += 'images/othericon.png" />';
         }
 
+        listviewfull += '<div class="calExercise"><span>' + icon + weekday + '</span>';
+
         if (displayDate === today) {
             weekday = "today";
-            listviewfull += '<span>' + icon + weekday +  '</span><li style="border-left:2px solid green;">';
+            listviewfull += '<li style="border-left:2px solid green;">';
         }
         else {
-            listviewfull += '<span>' + icon + weekday + '</span><li>';
+            listviewfull += '<li>';
         }
 
-        listviewfull += '<span class="listdate">' + displayDate + '</span><span class="listcontent">' + sessionName + '</span></li>';
+        listviewfull += '<span class="listdate">' + displayDate + '</span><span class="listcontent">' + sessionName + '</span></li></div>';
     }
     $("#calList").append(listviewfull);
+
+    $(".calExercise").click(function () {
+        $(this).hide();
+    });
 });
