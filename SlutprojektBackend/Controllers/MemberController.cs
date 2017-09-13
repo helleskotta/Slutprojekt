@@ -84,6 +84,7 @@ namespace SlutprojektBackend.Controllers
 
             return Content("Workout saved successfully");
         }
+
         [HttpPost] // TODO: FIXA!
         public IActionResult SaveMeasurements(BodyMeasurmentsVM bodyMeasurments)
         {
@@ -104,6 +105,17 @@ namespace SlutprojektBackend.Controllers
         {
             return Json(dataManager.GetExercises());
 
+        }
+
+        [HttpPost]
+        public IActionResult EditWorkout(WorkoutSessionVM WorkoutToEdit)
+        {
+            var userID = userManager.GetUserId(HttpContext.User);
+            WorkoutToEdit.Date = DateTime.Parse(WorkoutToEdit.Date.ToShortDateString());
+            dataManager.EditWorkOutForUser(userID, WorkoutToEdit);
+            //Do stuff
+
+            return Content("Workout saved successfully");
         }
     }
 }

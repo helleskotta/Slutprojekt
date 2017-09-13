@@ -85,5 +85,9 @@ namespace SlutprojektBackend.Models
             workoutcontext.AddWeightMeasurment(userID, bodyMeasurments);
         }
 
+        internal void EditWorkOutForUser(string userID, WorkoutSessionVM workoutToEdit)
+        {
+            workoutcontext.EditWorkout(userID, workoutToEdit);
+        }
     }
 }
