@@ -75,7 +75,7 @@
 
         var objectToStore = {
             "sessionName": $("#programname").val(),
-            "date": new Date($(".datepicker").val()),
+            "date": new Date($("#strDatePicker").val()),
             "exercises": exerciseChosen
         }
         storage.setItem("currentWO", JSON.stringify(objectToStore));
@@ -87,7 +87,7 @@
     // ADD CARDIO WORKOUT
     $("#addcardio").click(function () {
 
-        var datePickerDate = JSON.stringify(new Date($(".datepicker").val()));
+        var datePickerDate = JSON.stringify(new Date($("#cardioDatePicker").val()));
 
         var dateToSave = JSON.parse(datePickerDate);
 
@@ -120,7 +120,7 @@
     // ADD OTHER WORKOUT
     $("#addother").click(function() {
 
-        var datePickerDate = JSON.stringify(new Date($(".datepicker").val()));
+        var datePickerDate = JSON.stringify(new Date($("#otherDatePicker").val()));
 
         var dateToSave = JSON.parse(datePickerDate);
 
