@@ -3,7 +3,7 @@
     // Run program
 
     var currentWO = JSON.parse(storage.getItem("currentWO"));
-    var test = 1;
+    var setNr = 1;
     $("#nameofProgram").html(currentWO.sessionName);
 
     var content = "";
@@ -12,11 +12,11 @@
     for (var k = 0; k < currentWO.exercises.length; k++) {
 
         var exerciseString = "";
-        exerciseString += '<div class="exerciseWrapper"><h2 style="font-weight:bold; text-align:left;"> ' + currentWO.exercises[k].name + '</h2><h3 class="totalSets"></h3>' + '<table class="ovning" style="width:100%; border-bottom: 2px dashed #dbdbdb; padding:2px 5px 20px 0;"> <tr> <td style="width:25%;"></td> <td style="width:40%;">Reps</td> <td style="width:40%;">Kg</td> <td style="width:5%;"></td> </tr>';
+        exerciseString += '<div class="exerciseWrapper"><h2 style="font-weight:bold; text-align:left;"> ' + currentWO.exercises[k].name + '</h2><h3 class="totalSets"></h3>' + '<table class="ovning" style="width:100%; padding:2px 5px 20px 0;"> <tr> <td style="width:25%;"></td> <td style="width:40%;">Reps</td> <td style="width:40%;">Kg</td> <td style="width:5%;"></td> </tr>';
 
         // En övning
         for (var j = 0; j < currentWO.exercises[k].sets.length; j++) {
-            var oneRow = '<tr> <td style="font-weight:bold; font-size:14px;">SET ' + test++ + '</td> <td>';
+            var oneRow = '<tr> <td style="font-weight:bold; font-size:14px;">SET ' + setNr++ + '</td> <td>';
             if (currentWO.exercises[k].sets[j].reps === null) {
                 oneRow += '<input class="repsCount" type="number" style="width:50%;" />';
             } else {
@@ -38,11 +38,19 @@
         }
 
         var endof = "";
-        endof += '<tfoot><tr> <td> <img class="addanotherrun" src="images/add40.png" style="margin:auto; width:20px; height:20px;" /> </td> <td style="width:280px;"></td><td><br /><br /><input type="button" class="finishOneExercise" value="Finish exercise" /></td></tr></tfoot> </table></div>'
+        endof += '<tfoot><tr> <td> <img class="addanotherrun" src="images/add40.png" style="margin:auto; width:20px; height:20px;" /> </td> <td style="width:280px;"></td><td><br /><br /><input type="button" class="finishOneExercise" value="Finish exercise" /></td></tr></tfoot> </table></div>';
+
+        if (k >= currentWO.exercises.length - 1) {
+            endof += '<br />'
+        }
+        else {
+            endof += '<hr style="border:1px dotted #dbdbdb;"/>';
+        }
+
         exerciseString += endof;
 
         content += exerciseString;
-        test = 1;
+        setNr = 1;
     }
 
     $("#fullprogram").append(content);
@@ -56,9 +64,9 @@
     // lägg till ett till set
     $(".addanotherrun").click(function () {
         var clone = "";
-        test = $(this).parents().eq(3).find("tbody >tr").length;
+        setNr = $(this).parents().eq(3).find("tbody >tr").length;
         clone += '<tr> <td style="font-weight:bold; font-size:14px;">SET ';
-        clone += test;
+        clone += setNr;
         clone += '</td>';
         clone += '<td><input class="repsCount" type="number" style="width:50%;"></td> <td><input class="weightCount" type="number" style="width:50%;"></td> <td><input style="width:100%;" type="button" class="deletefield" value="x"></td> </tr>';
         $(this).parents().eq(3).find("tbody").append(clone);
