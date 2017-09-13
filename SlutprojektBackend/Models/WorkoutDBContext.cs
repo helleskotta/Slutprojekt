@@ -358,13 +358,24 @@ namespace SlutprojektBackend.Models.Entities
                     exercise.Set.Add(new Set { Reps = set.Reps, UsedWeight = set.Weight, UserNote = set.UserComment });
                 }
             };
+            var oldWorkoutSession = WorkoutSession.First(x => x.SessionName == workoutToEdit.SessionName && x.UserId == userID && x.Date == workoutToEdit.Date); //== session;
 
-            var test = WorkoutSession.First(x => x.SessionName == workoutToEdit.SessionName && x.UserId == userID && x.Date == workoutToEdit.Date); //== session;
-            //if (test !=null)
-            //{
-            test = session;
+            foreach (var exercise in oldWorkoutSession.Exercise)
+            {
+                foreach (var set in exercise.Set)
+                {
+                    Set.Remove(set);
+                }
+                SaveChanges();
 
-            //}
+                Exercise.Remove(exercise);
+
+            };
+            SaveChanges();
+
+            WorkoutSession.Remove(oldWorkoutSession);
+
+            WorkoutSession.Add(session);
             SaveChanges();
             
             //WorkoutSession.Update(session);
