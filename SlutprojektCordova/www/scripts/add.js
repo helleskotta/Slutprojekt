@@ -1,8 +1,4 @@
-﻿var localDomain = "http://localhost:49902";
-var azureDomain = "http://slutprojektbackend.azurewebsites.net/";
-var currentDomain = azureDomain;
-
-document.addEventListener("deviceready", function () {
+﻿document.addEventListener("deviceready", function () {
     $("#strengthbtn").addClass("selectedE");
 
     // Ladda in övningar till add-vy
