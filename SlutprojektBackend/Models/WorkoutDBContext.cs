@@ -333,6 +333,66 @@ namespace SlutprojektBackend.Models.Entities
                 .Where(c => c.UserId == "Admin")
                 .Select(s => new ChooseExerciseVM() { Name = s.Name, Type = s.Type }).ToList();
         }
+
+        internal void EditWorkout(string userID, WorkoutSessionVM workoutToEdit)
+        {
+
+            var session = new WorkoutSession
+            {
+                Date = workoutToEdit.Date,
+                Distance = workoutToEdit.Distance,
+                Duration = workoutToEdit.Duration,
+                Type = workoutToEdit.Type,
+                SessionUserNote = workoutToEdit.SessionUserNote,
+                UserId = userID,
+                SessionName = workoutToEdit.SessionName,
+            };
+
+
+            foreach (var exerciseVM in workoutToEdit.Exercises)
+            {
+                var exercise = new Exercise { ExerciseName = exerciseVM.Name };
+                session.Exercise.Add(exercise);
+                foreach (var set in exerciseVM.Sets)
+                {
+                    exercise.Set.Add(new Set { Reps = set.Reps, UsedWeight = set.Weight, UserNote = set.UserComment });
+                }
+            };
+            var oldWorkoutSession = WorkoutSession.First(x => x.SessionName == workoutToEdit.SessionName && x.UserId == userID && x.Date == workoutToEdit.Date); //== session;
+
+            foreach (var exercise in oldWorkoutSession.Exercise)
+            {
+                foreach (var set in exercise.Set)
+                {
+                    Set.Remove(set);
+                }
+                SaveChanges();
+
+                Exercise.Remove(exercise);
+
+            };
+            SaveChanges();
+
+            WorkoutSession.Remove(oldWorkoutSession);
+
+            WorkoutSession.Add(session);
+            SaveChanges();
+            
+            //WorkoutSession.Update(session);
+            //----------------------------------
+            //WorkoutSession newWorkoutSession = new WorkoutSession()
+            //{ Date = workoutToEdit.Date,
+            //    Distance = workoutToEdit.Distance,
+            //    Duration = workoutToEdit.Duration,
+            //    SessionName=workoutToEdit.SessionName,
+            //    SessionUserNote=workoutToEdit.SessionUserNote,
+            //    Type=workoutToEdit.Type,
+                
+            //    //Exercise=workoutToEdit.Exercises,
+            //};
+            //WorkoutSession.Remove(newWorkoutSession).Where(x=> x.UserId == userID && x.SessionName == workoutToEdit.SessionName && x.Date==workoutToEdit.Date)
+                
+        }
     }
 
     public partial class AppIdentityDBContext : IdentityDbContext

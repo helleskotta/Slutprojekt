@@ -2,9 +2,18 @@
 
     // Run program
 
-    var currentWO = JSON.parse(storage.getItem("currentWO"));
+    var currentWO = JSON.parse(storage.getItem("WOToEdit"));
     var setNr = 1;
-    $("#nameofProgram").html(currentWO.sessionName);
+    $("#nameofProgram").html(currentWO.sessionName).click(function () {
+        if (document.getElementById("changeTitel")) {
+            console.log("Hello");
+        }
+        else {
+            var testMagicString = "";
+            testMagicString = '<h2><input id="changeTitel" type="text" value ="' + currentWO.sessionName + '"></h2>';
+            $("#nameofProgram").html(testMagicString);
+        }
+    });
 
     var content = "";
 
@@ -31,14 +40,11 @@
             } else {
                 oneRow += '<input class="weightCount" value="' + currentWO.exercises[k].sets[j].weight + '" type="number" style="width:50%;" />';
             }
-
             oneRow += '</td> <td><input type="button" class="deletefield" style="width:100%;" value="x" /></td> </tr > ';
             exerciseString += oneRow;
-
         }
-
         var endof = "";
-        endof += '<tfoot><tr> <td> <img class="addanotherrun" src="images/add40.png" style="margin:auto; width:20px; height:20px;" /> </td> <td style="width:280px;"></td><td><br /><br /><input type="button" class="finishOneExercise" value="Finish exercise" /></td></tr></tfoot> </table></div>';
+        endof += '<tfoot><tr> <td> <img class="addanotherrun" src="images/add40.png" style="margin:auto; width:20px; height:20px;" /> </td> <td style="width:280px;"></td><td></td></tr></tfoot> </table></div>';
 
         if (k >= currentWO.exercises.length - 1) {
             endof += '<br />'
@@ -46,9 +52,7 @@
         else {
             endof += '<hr style="border:1px dotted #dbdbdb;"/>';
         }
-
         exerciseString += endof;
-
         content += exerciseString;
         setNr = 1;
     }
@@ -74,7 +78,7 @@
 
     // Spara (local storage) och dölj en övning 
     $(".finishOneExercise").click(function () {
-        storage.setItem("currentWO", JSON.stringify(logIt()));
+        //storage.setItem("WOToEdit", JSON.stringify(logIt()));
 
         $(this).parent().parent().parent().parent().find("tbody").toggle();
         $(this).parent().parent().find(".addanotherrun").toggle();
@@ -84,31 +88,32 @@
     // CANCEL WORKOUT
     $("#cancelWO").click(function () {
         // NY "VY": Are you sure you want to cancel your workout? à la View app yada
-        storage.removeItem("currentWO");
+        storage.removeItem("WOToEdit");
     });
 
-    // ADD FINISHED STRENGTH WORKOUT
-    $("#addfinishedwo").click(function () {
+    // save edit STRENGTH WORKOUT
+    $("#saveeditWO").click(function () {
         var jsonObjectToSend = logIt();
 
         //storage.setItem("currentWO", jsonObjecToSend);
 
         $.ajax({
-            url: currentDomain + "/member/saveworkout",
+            url: currentDomain + "/member/EditWorkout",
             type: "POST",
             data: jsonObjectToSend,
             success: function (result) {
-                alert("Workout Saved successfully!")
-                storage.removeItem("currentWO");
+                alert("Workout edited successfully!");
+                storage.removeItem("WOToEdit");
                 window.location = "main.html";
             },
             error: function (result) {
-                alert("Error att save")
+                alert("Error at save");
             }
         });
 
     });
 });
+
 
 function logIt() {
 
@@ -143,7 +148,7 @@ function logIt() {
     })
     var jsonObjectToSend = {
         "exercises": exerciseArray,
-        "date": JSON.parse(storage.getItem("currentWO")).date,
+        "date": JSON.parse(storage.getItem("WOToEdit")).date,
         "type": "Strength",
         "duration": null,
         "distance": null,

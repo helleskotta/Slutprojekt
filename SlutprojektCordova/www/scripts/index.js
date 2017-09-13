@@ -68,7 +68,7 @@ $("#add").click(function () {
             "UserName": $("#newUserName").val(),
             "Email": $("#newEmail").val(),
             "Password": $("#newPassword").val(),
-            "ConfirmPassword": $("#confirmPassword").val(),
+            "ConfirmPassword": $("#confirmPassword").val()
         },
         success: function (result) {
             alert("Register successful: " + result);
@@ -82,7 +82,7 @@ $("#add").click(function () {
             alert("register error:" + result);
             //.find("p").html(result.)
         }
-    })
+    });
 
 });
 
@@ -103,7 +103,7 @@ $("#loginbtn").click(function () {
             if (result === "Logged in!") { // TODO: HÅRDKODAD STRÄNG!! ---------------------------- !
 
                 window.location = "main.html";
-              
+
             }
             else {
                 // TODO: SHOW ERROR MESSAGES --------------------------------------------------- !
@@ -114,5 +114,5 @@ $("#loginbtn").click(function () {
             window.location = "index.html";
             //.find("p").html(result.)
         }
-    })
+    });
 });

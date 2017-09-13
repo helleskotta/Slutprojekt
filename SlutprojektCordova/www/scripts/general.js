@@ -62,8 +62,8 @@ document.addEventListener("deviceready", function () {
         var temp = JSON.stringify(new Date($(".datepicker").val()));
         var weightToSend = {
             "bodyWeight": $("#weightbox").val(),
-            "date": JSON.parse(temp),
-        }
+            "date": JSON.parse(temp)
+        };
 
         $.ajax({
             url: currentDomain + "/Member/SaveMeasurements",
@@ -121,3 +121,4 @@ document.addEventListener("deviceready", function () {
     });
 
 });
+

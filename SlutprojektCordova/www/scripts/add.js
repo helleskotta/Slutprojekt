@@ -57,7 +57,7 @@
             var option = $(element).find("#listOfExercise").val();
             var nrOfSets = $(element).find(".sets").val();
 
-            var setArray = [] // antal reps, antal kilo
+            var setArray = []; // antal reps, antal kilo
 
             for (var i = 0; i < nrOfSets; i++) {
 
@@ -71,13 +71,13 @@
             else {
                 exerciseChosen.push({ name: option, sets: setArray });
             }
-        })
+        });
 
         var objectToStore = {
             "sessionName": $("#programname").val(),
-            "date": new Date($(".datepicker").val()),
+            "date": new Date($("#strDatePicker").val()),
             "exercises": exerciseChosen
-        }
+        };
         storage.setItem("currentWO", JSON.stringify(objectToStore));
 
         // TODO: SPARA NER DATAN --------------------------------------------------------------------------- !
@@ -87,7 +87,7 @@
     // ADD CARDIO WORKOUT
     $("#addcardio").click(function () {
 
-        var datePickerDate = JSON.stringify(new Date($(".datepicker").val()));
+        var datePickerDate = JSON.stringify(new Date($("#cardioDatePicker").val()));
 
         var dateToSave = JSON.parse(datePickerDate);
 
@@ -98,7 +98,7 @@
             "duration": $('#cardiotime').val(),
             "distance": $('#distance').val(),
             "sessionUserNote": $('#cardionotes').val(), 
-            "sessionName": $("#cardioExercises").val(),
+            "sessionName": $("#cardioExercises").val()
         };
 
 
@@ -107,11 +107,11 @@
             type: "POST",
             data: jsonObjecToSend,
             success: function (result) {
-                alert("Workout Saved successfully!")
+                alert("Workout Saved successfully!");
                 window.location = "main.html";
             },
             error: function (result) {
-                alert("Error at save")
+                alert("Error at save");
             }
         });
         // TODO: SPARA NER DATAN --------------------------------------------------------------------------- !
@@ -120,7 +120,7 @@
     // ADD OTHER WORKOUT
     $("#addother").click(function() {
 
-        var datePickerDate = JSON.stringify(new Date($(".datepicker").val()));
+        var datePickerDate = JSON.stringify(new Date($("#otherDatePicker").val()));
 
         var dateToSave = JSON.parse(datePickerDate);
 
@@ -131,7 +131,7 @@
             "duration": $('#othertime').val(),
             "distance": null,
             "sessionUserNote": $('#othernotes').val(),
-            "sessionName": $("#othername").val(),
+            "sessionName": $("#othername").val()
         };
 
 
@@ -140,11 +140,11 @@
             type: "POST",
             data: jsonObjecToSend,
             success: function(result) {
-                alert("Workout Saved successfully!")
+                alert("Workout Saved successfully!");
                 window.location = "main.html";
             },
             error: function(result) {
-                alert("Error at save")
+                alert("Error at save");
             }
         });
         // TODO: SPARA NER DATAN --------------------------------------------------------------------------- !
