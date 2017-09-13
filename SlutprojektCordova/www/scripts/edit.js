@@ -60,6 +60,26 @@ document.addEventListener("deviceready", function () {
 
     // Delete 
     $(".deleteWO").click(function () {
+
+        var jsonObjectToSend = logIt();
+
+        //storage.setItem("currentWO", jsonObjecToSend);
+
+        $.ajax({
+            url: currentDomain + "/member/DeleteWorkout",
+            type: "POST",
+            data: jsonObjectToSend,
+            success: function (result) {
+                alert("Workout was deleted");
+                storage.removeItem("WOToEdit");
+                window.location = "main.html";
+            },
+            error: function (result) {
+                alert("Error at save");
+            }
+        });
+
+
         // TODO: RADERA PASSET 
     });
 
@@ -118,7 +138,7 @@ document.addEventListener("deviceready", function () {
 
     // View 
     for (var k = 0; k < currentWO.exercises.length; k++) {
-        viewContent += '<div class="exerciseWrapper"><h2 style="font-weight:bold; text-align:left;"> ' + currentWO.exercises[k].name + '</h2>' + '<table class="ovning" style="width:100%; padding:2px 5px 20px 0;"> <tr> <td style="width:25%;"></td> <td style="width:40%;">Reps</td> <td style="width:40%;">Kg</td> <td style="width:5%;"></td> </tr>';
+        viewContent += '<div class="exerciseWrapperView"><h2 style="font-weight:bold; text-align:left;"> ' + currentWO.exercises[k].name + '</h2>' + '<table class="ovning" style="width:100%; padding:2px 5px 20px 0;"> <tr> <td style="width:25%;"></td> <td style="width:40%;">Reps</td> <td style="width:40%;">Kg</td> <td style="width:5%;"></td> </tr>';
 
         // En övning
         for (var j = 0; j < currentWO.exercises[k].sets.length; j++) {

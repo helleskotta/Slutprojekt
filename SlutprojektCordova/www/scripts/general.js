@@ -13,7 +13,7 @@ $("#otherprogram").hide();
 $("#hamburger").show();
 
 document.addEventListener("deviceready", function () {
-
+    
     // Klicka på gröna plusset
     $("#addbutton").click(function () {
         $("#addmenu").slideToggle("slow");
@@ -41,13 +41,17 @@ document.addEventListener("deviceready", function () {
                 success: function (result) {
                     var jsonString =
                         storage.setItem("UserExercises", JSON.stringify(result));
+                        window.location = "add.html";
                 },
                 error: function (result) {
                     alert("Fel vid inhämtning av övningar");
                 }
             });
         }
-        window.location = "add.html";
+        else {
+            window.location = "add.html";
+
+        }
 
     });
 

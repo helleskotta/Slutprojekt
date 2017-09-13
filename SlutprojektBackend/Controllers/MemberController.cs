@@ -117,5 +117,13 @@ namespace SlutprojektBackend.Controllers
 
             return Content("Workout saved successfully");
         }
+
+        [HttpPost]
+        public IActionResult DeleteWorkout(WorkoutSessionVM WorkoutToDelete)
+        {
+
+            dataManager.DeleteWorkoutSession(GetUserID(), WorkoutToDelete);
+            return Json("All is good");
+        }
     }
 }

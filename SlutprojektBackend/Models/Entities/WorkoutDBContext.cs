@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using SlutprojektBackend.Models.ViewModels;
 
 namespace SlutprojektBackend.Models.Entities
 {
@@ -35,7 +34,7 @@ namespace SlutprojektBackend.Models.Entities
 
                 entity.Property(e => e.ExerciseName)
                     .IsRequired()
-                    .HasMaxLength(20);
+                    .HasMaxLength(40);
 
                 entity.Property(e => e.WorkoutSessionId).HasColumnName("WorkoutSessionID");
 
@@ -155,7 +154,5 @@ namespace SlutprojektBackend.Models.Entities
                     .HasMaxLength(450);
             });
         }
-
-      
     }
 }

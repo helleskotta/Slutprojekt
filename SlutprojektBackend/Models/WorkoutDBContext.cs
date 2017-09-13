@@ -85,7 +85,7 @@ namespace SlutprojektBackend.Models.Entities
                 TypeOfWorkoutSession = c.Type
             })
             .Where(d => (d.Date.DayOfYear < DateTime.Now.DayOfYear) && (d.Date.Year <= DateTime.Now.Year))
-            .OrderBy(c => c.Date)
+            .OrderByDescending(c => c.Date)
             .FirstOrDefault();
 
             var todayListitem = WorkoutSession
@@ -358,7 +358,10 @@ namespace SlutprojektBackend.Models.Entities
                     exercise.Set.Add(new Set { Reps = set.Reps, UsedWeight = set.Weight, UserNote = set.UserComment });
                 }
             };
-            var oldWorkoutSession = WorkoutSession.First(x => x.SessionName == workoutToEdit.SessionName && x.UserId == userID && x.Date == workoutToEdit.Date); //== session;
+            var oldWorkoutSession = WorkoutSession
+                .Include(z=>z.Exercise)
+                .ThenInclude(y=>y.Set)
+                .FirstOrDefault(x => x.SessionName == workoutToEdit.SessionName && x.UserId == userID && x.Date == workoutToEdit.Date); //== session;
 
             foreach (var exercise in oldWorkoutSession.Exercise)
             {
@@ -366,32 +369,43 @@ namespace SlutprojektBackend.Models.Entities
                 {
                     Set.Remove(set);
                 }
-                SaveChanges();
+                //SaveChanges();
 
                 Exercise.Remove(exercise);
 
             };
-            SaveChanges();
+            //SaveChanges();
 
             WorkoutSession.Remove(oldWorkoutSession);
 
             WorkoutSession.Add(session);
             SaveChanges();
             
-            //WorkoutSession.Update(session);
-            //----------------------------------
-            //WorkoutSession newWorkoutSession = new WorkoutSession()
-            //{ Date = workoutToEdit.Date,
-            //    Distance = workoutToEdit.Distance,
-            //    Duration = workoutToEdit.Duration,
-            //    SessionName=workoutToEdit.SessionName,
-            //    SessionUserNote=workoutToEdit.SessionUserNote,
-            //    Type=workoutToEdit.Type,
-                
-            //    //Exercise=workoutToEdit.Exercises,
-            //};
-            //WorkoutSession.Remove(newWorkoutSession).Where(x=> x.UserId == userID && x.SessionName == workoutToEdit.SessionName && x.Date==workoutToEdit.Date)
-                
+             
+        }
+
+        internal void DeleteWorkout(string userID, WorkoutSessionVM workoutToDelete)
+        {
+            var oldWorkoutSession = WorkoutSession
+                .Include(z => z.Exercise)
+                .ThenInclude(y => y.Set)
+                .FirstOrDefault(x => x.SessionName == workoutToDelete.SessionName && x.UserId == userID && x.Date == workoutToDelete.Date); //== session;
+
+            foreach (var exercise in oldWorkoutSession.Exercise)
+            {
+                foreach (var set in exercise.Set)
+                {
+                    Set.Remove(set);
+                }
+                //SaveChanges();
+
+                Exercise.Remove(exercise);
+
+            };
+            //SaveChanges();
+
+            WorkoutSession.Remove(oldWorkoutSession);
+            SaveChanges();
         }
     }
 

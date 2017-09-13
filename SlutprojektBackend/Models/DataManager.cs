@@ -89,5 +89,10 @@ namespace SlutprojektBackend.Models
         {
             workoutcontext.EditWorkout(userID, workoutToEdit);
         }
+
+        internal void DeleteWorkoutSession(string userID, WorkoutSessionVM workoutToDelete)
+        {
+            workoutcontext.DeleteWorkout(userID, workoutToDelete);
+        }
     }
 }
