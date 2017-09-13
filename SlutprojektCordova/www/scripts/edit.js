@@ -38,6 +38,7 @@ document.addEventListener("deviceready", function () {
 
     $("#nameofProgram").html(currentWO.sessionName).click(function () {
         if (document.getElementById("changeTitel")) {
+            console.log("Hello");
         }
         else {
             var testMagicString = "";
@@ -188,28 +189,29 @@ document.addEventListener("deviceready", function () {
         storage.removeItem("WOToEdit");
     });
 
-    // ADD FINISHED STRENGTH WORKOUT
-    $("#addfinishedwo").click(function () {
+    // save edit STRENGTH WORKOUT
+    $("#saveeditWO").click(function () {
         var jsonObjectToSend = logIt();
 
         //storage.setItem("currentWO", jsonObjecToSend);
 
         $.ajax({
-            url: currentDomain + "/member/saveworkout",
+            url: currentDomain + "/member/EditWorkout",
             type: "POST",
             data: jsonObjectToSend,
             success: function (result) {
-                alert("Workout Saved successfully!");
+                alert("Workout edited successfully!");
                 storage.removeItem("WOToEdit");
                 window.location = "main.html";
             },
             error: function (result) {
-                alert("Error att save");
+                alert("Error at save");
             }
         });
 
     });
 });
+
 
 function logIt() {
 
@@ -236,22 +238,22 @@ function logIt() {
         var exerciseName = $(element).find("h2").html();
         var exercise = {
             "name": exerciseName,
-            "sets": setArray
+            "sets": setArray,
         };
 
         exerciseArray.push(exercise);
 
-    });
+    })
     var jsonObjectToSend = {
         "exercises": exerciseArray,
-        "date": JSON.parse(storage.getItem("currentWO")).date,
+        "date": JSON.parse(storage.getItem("WOToEdit")).date,
         "type": "Strength",
         "duration": null,
         "distance": null,
         "sessionUserNote": "Give me a real value", //TODO
-        "sessionName": $("#nameofProgram").html()
+        "sessionName": $("#nameofProgram").html(),
     };
 
     return jsonObjectToSend;
 
-}
+};
