@@ -3,22 +3,22 @@ var localDomain = "http://localhost:49902";
 var azureDomain = "http://slutprojektbackend.azurewebsites.net";
 var currentDomain = azureDomain;
 
-document.addEventListener("deviceready", function () {
+$("#hamburgermenu").hide();
+$("#ui-datepicker-div").hide();
+$("#addmenu").hide();
+$("#addmenu2").hide();
+$("#menuToggle").hide();
+$("#cardioprogram").hide();
+$("#otherprogram").hide();
+$("#hamburger").show();
 
-    $("#ui-datepicker-div").hide();
-    $("#addmenu").hide();
-    $("#addmenu2").hide();
-    $("#menuToggle").hide();
-    $("#hamburger").show();
-    $("#hamburgermenu").hide();
-    $("#cardioprogram").hide();
-    $("#otherprogram").hide();
+document.addEventListener("deviceready", function () {
 
     // Klicka på gröna plusset
     $("#addbutton").click(function () {
-        $("#wrapper").addClass("clickadd");
-        $("#addmenu").show();
-        $("#addmenu2").show();
+        $("#addmenu").slideToggle("slow");
+        $("#addmenu2").toggle('slide', { direction: 'right' });
+        $("#wrapper").toggleClass("clickadd");
         $("#hamburgermenu").hide();
     });
 

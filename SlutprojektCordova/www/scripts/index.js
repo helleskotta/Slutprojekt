@@ -4,6 +4,11 @@ var storage = window.localStorage;
 var localDomain = "http://localhost:49902";
 var azureDomain = "http://slutprojektbackend.azurewebsites.net";
 var currentDomain = azureDomain;
+$("#ui-datepicker-div").hide();
+$("#login").show();
+$("#register").hide();
+$("#welcome").hide();
+$("#addstats").hide();
 
 (function () {
     "use strict";
@@ -11,7 +16,6 @@ var currentDomain = azureDomain;
     document.addEventListener('deviceready', onDeviceReady.bind(this), false);
 
     function onDeviceReady() {
-        $("#ui-datepicker-div").hide();
 
         // Handle the Cordova pause and resume events
         document.addEventListener('pause', onPause.bind(this), false);
@@ -23,11 +27,6 @@ var currentDomain = azureDomain;
         //var receivedElement = parentElement.querySelector('.received');
         //listeningElement.setAttribute('style', 'display:none;');
         //receivedElement.setAttribute('style', 'display:block;');
-        $("#login").show();
-        $("#register").hide();
-        $("#welcome").hide();
-        $("#addstats").hide();
-
     }
 
     function onPause() {

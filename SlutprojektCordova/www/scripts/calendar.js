@@ -35,7 +35,7 @@ document.addEventListener("deviceready", function () {
             icon += 'images/othericon.png" />';
         }
 
-        listviewfull += '<div class="calExercise" data-idinarray='+i+'><span>' + icon + weekday + '</span>';
+        listviewfull += '<div class="calExercise" data-idinarray=' + i + '><span>' + icon + weekday + '</span>';
 
         if (displayDate === today) {
             weekday = "today";
@@ -50,8 +50,7 @@ document.addEventListener("deviceready", function () {
     $("#calList").append(listviewfull);
 
     $(".calExercise").click(function () {
-        storage.setItem("WOToEdit", JSON.stringify(allWorkoutSessions[$(this).data("idinarray")]))
+        storage.setItem("WOToEdit", JSON.stringify(allWorkoutSessions[$(this).data("idinarray")]));
         window.location = "edit.html";
-        
     });
 });

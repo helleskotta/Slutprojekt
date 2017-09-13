@@ -11,7 +11,7 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
-    background-color: #999999;
+    background-color: #C0C0C0;
 }
 
 /* MAIN CONTAINERS */
@@ -340,7 +340,7 @@ select {
     }
 
 /* add view */ /* ATM */
-#addnew {
+#addnew, #editStr, #runFull, #viewForEdit, #viewForEditCardio, #viewForEditOther {
     background: white;
     height: 60%;
     padding: 20px;
@@ -445,6 +445,7 @@ select {
     height: 100%;
     filter: drop-shadow(3px 2px 5px #888);
     border-radius: 2px;
+    opacity:1;
 }
 
     #hamburgermenu ul {

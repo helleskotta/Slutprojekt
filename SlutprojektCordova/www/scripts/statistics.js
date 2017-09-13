@@ -1,10 +1,8 @@
-﻿document.addEventListener("deviceready", function () {
-    // Klicka på Statistik
+﻿$("#homeicon").removeClass("selectedicon");
+$("#calendaricon").removeClass("selectedicon");
+$("#statsicon").addClass("selectedicon");
 
-    $("#homeicon").removeClass("selectedicon");
-    $("#calendaricon").removeClass("selectedicon");
-    $("#statsicon").addClass("selectedicon");
-
+document.addEventListener("deviceready", function () {
 
     $.ajax({
         url: currentDomain + "/member/Statistics",
