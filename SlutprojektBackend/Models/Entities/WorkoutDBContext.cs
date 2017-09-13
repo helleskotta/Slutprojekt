@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using SlutprojektBackend.Models.ViewModels;
 
 namespace SlutprojektBackend.Models.Entities
 {
@@ -154,5 +155,7 @@ namespace SlutprojektBackend.Models.Entities
                     .HasMaxLength(450);
             });
         }
+
+      
     }
 }
