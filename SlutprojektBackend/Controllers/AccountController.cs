@@ -55,7 +55,7 @@ namespace SlutprojektBackend.Controllers
             }
             else
             {
-                HttpContext.Session.SetString("UserID", userManager.GetUserId(HttpContext.User));
+                //HttpContext.Session.SetString("UserID", userManager.GetUserId(HttpContext.User));
             }
 
             return Content("Yes");
@@ -80,7 +80,7 @@ namespace SlutprojektBackend.Controllers
             }
             else
             {
-                HttpContext.Session.SetString("UserID", userManager.GetUserId(HttpContext.User));
+               // HttpContext.Session.SetString("UserID", userManager.GetUserId(HttpContext.User));
             }
 
 
