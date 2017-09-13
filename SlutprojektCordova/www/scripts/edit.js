@@ -1,9 +1,41 @@
-﻿document.addEventListener("deviceready", function () {
+﻿var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-    // Run program
+$("#editStr").hide();
+$("#viewForEdit").hide();
+$("#viewForEditCardio").hide();
+$("#viewForEditOther").hide();
+$("#homeicon").removeClass("selectedicon");
+$("#calendaricon").addClass("selectedicon");
+$("#statsicon").removeClass("selectedicon");
 
+document.addEventListener("deviceready", function () {
     var currentWO = JSON.parse(storage.getItem("WOToEdit"));
     var setNr = 1;
+    var viewSetNr = 1;
+
+
+    if (currentWO.type === "Strength") {
+        $("#editStr").hide();
+        $("#viewForEdit").show();
+        $("#viewForEditCardio").hide();
+        $("#viewForEditOther").hide();
+    }
+
+    else if (currentWO.type === "Cardio") {
+        $("#editStr").hide();
+        $("#viewForEdit").hide();
+        $("#viewForEditCardio").show();
+        $("#viewForEditOther").hide();
+    }
+
+    else {
+        $("#editStr").hide();
+        $("#viewForEdit").hide();
+        $("#viewForEditCardio").hide();
+        $("#viewForEditOther").show();
+    }
+
     $("#nameofProgram").html(currentWO.sessionName).click(function () {
         if (document.getElementById("changeTitel")) {
         }
@@ -14,9 +46,36 @@
         }
     });
 
-    var content = "";
+    // Edit 
+    $("#editWObtn").click(function () {
+        $("#editStr").show();
+        $("#viewForEdit").hide();
+    });
 
-    // Alla övningar
+    // Rerun
+    $("#rerunbtn").click(function () {
+        // TODO: DUPLICERA 
+    });
+
+    // Delete 
+    $(".deleteWO").click(function () {
+        // TODO: RADERA PASSET 
+    });
+
+    // Back to calendar view from viewing Cardio
+    $(".backToCal").click(function () {
+        window.location = "calendar.html";
+    });
+
+    // Edit Cardio
+    $("#editCardio").click(function () {
+        // TODO: REDIGERA PASSET
+    });
+
+    var content = "";
+    var viewContent = "";
+
+    // Edit
     for (var k = 0; k < currentWO.exercises.length; k++) {
 
         var exerciseString = "";
@@ -56,7 +115,46 @@
         setNr = 1;
     }
 
+    // View 
+    for (var k = 0; k < currentWO.exercises.length; k++) {
+        viewContent += '<div class="exerciseWrapper"><h2 style="font-weight:bold; text-align:left;"> ' + currentWO.exercises[k].name + '</h2>' + '<table class="ovning" style="width:100%; padding:2px 5px 20px 0;"> <tr> <td style="width:25%;"></td> <td style="width:40%;">Reps</td> <td style="width:40%;">Kg</td> <td style="width:5%;"></td> </tr>';
+
+        // En övning
+        for (var j = 0; j < currentWO.exercises[k].sets.length; j++) {
+            viewContent += '<tr> <td style="font-weight:bold; font-size:14px;">SET ' + viewSetNr++ + '</td> <td>' + currentWO.exercises[k].sets[j].reps + '</td> <td>' + currentWO.exercises[k].sets[j].weight;
+        }
+        viewContent += '</table></div>';
+
+        if (k >= currentWO.exercises.length - 1) {
+            viewContent += '<br />'
+        }
+        else {
+            viewContent += '<hr style="border:1px dotted #dbdbdb;"/>';
+        }
+        viewSetNr = 1;
+    }
+
+    // Cardio
+    var displayDate = new Date(currentWO.date).getDate() + " " + months[new Date(currentWO.date).getMonth()] + ", " + new Date(currentWO.date).getHours().toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false }) + ":" + new Date(currentWO.date).getMinutes().toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false });
+
+    var cardioContent = "";
+    var otherContent = "";
+    var notes = currentWO.sessionUserNote;
+
+    if (currentWO.sessionUserNote === null) {
+        notes = '<i>No notes about this workout</i>';
+    }
+
+    cardioContent += '<h2><b>Date</b><br /><h2 style="text-transform:lowercase;">' + displayDate + '<h2><b>Distance</b><br /><h2 style="text-transform:lowercase;">' + currentWO.distance + ' km</h2> <br /> <h2><b>Duration</b><br /><h2 style="text-transform:lowercase;">' + currentWO.duration + ' minutes</h2> <br /> <h2><b>Notes</b><br /><h2 style="text-transform:lowercase;">' + notes + '</h2><br /><br />';
+
+
+    otherContent += '<h2><b>Date</b><br /><h2 style="text-transform:lowercase;">' + displayDate + '<h2><br /><br /><b>Duration</b><br /><h2 style="text-transform:lowercase;">' + currentWO.duration + ' minutes</h2> <br /> <h2><b>Notes</b><br /><h2 style="text-transform:lowercase;">' + notes + '</h2><br /><br />';
+
+    // Push the views
     $("#fullprogram").append(content);
+    $("#viewfullprogram").append(viewContent);
+    $("#viewfullcardioprogram").append(cardioContent);
+    $("#viewfullotherprogram").append(otherContent);
     $(".totalSets").hide();
 
     // Remove-knapp i run

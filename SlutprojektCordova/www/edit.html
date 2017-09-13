@@ -20,26 +20,57 @@
             </h1>
         </div>
         <h1 id="nameofProgram"></h1>
-        <div id="addnew">
+
+        <!-- Edit program -->
+        <div id="editStr">
 
             <div id="fullprogram">
 
             </div>
 
             <input type="button" value="SAVE WORKOUT" id="saveeditWO" /><br /><br />
-            <input style="background:#D52F2F;" type="button" id="deleteWO" value="Delete exercise" />
+            <input style="background:#D52F2F;" type="button" class="deleteWO" value="Delete exercise" />
         </div>
+
+        <!-- View program -->
+        <div id="viewForEdit">
+            <div id="viewfullprogram">
+
+            </div>
+
+            <input style="width: 30%; background:white; color:#2DA130;
+        filter: drop-shadow(0 1px 1px #888);" type="button" value="EDIT" id="editWObtn" />
+            <input style="width: 30%;" type="button" value="RE-RUN" id="rerunbtn" />
+            <input style="width: 30%; background:#D52F2F; color:white;" type="button" value="DELETE" class="deleteWO" /><br /><br />
+        </div>
+
+        <!-- View Cardio -->
+        <div id="viewForEditCardio">
+            <div id="viewfullcardioprogram">
+
+            </div>
+            <input type="button" class="backToCal" value="Back" style="width: 30%; background:white; color:#2DA130; filter: drop-shadow(0 1px 1px #888);"> <input type="button" id="editCardio" value="Edit" style="width:30%;"> <input style="width: 30%; background:#D52F2F; color:white;" type="button" value="DELETE" class="deleteWO" />
+        </div>
+
+        <!-- View Other -->
+        <div id="viewForEditOther">
+            <div id="viewfullotherprogram">
+
+            </div>
+            <input type="button" class="backToCal" value="Back" style="width: 30%; background:white; color:#2DA130; filter: drop-shadow(0 1px 1px #888);"> <input type="button" id="editCardio" value="Edit" style="width:30%;"> <input style="width: 30%; background:#D52F2F; color:white;" type="button" value="DELETE" class="deleteWO" />
+        </div>
+
     </div>
     <!-- wrapper end -->
     <!--
-    
-        
-        
+
+
+
         MENUS AND STUFF
-        
-        
-        
-        
+
+
+
+
         -->
     <!------------- SETTINGS HAMBURGER MENU ------------->
     <div id="hamburgermenu">
