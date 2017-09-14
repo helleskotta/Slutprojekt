@@ -1,11 +1,12 @@
-﻿document.addEventListener("deviceready", function () {
+﻿
+document.addEventListener("deviceready", function () {
     $("#strengthbtn").addClass("selectedE");
 
     // Ladda in övningar till add-vy
+
+    var exercises = JSON.parse(storage.getItem("UserExercises"));
     var strOptions = "";
     var cardioOptions = "";
-    var exercises = JSON.parse(storage.getItem("UserExercises"));
-
     if (exercises) {
 
         for (var i = 0; i < exercises.length; i++) {
@@ -21,6 +22,7 @@
         $("#listOfExercise").append(strOptions);
         $("#cardioExercises").append(cardioOptions);
     }
+
 
     $("#strengthbtn").click(function () {
         $("#strengthprogram").show();
@@ -81,21 +83,34 @@
         };
         storage.setItem("currentWO", JSON.stringify(objectToStore));
 
-       
+
         window.location = "run.html";
     });
 
     if (storage.getItem("WOToRerun") != null) {
         var WOToRerun = JSON.parse(storage.getItem("WOToRerun"));
         var appendString = "";
+
         $("#programname").val(WOToRerun.sessionName);
         for (var i = 0; i < WOToRerun.exercises.length; i++) {
 
-            appendString += '<div class="oneexercise"> <select id="listOfExercise" style="width:70%;"> <option value="' + WOToRerun.exercises[i].name + '">' + WOToRerun.exercises[i].name + '</option> </select> <input class="sets" value="' + WOToRerun.exercises[i].sets.length + '" style="width: 20%;" type="number" placeholder=" Sets" /> <input type="button" class="deletefield" value="x" /> </div>';
+            appendString += '<div class="oneexercise"> <select id="listOfExercise" style="width:70%;"> <option value="" disabled selected>' + WOToRerun.exercises[i].name + '</option>';
 
+            var strOptions2 = "";
+            var exercises2 = JSON.parse(storage.getItem("UserExercises"));
+
+            for (var j = 0; j < exercises2.length; j++) {
+                if (exercises2[i].type === "Strenght") {
+
+                    strOptions2 += '<option>' + exercises2[j].name + '</option>';
+                }
+            }
+            appendString += strOptions2;
+
+            appendString += '</select > <input class="sets" value="' + WOToRerun.exercises[i].sets.length + '" style="width: 20%;" type="number" placeholder=" Sets" /> <input type="button" class="deletefield" value="x" /> </div > ';
         }
 
-            $("#exercises").html(appendString);
+        $("#exercises").html(appendString);
         storage.removeItem("WOToRerun");
 
     }
@@ -112,7 +127,7 @@
             "type": "Cardio",
             "duration": $('#cardiotime').val(),
             "distance": $('#distance').val(),
-            "sessionUserNote": $('#cardionotes').val(), 
+            "sessionUserNote": $('#cardionotes').val(),
             "sessionName": $("#cardioExercises").val()
         };
 
@@ -129,11 +144,10 @@
                 alert("Error at save");
             }
         });
-        // TODO: SPARA NER DATAN --------------------------------------------------------------------------- !
     });
 
     // ADD OTHER WORKOUT
-    $("#addother").click(function() {
+    $("#addother").click(function () {
 
         var datePickerDate = JSON.stringify(new Date($("#otherDatePicker").val()));
 
@@ -154,15 +168,14 @@
             url: currentDomain + "/member/saveworkout",
             type: "POST",
             data: jsonObjecToSend,
-            success: function(result) {
+            success: function (result) {
                 alert("Workout Saved successfully!");
                 window.location = "main.html";
             },
-            error: function(result) {
+            error: function (result) {
                 alert("Error at save");
             }
         });
-        // TODO: SPARA NER DATAN --------------------------------------------------------------------------- !
-      
+
     });
 });
