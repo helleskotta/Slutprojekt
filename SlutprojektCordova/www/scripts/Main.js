@@ -29,11 +29,12 @@ document.addEventListener("deviceready", function () {
     $("#statsicon").removeClass("selectedicon");
 
     // Välj random statistik
-    var randomBetween1and3 = Math.floor((Math.random() * 3));
+    var randomBetween1and3 = Math.floor((Math.random() * 4));
     var randomStats = [
         '<h2>Weight</h2><canvas width="95%" id="weightChart"></canvas>',
         '<h2>Total weight lifted</h2><div id="totalweightlifted" class="counter" data-count="0">0</div>',
-        '<h2>Exercises</h2><canvas width="95%" id="percentPieChart"></canvas>'
+        '<h2>Exercises</h2><canvas width="95%" id="percentPieChart"></canvas>',
+        '<div id="totalkmdone" class="counter" data-count="0">0</div>'
     ];
     var showstat = randomStats[randomBetween1and3];
 
