@@ -231,7 +231,25 @@ namespace SlutprojektBackend.Models.Entities
             // Total km 
             statsToReturn.Statistics.Add(GetTotalDistanceDone(userID));
 
+            // Populäraste styrketräningen 
+            statsToReturn.Statistics.Add(GetPopularStrength(userID));
+
             return statsToReturn;
+        }
+
+        private StatisicsVM GetPopularStrength(string userID)
+        {
+            var popularStrength = UserExercises
+                .Where(t => t.UserId == userID && t.Type == "Strength")
+                .Select(d => d.Name)
+                .Count();
+
+            StatisicsVM statToReturn = new StatisicsVM();
+            statToReturn.TypeOfWorkoutSession = "General";
+
+            statToReturn.Stats = new MostPopularStrength() { Name = popularStrength.ToString() };
+
+            return statToReturn;
         }
 
         private StatisicsVM GetTotalDistanceDone(string userID)
