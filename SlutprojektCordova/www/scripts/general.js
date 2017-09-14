@@ -37,6 +37,10 @@ document.addEventListener("deviceready", function () {
     $("#logout").click(function () {
         window.location = "index.html";
     });
+
+    $("#donate").click(function () {
+        window.location = "donate.html";
+    });
     
     // Klicka på gröna plusset
     $("#addbutton").click(function () {
