@@ -82,7 +82,7 @@ document.addEventListener("deviceready", function () {
                 window.location = "main.html";
             },
             error: function (result) {
-                alert("Error at save");
+                alert("Error at delete");
             }
         });
     });

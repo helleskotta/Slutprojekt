@@ -35,7 +35,7 @@ document.addEventListener("deviceready", function () {
             });
 
             // Total km done
-            $("#totalkmdone").attr("data-count", result.statistics[4].stats.totalWeightLifted);
+            $("#totalkmdone").attr("data-count", result.statistics[3].stats.distans);
             $('.counter').each(function () {
                 var $this = $(this),
                     countTo = $this.attr('data-count');

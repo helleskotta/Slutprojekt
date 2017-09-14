@@ -231,16 +231,43 @@ namespace SlutprojektBackend.Models.Entities
             // Total km 
             statsToReturn.Statistics.Add(GetTotalDistanceDone(userID));
 
-            //Favorit övningar styrka
-            //statsToReturn.Statistics.Add(GetMostExecutedExercises(userID));
+            // Populäraste styrketräningen 
+            statsToReturn.Statistics.Add(GetPopularStrength(userID));
 
+            // Populäraste cardion 
+            statsToReturn.Statistics.Add(GetPopularCardio(userID));
 
             return statsToReturn;
         }
 
-        private StatisicsVM GetMostExecutedExercises(string userID)
+        private StatisicsVM GetPopularCardio(string userID)
         {
-            throw new NotImplementedException();
+            var popularCardio = UserExercises
+                .Where(t => t.UserId == userID && t.Type == "Cardio")
+                .Select(d => d.Name)
+                .Count();
+
+            StatisicsVM statToReturn = new StatisicsVM();
+            statToReturn.TypeOfWorkoutSession = "Cardio";
+
+            statToReturn.Stats = new MostPopularCardio() { Name = popularCardio.ToString() };
+
+            return statToReturn;
+        }
+
+        private StatisicsVM GetPopularStrength(string userID)
+        {
+            var popularStrength = UserExercises
+                .Where(t => t.UserId == userID && t.Type == "Strength")
+                .Select(d => d.Name)
+                .Count();
+
+            StatisicsVM statToReturn = new StatisicsVM();
+            statToReturn.TypeOfWorkoutSession = "General";
+
+            statToReturn.Stats = new MostPopularStrength() { Name = popularStrength.ToString() };
+
+            return statToReturn;
         }
 
         private StatisicsVM GetTotalDistanceDone(string userID)

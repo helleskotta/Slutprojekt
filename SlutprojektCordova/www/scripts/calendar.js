@@ -14,7 +14,7 @@ document.addEventListener("deviceready", function () {
     for (var i = allWorkoutSessions.length - 1; i >= 0; i--) {
         var displayDate = new Date(allWorkoutSessions[i].date).getDate() + " " + months[new Date(allWorkoutSessions[i].date).getMonth()];
 
-        var weekday = days[new Date(allWorkoutSessions[i].date).getDay()];
+        var weekday = days[new Date(allWorkoutSessions[i].date).getDay() -1];
 
         var today = new Date().getDate() + " " + months[new Date().getMonth()];
 
@@ -38,7 +38,6 @@ document.addEventListener("deviceready", function () {
         listviewfull += '<div class="calExercise" data-idinarray=' + i + '><span>' + icon + weekday + '</span>';
 
         if (displayDate === today) {
-            weekday = "today";
             listviewfull += '<li style="border-left:2px solid green;">';
         }
         else {
