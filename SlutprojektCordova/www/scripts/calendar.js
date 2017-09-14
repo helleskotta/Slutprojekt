@@ -1,5 +1,5 @@
 ﻿var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-var days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+var days = ["", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 document.addEventListener("deviceready", function () {
 
@@ -14,7 +14,7 @@ document.addEventListener("deviceready", function () {
     for (var i = allWorkoutSessions.length - 1; i >= 0; i--) {
         var displayDate = new Date(allWorkoutSessions[i].date).getDate() + " " + months[new Date(allWorkoutSessions[i].date).getMonth()];
 
-        var weekday = days[new Date(allWorkoutSessions[i].date).getDay() -1];
+        var weekday = days[new Date(allWorkoutSessions[i].date).getDay()];
 
         var today = new Date().getDate() + " " + months[new Date().getMonth()];
 
