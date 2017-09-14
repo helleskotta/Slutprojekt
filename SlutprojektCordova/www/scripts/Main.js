@@ -1,6 +1,8 @@
 ﻿var d = new Date();
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 var days = ["", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+$("#showARandomStat2").hide();
+$("#donate").hide();
 
 document.addEventListener("deviceready", function () {
 
@@ -14,6 +16,7 @@ document.addEventListener("deviceready", function () {
 
     if (storage.getItem("currentWO") === null) {
         $("#unsavedWO").hide();
+        $("#showARandomStat2").show();
     }
 
     else {
@@ -35,6 +38,12 @@ document.addEventListener("deviceready", function () {
 
     // Välj random statistik
     var randomNumber = Math.floor((Math.random() * 4));
+    var anotherRandomNumber = Math.floor((Math.random() * 4));
+
+    if (randomNumber === anotherRandomNumber) {
+        anotherRandomNumber = Math.floor((Math.random() * 4));
+    }
+
     var randomStats = [
         '<h2>Weight</h2><canvas width="95%" id="weightChart"></canvas>',
         '<h2>Total weight lifted</h2><div id="totalweightlifted" class="counter" data-count="0">0</div>',
@@ -42,8 +51,10 @@ document.addEventListener("deviceready", function () {
         '<h2>Total distance done</h2><div id="totalkmdone" class="counter" data-count="0">0</div>'
     ];
     var showstat = randomStats[randomNumber];
+    var showstat2 = randomStats[anotherRandomNumber];
 
     $("#showARandomStat").html(showstat);
+    $("#showARandomStat2").html(showstat2);
 
     // Hämta alla användarens inlagda pass (workout sessions)
     $.ajax({
@@ -181,24 +192,4 @@ document.addEventListener("deviceready", function () {
             $("#box3content").html(nextContent);
         }
     });
-
-    //// ADD WEIGHT MEASUREMENTS
-    //$("#saveweight").click(function () {
-    //    var jsonObjecToSend = {
-    //        "bodyWeight": $("#weightbox").val(),
-    //        "date": new Date($(".datepicker").val()), //TODO GIVE me a real value please
-    //    };
-
-    //    $.ajax({
-    //        url: currentDomain + "/member/savemeasurements",
-    //        type: "POST",
-    //        data: jsonObjecToSend,
-    //        success: function (result) {
-    //            alert("Measurements saved successfully!")
-    //        },
-    //        error: function (result) {
-    //            alert("Error att save")
-    //        }
-    //    });
-    //});
 });
