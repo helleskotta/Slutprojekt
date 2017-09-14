@@ -38,6 +38,10 @@ document.addEventListener("deviceready", function () {
         window.location = "index.html";
     });
 
+    $("#donate").click(function () {
+        window.location = "donate.html";
+    });
+    
     // Klicka på gröna plusset
     $("#addbutton").click(function () {
         $("#addmenu2").toggle('slide', { direction: 'right' });
