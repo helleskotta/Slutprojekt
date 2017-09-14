@@ -124,5 +124,10 @@ document.addEventListener("deviceready", function () {
         var fromdate = $(this).val();
     });
 
+    // Delete ongoing WO
+    $("#deleteCurrent").click(function () {
+        storage.removeItem("currentWO");
+        alert("Current workout successfully deleted.")
+    });
 });
 

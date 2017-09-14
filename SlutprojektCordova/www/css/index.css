@@ -252,7 +252,7 @@ select {
 
 #box1, #box2, #box3 {
     width: 30%;
-    height: 130px;
+    height: 13em;
     background: white;
     padding: 4px;
     border-radius: 2px;

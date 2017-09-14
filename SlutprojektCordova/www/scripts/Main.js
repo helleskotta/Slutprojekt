@@ -11,6 +11,15 @@ document.addEventListener("deviceready", function () {
 
     else {
         $("#unsavedWO").show();
+        var nameOfUnsaved = "";
+        var currentWO = storage.getItem("currentWO");
+        nameOfUnsaved += currentWO.sessionName;
+
+        if (nameOfUnsaved) {
+            nameOfUnsaved = "Anonymous Workout";
+        }
+
+        $("#nameOfOngoing").html(nameOfUnsaved);
     }
 
     $("#homeicon").addClass("selectedicon");

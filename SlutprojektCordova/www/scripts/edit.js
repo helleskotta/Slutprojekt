@@ -58,13 +58,20 @@ document.addEventListener("deviceready", function () {
         // TODO: DUPLICERA 
     });
 
+    // Back to calendar view from viewing Cardio
+    $(".backToCal").click(function () {
+        window.location = "calendar.html";
+    });
+
+    // Edit Cardio
+    $("#editCardio").click(function () {
+        // TODO: REDIGERA PASSET
+    });
+
     // Delete 
     $(".deleteWO").click(function () {
-
         var jsonObjectToSend = logIt();
-
         //storage.setItem("currentWO", jsonObjecToSend);
-
         $.ajax({
             url: currentDomain + "/member/DeleteWorkout",
             type: "POST",
@@ -78,19 +85,6 @@ document.addEventListener("deviceready", function () {
                 alert("Error at save");
             }
         });
-
-
-        // TODO: RADERA PASSET 
-    });
-
-    // Back to calendar view from viewing Cardio
-    $(".backToCal").click(function () {
-        window.location = "calendar.html";
-    });
-
-    // Edit Cardio
-    $("#editCardio").click(function () {
-        // TODO: REDIGERA PASSET
     });
 
     var content = "";
@@ -106,18 +100,18 @@ document.addEventListener("deviceready", function () {
         for (var j = 0; j < currentWO.exercises[k].sets.length; j++) {
             var oneRow = '<tr> <td style="font-weight:bold; font-size:14px;">SET ' + setNr++ + '</td> <td>';
             if (currentWO.exercises[k].sets[j].reps === null) {
-                oneRow += '<input class="repsCount" type="number" style="width:50%;" />';
+                oneRow += '<input class="repsCount" type="number" min="0" style="width:50%;" />';
             } else {
-                oneRow += '<input class="repsCount" value="' + currentWO.exercises[k].sets[j].reps + '" type="number" style="width:50%;" />';
+                oneRow += '<input class="repsCount" value="' + currentWO.exercises[k].sets[j].reps + '" type="number" min="0" style="width:50%;" />';
             }
 
             oneRow += '</td > <td>';
 
             if (currentWO.exercises[k].sets[j].weight === null) {
-                oneRow += '<input class="weightCount" type="number" style="width:50%;" />';
+                oneRow += '<input class="weightCount" type="number" min="0" step="any" style="width:50%;" />';
 
             } else {
-                oneRow += '<input class="weightCount" value="' + currentWO.exercises[k].sets[j].weight + '" type="number" style="width:50%;" />';
+                oneRow += '<input class="weightCount" value="' + currentWO.exercises[k].sets[j].weight + '" type="number" min="0" step="any" style="width:50%;" />';
             }
             oneRow += '</td> <td><input type="button" class="deletefield" style="width:100%;" value="x" /></td> </tr > ';
             exerciseString += oneRow;
@@ -190,7 +184,7 @@ document.addEventListener("deviceready", function () {
         clone += '<tr> <td style="font-weight:bold; font-size:14px;">SET ';
         clone += setNr;
         clone += '</td>';
-        clone += '<td><input class="repsCount" type="number" style="width:50%;"></td> <td><input class="weightCount" type="number" style="width:50%;"></td> <td><input style="width:100%;" type="button" class="deletefield" value="x"></td> </tr>';
+        clone += '<td><input class="repsCount" type="number" min="0" style="width:50%;"></td> <td><input class="weightCount" type="number" min="0" step="any" style="width:50%;"></td> <td><input style="width:100%;" type="button" class="deletefield" value="x"></td> </tr>';
         $(this).parents().eq(3).find("tbody").append(clone);
     });
 
