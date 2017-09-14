@@ -1,10 +1,10 @@
 ﻿var d = new Date();
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-var days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+var days = ["", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 document.addEventListener("deviceready", function () {
 
-    var todaysDay = days[d.getDay() -1];
+    var todaysDay = days[d.getDay()];
     var todaysDate = d.getDate();
     var todaysMonth = months[d.getMonth()];
 

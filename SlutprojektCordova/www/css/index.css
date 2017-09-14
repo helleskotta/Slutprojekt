@@ -6,6 +6,7 @@ body {
     padding: 0;
     width: 100%;
     background-color: #C0C0C0;
+    filter: drop-shadow(3px 2px 5px #888);
 }
 
 /* MAIN CONTAINERS */
