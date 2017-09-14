@@ -8,7 +8,5 @@ namespace SlutprojektBackend.Models
     public class TotalStrengthStats : Stats
     {
         public double TotalWeightLifted { get; set; }
-
-
     }
 }

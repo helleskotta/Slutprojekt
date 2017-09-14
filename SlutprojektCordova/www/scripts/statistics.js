@@ -34,6 +34,28 @@ document.addEventListener("deviceready", function () {
                     });
             });
 
+            // Total km done
+            $("#totalkmdone").attr("data-count", result.statistics[4].stats.totalWeightLifted);
+            $('.counter').each(function () {
+                var $this = $(this),
+                    countTo = $this.attr('data-count');
+
+                $({ countNum: $this.text() }).animate({
+                    countNum: countTo
+                },
+                    {
+                        duration: 2000,
+                        easing: 'linear',
+                        step: function () {
+                            $this.text(Math.floor(this.countNum));
+                        },
+                        complete: function () {
+                            $this.text(this.countNum);
+                            //alert('finished');
+                        }
+                    });
+            });
+
             // Type of exercise chart
             var strengthVal = result.statistics[2].stats.data[0];
             var cardioVal = result.statistics[2].stats.data[1];
@@ -55,17 +77,20 @@ document.addEventListener("deviceready", function () {
                     }]
             };
 
-            var ctx = document.getElementById("percentPieChart").getContext("2d");
+            if (document.getElementById("percentPieChart")) {
+                var ctx = document.getElementById("percentPieChart").getContext("2d");
 
-            var pieChart = new Chart(ctx, {
-                type: 'pie',
-                data: pieData,
-                options: {
-                    legend: { position: "bottom" }
-                }
-            });
+                var pieChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: pieData,
+                    options: {
+                        legend: { position: "bottom" }
+                    }
+                });
+            }
 
             // Weight stats
+
             var labels = result.statistics[0].stats.dateData;
             var dataRight = result.statistics[0].stats.weightData;
 
@@ -85,47 +110,48 @@ document.addEventListener("deviceready", function () {
                 }]
             };
 
-            var context = document.getElementById('testChart').getContext('2d');
-            var chart = new Chart(context, {
-                type: 'line',
-                data: data,
-                options: {
-                    legend: { display: false },
-                    scales: {
-                        xAxes: [{
-                            type: 'time',
-                            time: {
-                                displayFormats: {
-                                    'millisecond': 'MMM DD',
-                                    'second': 'MMM DD',
-                                    'minute': 'MMM DD',
-                                    'hour': 'MMM DD',
-                                    'day': 'MMM DD',
-                                    'week': 'MMM DD',
-                                    'month': 'MMM DD',
-                                    'quarter': 'MMM DD',
-                                    'year': 'MMM DD',
+            if (document.getElementById('weightChart')) {
+                var context = document.getElementById('weightChart').getContext('2d');
+                var chart = new Chart(context, {
+                    type: 'line',
+                    data: data,
+                    options: {
+                        legend: { display: false },
+                        scales: {
+                            xAxes: [{
+                                type: 'time',
+                                time: {
+                                    displayFormats: {
+                                        'millisecond': 'MMM DD',
+                                        'second': 'MMM DD',
+                                        'minute': 'MMM DD',
+                                        'hour': 'MMM DD',
+                                        'day': 'MMM DD',
+                                        'week': 'MMM DD',
+                                        'month': 'MMM DD',
+                                        'quarter': 'MMM DD',
+                                        'year': 'MMM DD',
+                                    }
+                                },
+                                position: "bottom",
+                                ticks: {
+                                    fontFamily: "Open Sans",
                                 }
-                            },
-                            position: "bottom",
-                            ticks: {
-                                fontFamily: "Open Sans",
-                            }
-                        }],
-                        yAxes: [{
-                            position: "left",
-                            ticks: {
-                                fontFamily: "Open Sans",
-                                reverse: false,
-                                min: 0,
-                                //max: 160,
-                                fixedStepSize: 10
-                            },
-                        }],
-                    },
-                }
-            });
-
+                            }],
+                            yAxes: [{
+                                position: "left",
+                                ticks: {
+                                    fontFamily: "Open Sans",
+                                    reverse: false,
+                                    min: 0,
+                                    //max: 160,
+                                    fixedStepSize: 10
+                                },
+                            }],
+                        },
+                    }
+                });
+            }
         },
         error: function (result) {
             alert("Fel i statistik");

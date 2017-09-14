@@ -228,8 +228,25 @@ namespace SlutprojektBackend.Models.Entities
             //Cardio vs STR
             statsToReturn.Statistics.Add(GetCardioVsStr(userID));
 
+            // Total km 
+            statsToReturn.Statistics.Add(GetTotalDistanceDone(userID));
 
             return statsToReturn;
+        }
+
+        private StatisicsVM GetTotalDistanceDone(string userID)
+        {
+            var totalDistanceStat = WorkoutSession
+                .Where(t => t.UserId == userID && t.Type == "Cardio")
+                .Select(d => d.Distance)
+                .Sum();
+
+            StatisicsVM statToReturn = new StatisicsVM();
+            statToReturn.TypeOfWorkoutSession = "Cardio";
+
+            statToReturn.Stats = new TotalCardioDistansStat() { Distans = Convert.ToDouble(totalDistanceStat) };
+
+            return statToReturn;
         }
 
         private StatisicsVM GetCardioVsStr(string userID)
@@ -272,8 +289,6 @@ namespace SlutprojektBackend.Models.Entities
                     .Select(y => y.Set.Sum(z => z.Reps * z.UsedWeight)))
                         .Select(w => w.Sum())
                 .Sum();
-
-           
 
             StatisicsVM statToReturn = new StatisicsVM();
             statToReturn.TypeOfWorkoutSession = "Strength";

@@ -15,12 +15,12 @@ $("#hamburgermenu").hide();
 
 document.addEventListener("deviceready", function () {
 
-    $("input").focus(function () {
-        $("#footer").hide();
+    $("input[type=text], input[type=number]").focus(function () {
+        $("#footer").slideUp(1000);
     });
 
-    $("input").blur(function () {
-        $("#footer").show();
+    $("input[type=text], input[type=number]").blur(function () {
+        $("#footer").slideDown(1000);
     });
 
     // Sidemenu (hamburger)
@@ -37,7 +37,7 @@ document.addEventListener("deviceready", function () {
     $("#logout").click(function () {
         window.location = "index.html";
     });
-    
+
     // Klicka på gröna plusset
     $("#addbutton").click(function () {
         $("#addmenu2").toggle('slide', { direction: 'right' });
@@ -132,16 +132,24 @@ document.addEventListener("deviceready", function () {
 
 
     // Datepicker
-    $(".datepicker").datepicker({ dateFormat: 'yy-mm-dd', firstDay: 1 });
+    if (document.getElementById("addweightwrapper")) {
+        $(".datepicker").datepicker({ dateFormat: 'yy-mm-dd', firstDay: 1, maxDate: new Date() });
+    }
+    else {
+        $(".datepicker").datepicker({ dateFormat: 'yy-mm-dd', firstDay: 1 });
+    }
+
     $(".datepicker").datepicker('setDate', new Date());
     $(".datapicker").on("change", function () {
         var fromdate = $(this).val();
     });
 
+
     // Delete ongoing WO
     $("#deleteCurrent").click(function () {
         storage.removeItem("currentWO");
         alert("Current workout successfully deleted.")
+        location.reload();
     });
 });
 
