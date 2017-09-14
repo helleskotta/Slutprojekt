@@ -1,5 +1,5 @@
 ﻿var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-var days = ["", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 document.addEventListener("deviceready", function () {
 
@@ -12,13 +12,19 @@ document.addEventListener("deviceready", function () {
     var listviewfull = "";
 
     for (var i = allWorkoutSessions.length - 1; i >= 0; i--) {
+        var d = allWorkoutSessions[i].date;
         var displayDate = new Date(allWorkoutSessions[i].date).getDate() + " " + months[new Date(allWorkoutSessions[i].date).getMonth()];
 
-        var weekday = days[new Date(allWorkoutSessions[i].date).getDay()];
+        var weekday = days[new Date(d).getDay()];
 
         var today = new Date().getDate() + " " + months[new Date().getMonth()];
 
         var sessionName = allWorkoutSessions[i].sessionName;
+
+        if (allWorkoutSessions[i].sessionName === null) {
+            sessionName = "[Anonymous workout]";
+        }
+
         var icon = '<br /><br /><img align="right" style="width:30px; padding-top:30px; padding-right:15px;" src="';
         var duration = allWorkoutSessions[i].duration;
 
@@ -27,21 +33,29 @@ document.addEventListener("deviceready", function () {
         }
 
         else if (allWorkoutSessions[i].type === "Cardio") {
+
+            if (allWorkoutSessions[i].duration != null) {
+                sessionName += " " + duration + " min";
+            }
+
             icon += 'images/cardioicon.png" />';
-            sessionName += " " + duration + " min";
         }
 
         else {
+            if (allWorkoutSessions[i].duration != null) {
+                sessionName += " " + duration + " min";
+            }
             icon += 'images/othericon.png" />';
         }
 
-        listviewfull += '<div class="calExercise" data-idinarray=' + i + '><span>' + icon + weekday + '</span>';
+        listviewfull += '<div class="calExercise" data-idinarray=' + i + '>';
 
         if (displayDate === today) {
-            listviewfull += '<li style="border-left:2px solid green;">';
+            weekday = "today";
+            listviewfull += '<span>' + icon + weekday + '</span><li style="border-left:2px solid green;">';
         }
         else {
-            listviewfull += '<li>';
+            listviewfull += '<span>' + icon + weekday + '</span><li>';
         }
 
         listviewfull += '<span class="listdate">' + displayDate + '</span><span class="listcontent">' + sessionName + '</span></li></div>';
