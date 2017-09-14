@@ -21,26 +21,37 @@
     <img id="hamburgericon" src="images/hamburgericon.png" />
 
     <!-- WRAPPER -->
-    <div id="header">
+    <div id="wrapper">
+
+        <!-- HEADER -->
+        <div id="header">
             <h1>
                 <img src="images/logo-color.png" style="height:40px; float:left;" />
             </h1>
         </div>
         <h1 id="nameofProgram"></h1>
+
+        <!-- Run program -->
         <div id="runFull">
 
             <div id="fullprogram">
-                
+
             </div>
 
-            <input type="button" value="FINISH WORKOUT" id="addfinishedwo"/><br />
+            <input type="button" value="FINISH WORKOUT" id="addfinishedwo" /><br />
             <input style="background:white; color:#2DA130;" type="button" id="cancelWO" value="Cancel exercise" />
         </div>
     </div>
     <!-- wrapper end -->
 
-    <!------------- SETTINGS HAMBURGER MENU ------------->
+    <!-----------------------------------------------------------------------------------------------------------
+
+                                                SETTINGS MENU (HAMBURGER)
+
+    ------------------------------------------------------------------------------------------------------------->
+
     <div id="hamburgermenu">
+        <!-- Profile -->
         <!--<br /><br />
         <div id="profile">
             <img src="images/profilepics.png" align="left" />
@@ -48,19 +59,23 @@
             <h2 align="right">NAME</h2>
             <p>7 days streak</p>
         </div>-->
+
         <div id="sidemenu">
             <ul>
-                <li>Add program</li>
+                <li id="addProgramfromMenu">Add program</li>
                 <li>Profile settings</li>
                 <li><br /></li>
                 <li>About us</li>
-                <li>Contact us</li>
                 <li>Donate</li>
-                <li><b>Logout</b></li>
+                <li id="logout"><b>Logout</b></li>
             </ul>
         </div>
-    </div>
-    <!------------- end settings hamburger menu ------------->
+    </div> <!-- end of menu -->
+    <!-----------------------------------------------------------------------------------------------------------
+
+                                                FOOTER
+
+    ------------------------------------------------------------------------------------------------------------->
     <!-- FOOTER -->
     <div id="footer">
 
@@ -81,7 +96,12 @@
 
     </div>
     <!-- footer end -->
-    <!------------- SCRIPTS------------->
+    <!-----------------------------------------------------------------------------------------------------------
+
+                                                SCRIPTS
+
+    ------------------------------------------------------------------------------------------------------------->
+
     <script src="scripts/jquery-3.1.1.min.js"></script>
     <script src="scripts/jQueryUI.js"></script>
     <script type="text/javascript" src="cordova.js"></script>

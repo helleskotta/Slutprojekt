@@ -12,17 +12,26 @@
     <title>SlutprojektCordova</title>
 </head>
 <body>
+    <!-----------------------------------------------------------------------------------------------------------
+
+                                              MAIN CONTENT
+
+    ------------------------------------------------------------------------------------------------------------->
+    <!-- Top menu icon -->
     <img id="hamburgericon" src="images/hamburgericon.png" />
+
+    <!-- WRAPPER -->
     <div id="wrapper">
 
         <div id="firstmainpage">
-        <div id="header">
-            <h1>
-                <img src="images/logo-color.png" style="height:40px; margin:auto;" />
-            </h1>
-        </div>
-        <div id="date" style="text-transform:lowercase;">
-        </div>
+        <!-- HEADER -->
+            <div id="header">
+                <h1>
+                    <img src="images/logo-color.png" style="height:40px; margin:auto;" />
+                </h1>
+            </div>
+            <div id="date" style="text-transform:lowercase;">
+            </div>
 
             <!------------- YESTERDAY TODAY TOMORROW BOXES ------------->
             <div id="boxes">
@@ -55,16 +64,14 @@
 
             </div>
             <!------------- end boxes ------------->
-
-
             <!------------- RANDOM STATS MODULE ------------->
             <div class="module" id="unsavedWO">
                 <!-- Om det finns osparat pass i lokal storage -->
                 <h1>ONGOING</h1>
                 <h2 id="nameOfOngoing"></h2>
                 <p>You have started an unfinished workout. FINISH ITTTTT</p>
-                <input style="width:40%;" type="button" id="continueUnsavedWO" value="RUN" /> 
-                <input style="width:40%; background:#D52F2F;" type="button" class="deleteWO" value="DELETE" /> 
+                <input style="width:40%;" type="button" id="continueUnsavedWO" value="RUN" />
+                <input style="width:40%; background:#D52F2F;" type="button" class="deleteWO" value="DELETE" />
             </div>
             <!------------- end random stats -----------
 
@@ -77,11 +84,17 @@
             <!------------- end random stats ------------->
         </div>
 
-        </div>
+    </div>
     <!-- wrapper end -->
 
-    <!------------- ADD MENU ------------->
+    <!-----------------------------------------------------------------------------------------------------------
+
+                                                ADD
+
+    ------------------------------------------------------------------------------------------------------------->
+    <!-- ADD ON GREEN BUTTON MENU -->
     <div id="addbtnmenu">
+        <!-- Add favorites -->
         <!--<div id="addmenu">
             <ul>
                 <li><b>+</b> Add a favorite</li>
@@ -91,19 +104,25 @@
                 <li>My killer leg program</li>
             </ul>
         </div>-->
-
+        <!-- Add weight or workout -->
         <div id="addmenu2">
             <img src="images/weight.png" id="toaddweight" /> <img id="toaddwo" src="images/addwo.png" />
         </div>
 
+        <!-- The button -->
         <div id="addbutton">
             <img src="images/add40.png" />
         </div>
-    </div>
-    <!------------- end add menu ------------->
 
-    <!------------- SETTINGS HAMBURGER MENU ------------->
+    </div> <!-- end green button menu -->
+    <!-----------------------------------------------------------------------------------------------------------
+
+                                                SETTINGS MENU (HAMBURGER)
+
+    ------------------------------------------------------------------------------------------------------------->
+
     <div id="hamburgermenu">
+        <!-- Profile -->
         <!--<br /><br />
         <div id="profile">
             <img src="images/profilepics.png" align="left" />
@@ -111,20 +130,23 @@
             <h2 align="right">NAME</h2>
             <p>7 days streak</p>
         </div>-->
+
         <div id="sidemenu">
             <ul>
-                <li>Add program</li>
+                <li id="addProgramfromMenu">Add program</li>
                 <li>Profile settings</li>
                 <li><br /></li>
                 <li>About us</li>
-                <li>Contact us</li>
                 <li>Donate</li>
-                <li><b>Logout</b></li>
+                <li id="logout"><b>Logout</b></li>
             </ul>
         </div>
-    </div>
-    <!------------- end settings hamburger menu ------------->
+    </div> <!-- end of menu -->
+    <!-----------------------------------------------------------------------------------------------------------
 
+                                                FOOTER
+
+    ------------------------------------------------------------------------------------------------------------->
     <!-- FOOTER -->
     <div id="footer">
 
@@ -145,8 +167,12 @@
 
     </div>
     <!-- footer end -->
+    <!-----------------------------------------------------------------------------------------------------------
 
-    <!------------- SCRIPTS------------->
+                                                SCRIPTS
+
+    ------------------------------------------------------------------------------------------------------------->
+
     <script src="scripts/jquery-3.1.1.min.js"></script>
     <script src="scripts/jQueryUI.js"></script>
     <script type="text/javascript" src="cordova.js"></script>

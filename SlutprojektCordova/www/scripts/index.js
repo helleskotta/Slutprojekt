@@ -7,7 +7,6 @@ var currentDomain = azureDomain;
 $("#ui-datepicker-div").hide();
 $("#login").show();
 $("#register").hide();
-$("#welcome").hide();
 $("#addstats").hide();
 
 (function () {
@@ -41,21 +40,16 @@ $("#addstats").hide();
 $("#redirect").click(function () {
     $("#login").hide();
     $("#register").show();
-    $("#welcome").hide();
     $("#addstats").hide();
 });
-
-//$("#mystats").click(function () {
-//    $("#login").hide();
-//    $("#welcome").hide();
-//    $("#register").hide();
-//    $("#addstats").show();
-//});
 
 $("#main").click(function () {
     window.location = "main.html";
 });
 
+$("#forgotpassword").click(function () {
+    alert("Oops! This feature is not yet ready. We're sorry your memory is shit :)")
+});
 
 ///////////////////////////////////////////////////////////////// REGISTER
 $("#add").click(function () {
@@ -70,16 +64,17 @@ $("#add").click(function () {
             "ConfirmPassword": $("#confirmPassword").val()
         },
         success: function (result) {
-            alert("Register successful: " + result);
+            if (result === "Yes") {
+                alert("Register successful: " + result);
+                window.location = "main.html";
+            }
 
-            $("#login").hide();
-            $("#welcome").show();
-            $("#register").hide();
-            $("#addstats").hide();
+            else {
+                alert("Error at register");
+            }
         },
         error: function (result) {
-            alert("register error:" + result);
-            //.find("p").html(result.)
+            alert("Register error");
         }
     });
 
@@ -95,17 +90,16 @@ $("#loginbtn").click(function () {
             "UserName": $("#username").val(), /* Username or Email */
             "PassWord": $("#password").val()
         },
-
+        xhrFields: {
+            withCredentials: true
+        },
         success: function (result) {
-            alert("Login successful: " + result);
-
             if (result === "Logged in!") { // TODO: HÅRDKODAD STRÄNG!! ---------------------------- !
-
+                alert("Login successful: " + result);
                 window.location = "main.html";
-
             }
             else {
-                // TODO: SHOW ERROR MESSAGES --------------------------------------------------- !
+                alert("Login failed");
             }
         },
         error: function (result) {

@@ -12,16 +12,28 @@
     <title>SlutprojektCordova</title>
 </head>
 <body>
+    <!-----------------------------------------------------------------------------------------------------------
+
+                                              MAIN CONTENT
+
+    ------------------------------------------------------------------------------------------------------------->
+    <!-- Top menu icon -->
     <img id="hamburgericon" src="images/hamburgericon.png" />
+
+    <!-- WRAPPER -->
     <div id="wrapper">
+
+    <!-- HEADER -->
         <div id="header">
             <h1>
                 <img src="images/logo-color.png" style="height:40px; float:left;" />
             </h1>
         </div>
+
         <h1>Add new program</h1>
 
         <div id="addnew">
+
             <!-- TYPE OF EXERCISE BUTTONS -->
             <table id="icons" style="margin:auto;">
                 <tr>
@@ -29,20 +41,25 @@
 
                     <td id="cardiobtn"><img src="images/cardioicon.png" /><br />Cardio</td>
 
-                    <td id="otherbtn" ><img src="images/othericon.png" /><br />Other</td>
+                    <td id="otherbtn"><img src="images/othericon.png" /><br />Other</td>
                 </tr>
             </table>
             <br /><br />
+            <!-----------------------------------------------------------------------------------------------------------
 
-            <!-- STRENGTH VIEW -->
+                                                  STRENGTH VIEW
+
+            ------------------------------------------------------------------------------------------------------------->
+
             <div id="strengthprogram">
                 <form>
-                    <label>Favorite program / most recent program</label>
+                    <!-- Add favorite exercise -->
+                    <!--<label>Favorite program / most recent program</label>
                     <select id="latestorfavs" style="width:100%;">
                         <option value="" disabled selected>Choose an exercise</option>
                     </select>
 
-                    <br /><br />
+                    <br /><br />-->
 
                     <input id="programname" type="text" style="width:70%;" placeholder=" Program name" />
                     <input type="text" id="strDatePicker" class="datepicker" style="width:25%;" placeholder=" Date">
@@ -54,20 +71,23 @@
                             <select id="listOfExercise" style="width:70%;">
                                 <option value="" disabled selected>Choose an exercise</option>
                             </select>
-                            <input class="sets" style="width: 20%;" type="number"  placeholder=" Sets" />
+                            <input class="sets" style="width: 20%;" type="number" placeholder=" Sets" />
                             <input type="button" class="deletefield" value="x" />
                         </div>
                     </div>
                     <br />
-                        <img class="addanother" src="images/add40.png" style="text-align:left; float:left; width:20px; height:20px;" />
+                    <img class="addanother" src="images/add40.png" style="text-align:left; float:left; width:20px; height:20px;" />
                     <br /><br />
                     <input id="addwo" type="button" value="RUN PROGRAM" />
                 </form>
             </div>
             <!-- end strength -->
+            <!-----------------------------------------------------------------------------------------------------------
 
+                                                  CARDIO VIEW
 
-            <!-- CARDIO VIEW -->
+            ------------------------------------------------------------------------------------------------------------->
+
             <div id="cardioprogram">
                 <form>
                     <label>Type of exercise</label>
@@ -84,8 +104,12 @@
                 </form>
             </div>
             <!-- end cardio view -->
+            <!-----------------------------------------------------------------------------------------------------------
 
-            <!-- OTHER VIEW -->
+                                                  OTHER VIEW
+
+            ------------------------------------------------------------------------------------------------------------->
+
             <div id="otherprogram">
                 <form>
                     <input type="text" id="othername" placeholder=" Type of exercise" /><br /><br />
@@ -96,14 +120,18 @@
                     <br /><br />
                     <input type="button" value="SAVE EXERCISE" id="addother" />
                 </form>
-            </div>
-            <!-- end cardio view -->
-        </div>
-    </div>
-    <!-- wrapper end -->
-    
-    <!------------- SETTINGS HAMBURGER MENU ------------->
+            </div> <!-- end other view -->
+
+        </div> <!-- end addnew -->
+    </div> <!-- wrapper end -->
+    <!-----------------------------------------------------------------------------------------------------------
+
+                                                SETTINGS MENU (HAMBURGER)
+
+    ------------------------------------------------------------------------------------------------------------->
+
     <div id="hamburgermenu">
+        <!-- Profile -->
         <!--<br /><br />
         <div id="profile">
             <img src="images/profilepics.png" align="left" />
@@ -111,19 +139,23 @@
             <h2 align="right">NAME</h2>
             <p>7 days streak</p>
         </div>-->
+
         <div id="sidemenu">
             <ul>
-                <li>Add program</li>
+                <li id="addProgramfromMenu">Add program</li>
                 <li>Profile settings</li>
                 <li><br /></li>
                 <li>About us</li>
-                <li>Contact us</li>
                 <li>Donate</li>
-                <li><b>Logout</b></li>
+                <li id="logout"><b>Logout</b></li>
             </ul>
         </div>
-    </div>
-    <!------------- end settings hamburger menu ------------->
+    </div> <!-- end of menu -->
+    <!-----------------------------------------------------------------------------------------------------------
+
+                                                FOOTER
+
+    ------------------------------------------------------------------------------------------------------------->
     <!-- FOOTER -->
     <div id="footer">
 
@@ -144,7 +176,11 @@
 
     </div>
     <!-- footer end -->
+    <!-----------------------------------------------------------------------------------------------------------
 
+                                                SCRIPTS
+
+    ------------------------------------------------------------------------------------------------------------->
 
     <script src="scripts/jquery-3.1.1.min.js"></script>
     <script src="scripts/jQueryUI.js"></script>

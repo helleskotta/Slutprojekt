@@ -12,13 +12,22 @@
     <title>SlutprojektCordova</title>
 </head>
 <body>
-    <img id="hamburgericon" src="images/hamburgericon.png" />
-    <div id="wrapper">
-        <div id="header">
-            <h1>
-                <img src="images/logo-color.png" style="height:40px; margin:auto;" />
-            </h1>
-        </div>
+    <!-----------------------------------------------------------------------------------------------------------
+
+                                          MAIN CONTENT
+
+------------------------------------------------------------------------------------------------------------->
+<!-- Top menu icon -->
+<img id="hamburgericon" src="images/hamburgericon.png" />
+
+<!-- WRAPPER -->
+<div id="wrapper">
+
+    <!-- HEADER -->
+    <h1>
+        <img src="images/logo-color.png" style="height:40px; margin:auto;" />
+    </h1>
+</div>
         <div id="addweightwrapper">
             <h1>Add measurements</h1>
 
@@ -44,29 +53,14 @@
     </div>
     <!-- wrapper end -->
 
-    <!------------- ADD MENU ------------->
-    <div id="addbtnmenu">
-        <!--<div id="addmenu">
-            <ul>
-                <li><b>+</b> Add a favorite</li>
-                <li><b>+</b> Add a favorite</li>
-                <li><b>+</b> Add a favorite</li>
-                <li><b>+</b> Add a favorite</li>
-                <li>My killer leg program</li>
-            </ul>
-        </div>-->
+    <!-----------------------------------------------------------------------------------------------------------
 
-        <div id="addmenu2">
-            <img src="images/weight.png" id="toaddweight" /> <img id="toaddwo" src="images/addwo.png" />
-        </div>
+                                                SETTINGS MENU (HAMBURGER)
 
-        <div id="addbutton">
-            <img src="images/add40.png" />
-        </div>
-    </div>
-    <!------------- end add menu ------------->
-    <!------------- SETTINGS HAMBURGER MENU ------------->
+    ------------------------------------------------------------------------------------------------------------->
+
     <div id="hamburgermenu">
+        <!-- Profile -->
         <!--<br /><br />
         <div id="profile">
             <img src="images/profilepics.png" align="left" />
@@ -74,19 +68,23 @@
             <h2 align="right">NAME</h2>
             <p>7 days streak</p>
         </div>-->
+
         <div id="sidemenu">
             <ul>
-                <li>Add program</li>
+                <li id="addProgramfromMenu">Add program</li>
                 <li>Profile settings</li>
                 <li><br /></li>
                 <li>About us</li>
-                <li>Contact us</li>
                 <li>Donate</li>
-                <li><b>Logout</b></li>
+                <li id="logout"><b>Logout</b></li>
             </ul>
         </div>
-    </div>
-    <!------------- end settings hamburger menu ------------->
+    </div> <!-- end of menu -->
+    <!-----------------------------------------------------------------------------------------------------------
+
+                                                FOOTER
+
+    ------------------------------------------------------------------------------------------------------------->
     <!-- FOOTER -->
     <div id="footer">
 
@@ -107,7 +105,12 @@
 
     </div>
     <!-- footer end -->
-    <!------------- SCRIPTS------------->
+    <!-----------------------------------------------------------------------------------------------------------
+
+                                                SCRIPTS
+
+    ------------------------------------------------------------------------------------------------------------->
+
     <script src="scripts/jquery-3.1.1.min.js"></script>
     <script src="scripts/jQueryUI.js"></script>
     <script type="text/javascript" src="cordova.js"></script>

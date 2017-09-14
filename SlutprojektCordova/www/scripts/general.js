@@ -3,7 +3,7 @@ var localDomain = "http://localhost:49902";
 var azureDomain = "http://slutprojektbackend.azurewebsites.net";
 var currentDomain = azureDomain;
 
-$("#hamburgermenu").hide();
+$("#sidemenu").hide();
 $("#ui-datepicker-div").hide();
 $("#addmenu").hide();
 $("#addmenu2").hide();
@@ -11,15 +11,37 @@ $("#menuToggle").hide();
 $("#cardioprogram").hide();
 $("#otherprogram").hide();
 $("#hamburger").show();
+$("#hamburgermenu").hide();
 
 document.addEventListener("deviceready", function () {
+
+    $("input").focus(function () {
+        $("#footer").hide();
+    });
+
+    $("input").blur(function () {
+        $("#footer").show();
+    });
+
+    // Sidemenu (hamburger)
+    $("#hamburgericon").click(function () {
+        $("#hamburgermenu").show();
+        $("#sidemenu").slideToggle();
+        $("#wrapper").toggleClass("clickadd");
+    });
+
+    $("#addProgramfromMenu").click(function () {
+        window.location = "add.html";
+    });
+
+    $("#logout").click(function () {
+        window.location = "index.html";
+    });
     
     // Klicka på gröna plusset
     $("#addbutton").click(function () {
-        $("#addmenu").slideToggle("slow");
         $("#addmenu2").toggle('slide', { direction: 'right' });
         $("#wrapper").toggleClass("clickadd");
-        $("#hamburgermenu").hide();
     });
 
     // Klicka utanför gröna plusset
@@ -27,7 +49,7 @@ document.addEventListener("deviceready", function () {
         $("#wrapper").removeClass("clickadd");
         $("#addmenu").hide();
         $("#addmenu2").hide();
-        $("#hamburgermenu").hide();
+        $("#sidemenu").hide();
     });
 
     // Klicka på add work out
@@ -41,7 +63,7 @@ document.addEventListener("deviceready", function () {
                 success: function (result) {
                     var jsonString =
                         storage.setItem("UserExercises", JSON.stringify(result));
-                        window.location = "add.html";
+                    window.location = "add.html";
                 },
                 error: function (result) {
                     alert("Fel vid inhämtning av övningar");
@@ -82,14 +104,6 @@ document.addEventListener("deviceready", function () {
             }
         });
         // TODO: SPARA NER DATAN --------------------------------------------------------------------------- !
-    });
-
-    //////////////////////////////////////////////////////////////////// SETTINGS MENU
-    $("#hamburgericon").click(function () {
-        $("#wrapper").addClass("clickadd");
-        $("#addmenu").hide();
-        $("#addmenu2").hide();
-        $("#hamburgermenu").show();
     });
 
 

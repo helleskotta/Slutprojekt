@@ -1,10 +1,4 @@
 body {
-    /*-webkit-touch-callout: none;
-    -webkit-text-size-adjust: none;
-    -webkit-user-select: none;*/
-    background-image: linear-gradient(top, #C0C0C0 0%, #C0C0C0 51%);
-    background-image: -webkit-linear-gradient(top, #C0C0C0 0%, #E4E4E4 51%);
-    background-attachment: fixed;
     font-family: 'Open Sans';
     font-size: 12px;
     height: 100%;
@@ -436,22 +430,21 @@ select {
 #hamburgermenu {
     float: left;
     position: fixed;
-    top: 0;
+    top: 10%;
     left: 0;
     bottom: 10%;
     transition: all .5s linear;
-    background: #2DA130;
     width: 60%;
-    height: 100%;
-    filter: drop-shadow(3px 2px 5px #888);
+    height: 50%;
     border-radius: 2px;
-    opacity:1;
+    opacity: 1;
 }
 
     #hamburgermenu ul {
         background: white;
         margin-top: 10px;
         padding: 15px 0 10px 10px;
+        filter: drop-shadow(3px 2px 5px #888);
     }
 
     #hamburgermenu li {
@@ -464,6 +457,11 @@ select {
     margin-left: 20px;
     margin-top: 20px;
 }
+
+    #hamburgericon.extend {
+        width:40%;
+        height:24px;
+    }
 
 #profile {
     text-align: left;

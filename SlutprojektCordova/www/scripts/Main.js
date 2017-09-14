@@ -29,9 +29,11 @@ document.addEventListener("deviceready", function () {
     // Hämta alla användarens inlagda pass (workout sessions)
     $.ajax({
         url: currentDomain + "/Member/Index",
-        type: "get",
+        type: "GET",
+        xhrFields: {
+            withCredentials: true
+        },
         success: function (result) {
-            //console.log("Ok" + result);
             storage.setItem("WorkoutSessions", JSON.stringify(result));
         },
         error: function (result) {
@@ -43,33 +45,13 @@ document.addEventListener("deviceready", function () {
         window.location = "run.html";
     });
 
-    //// Hämta data från localstorage för 3 boxar
-    // var result = JSON.parse(storage.getItem("WorkoutSessions"));
-    //var temp = new Date();
-
-    //var newList = result.map(function (x) {
-    //    var newDate = new Date(x.date);
-
-    //    return {
-    //        "date": newDate,
-    //        "sessionName": x.sessionName,
-    //        "type": x.type,
-    //    }
-    //});
-
-    //var todayList = newList.filter(function (session) {
-    //    var year = temp.getFullYear() == session.date.getFullYear();
-    //    var date = temp.getDate() == session.date.getDate();
-    //    var month = temp.getMonth() == session.date.getMonth();
-
-    //    return year && date && month;
-    //});
-
-
     // Hämta data till 3 boxar
     $.ajax({
         url: currentDomain + "/member/main",
         type: "get",
+        xhrFields: {
+            withCredentials: true
+        },
         success: function (result) {
             console.log("Gick bra");
             var prevContent = "";
