@@ -3,7 +3,12 @@ var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc
 var days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 document.addEventListener("deviceready", function () {
-    $("#date").html(days[d.getDay()] + " " + d.getDate() + " " + months[d.getMonth()]);
+
+    var todaysDay = days[d.getDay() -1];
+    var todaysDate = d.getDate();
+    var todaysMonth = months[d.getMonth()];
+
+    $("#date").html(todaysDay + " " + todaysDate + " " + todaysMonth);
 
     var storedWO = JSON.parse(storage.getItem("currentWO"));
 
@@ -29,14 +34,14 @@ document.addEventListener("deviceready", function () {
     $("#statsicon").removeClass("selectedicon");
 
     // Välj random statistik
-    var randomBetween1and3 = Math.floor((Math.random() * 4));
+    var randomNumber = Math.floor((Math.random() * 4));
     var randomStats = [
         '<h2>Weight</h2><canvas width="95%" id="weightChart"></canvas>',
         '<h2>Total weight lifted</h2><div id="totalweightlifted" class="counter" data-count="0">0</div>',
         '<h2>Exercises</h2><canvas width="95%" id="percentPieChart"></canvas>',
-        '<div id="totalkmdone" class="counter" data-count="0">0</div>'
+        '<h2>Total distance done</h2><div id="totalkmdone" class="counter" data-count="0">0</div>'
     ];
-    var showstat = randomStats[randomBetween1and3];
+    var showstat = randomStats[randomNumber];
 
     $("#showARandomStat").html(showstat);
 
