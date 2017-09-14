@@ -38,9 +38,14 @@ document.addEventListener("deviceready", function () {
         window.location = "index.html";
     });
 
-    $("#donate").click(function () {
-        window.location = "donate.html";
+    $("#donateclick").click(function () {
+        alert("If you like this app, please consider donating to us :)\n\nSwish: \n0707748177");
     });
+
+    $("#aboutus").click(function () {
+        window.location = "about.html";
+    });
+
     
     // Klicka på gröna plusset
     $("#addbutton").click(function () {

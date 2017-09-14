@@ -65,8 +65,6 @@ document.addEventListener("deviceready", function () {
         storage.setItem("WOToRerun", JSON.stringify(currentWO));
         window.location = "add.html";
 
-
-
     });
 
     // Back to calendar view from viewing Cardio
