@@ -49,10 +49,8 @@ namespace SlutprojektBackend.Controllers
         public IActionResult Index()
         {
             //var userID = userManager.GetUserId(User); //Får in null, därför ajax går dåligt
-            
             var userID = GetUserID();
             return Json(dataManager.GetAllWorkoutsForUser(userID));
-            
         }
 
         private string GetUserID()
@@ -71,7 +69,6 @@ namespace SlutprojektBackend.Controllers
 
         public IActionResult Statistics()
         {
-
             var statsToReturn =dataManager.GetStatisticsForUser(GetUserID());
             return Json(statsToReturn);
         }
@@ -82,17 +79,15 @@ namespace SlutprojektBackend.Controllers
             var userID = userManager.GetUserId(HttpContext.User);
             newWorkout.Date = DateTime.Parse(newWorkout.Date.ToShortDateString());
             dataManager.AddWorkOutForUser(userID, newWorkout);
-            //Do stuff
 
             return Content("Workout saved successfully");
         }
 
-        [HttpPost] // TODO: FIXA!
+        [HttpPost] 
         public IActionResult SaveMeasurements(BodyMeasurmentsVM bodyMeasurments)
         {
             var userID = userManager.GetUserId(HttpContext.User);
             bodyMeasurments.Date = DateTime.Parse(bodyMeasurments.Date.ToShortDateString());
-            //userWeight.Date = DateTime.Now;
             dataManager.AddWeight(userID, bodyMeasurments);
 
             return Content("Weight saved successfully");
@@ -106,7 +101,6 @@ namespace SlutprojektBackend.Controllers
         public IActionResult UserExercises()
         {
             return Json(dataManager.GetExercises());
-
         }
 
         [HttpPost]
@@ -115,7 +109,6 @@ namespace SlutprojektBackend.Controllers
             var userID = userManager.GetUserId(HttpContext.User);
             WorkoutToEdit.Date = DateTime.Parse(WorkoutToEdit.Date.ToShortDateString());
             dataManager.EditWorkOutForUser(userID, WorkoutToEdit);
-            //Do stuff
 
             return Content("Workout saved successfully");
         }
