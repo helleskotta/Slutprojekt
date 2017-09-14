@@ -231,7 +231,16 @@ namespace SlutprojektBackend.Models.Entities
             // Total km 
             statsToReturn.Statistics.Add(GetTotalDistanceDone(userID));
 
+            //Favorit övningar styrka
+            //statsToReturn.Statistics.Add(GetMostExecutedExercises(userID));
+
+
             return statsToReturn;
+        }
+
+        private StatisicsVM GetMostExecutedExercises(string userID)
+        {
+            throw new NotImplementedException();
         }
 
         private StatisicsVM GetTotalDistanceDone(string userID)

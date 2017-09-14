@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace SlutprojektBackend.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class MemberController : Controller
     {
         DataManager dataManager;
@@ -57,13 +57,15 @@ namespace SlutprojektBackend.Controllers
 
         private string GetUserID()
         {
-            if (HttpContext.Session.GetString("UserID")!=null)
+            if (HttpContext.Session.GetString("UserName")!=null)
             {
-                return HttpContext.Session.GetString("UserID");
+                string userName = HttpContext.Session.GetString("UserName");
+                var userID =userManager.Users.First(x => x.UserName == userName).Id;
+                return userID;
             }
             else
             {
-                return userManager.GetUserId(HttpContext.User);
+                return "No";
             }
         }
 

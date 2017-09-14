@@ -93,7 +93,7 @@ $("#loginbtn").click(function () {
         xhrFields: {
             withCredentials: true
         },
-        success: function (result) {
+        success: function (result,text,xhr) {
             if (result === "Logged in!") { // TODO: HÅRDKODAD STRÄNG!! ---------------------------- !
                 alert("Login successful: " + result);
                 window.location = "main.html";
