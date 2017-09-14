@@ -55,7 +55,18 @@ document.addEventListener("deviceready", function () {
 
     // Rerun
     $("#rerunbtn").click(function () {
-        // TODO: DUPLICERA 
+
+        for (var i = 0; i < currentWO.exercises.length; i++) {
+            for (var j = 0; j < currentWO.exercises[i].sets.length; j++) {
+                currentWO.exercises[i].sets[j].weight = 0;
+                currentWO.exercises[i].sets[j].reps = 0;
+            }
+        }
+        storage.setItem("WOToRerun", JSON.stringify(currentWO));
+        window.location = "add.html";
+
+
+
     });
 
     // Back to calendar view from viewing Cardio
