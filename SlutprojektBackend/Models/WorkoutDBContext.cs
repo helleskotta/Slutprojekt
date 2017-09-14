@@ -234,7 +234,25 @@ namespace SlutprojektBackend.Models.Entities
             // Populäraste styrketräningen 
             statsToReturn.Statistics.Add(GetPopularStrength(userID));
 
+            // Populäraste cardion 
+            statsToReturn.Statistics.Add(GetPopularCardio(userID));
+
             return statsToReturn;
+        }
+
+        private StatisicsVM GetPopularCardio(string userID)
+        {
+            var popularCardio = UserExercises
+                .Where(t => t.UserId == userID && t.Type == "Cardio")
+                .Select(d => d.Name)
+                .Count();
+
+            StatisicsVM statToReturn = new StatisicsVM();
+            statToReturn.TypeOfWorkoutSession = "Cardio";
+
+            statToReturn.Stats = new MostPopularCardio() { Name = popularCardio.ToString() };
+
+            return statToReturn;
         }
 
         private StatisicsVM GetPopularStrength(string userID)
