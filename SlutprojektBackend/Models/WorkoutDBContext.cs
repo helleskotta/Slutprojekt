@@ -18,7 +18,7 @@ namespace SlutprojektBackend.Models.Entities
 
         }
         //Add a workoutsession
-        public void AddWorkoutSessionStrength(string userID, WorkoutSessionVM workoutSessionVM) //Bool return?
+        public void AddWorkoutSessionStrength(string userID, WorkoutSessionVM workoutSessionVM)
         {
             var session = new WorkoutSession
             {
@@ -30,7 +30,6 @@ namespace SlutprojektBackend.Models.Entities
                 UserId = userID,
                 SessionName = workoutSessionVM.SessionName,
             };
-
 
             foreach (var exerciseVM in workoutSessionVM.Exercises)
             {
@@ -51,77 +50,33 @@ namespace SlutprojektBackend.Models.Entities
         {
             MainVM mainVMToReturn = new MainVM();
 
-            //// Random statistik - lista? Välj ut i DataManager?
+            // Statistik för Main
             mainVMToReturn.Statistics = GetStatisticsForMain(userID);
 
-            //Hämtar #Goals
             // mainVMToReturn.Goals = GetGoalsForMain(userID);
 
-            // 3 dagar i boxar
-            mainVMToReturn.Calendar = GetCalendarForMain(userID);
-
+            //mainVMToReturn.Favorites = GetFavoritesForMain(userID);
             ////Hämtar favorit pass för användare till add menyn
-            mainVMToReturn.Favorites = GetFavoritesForMain(userID);
 
             return mainVMToReturn;
         }
 
-        private List<string> GetFavoritesForMain(string userID)
-        {
-            return UserFavorites.Where(c => c.UserId == userID).OrderBy(o => o.Id).Select(f => f.Favorite).ToList();
-        }
+        //private List<string> GetFavoritesForMain(string userID)
+        //{
+        //    return UserFavorites.Where(c => c.UserId == userID).OrderBy(o => o.Id).Select(f => f.Favorite).ToList();
+        //}
 
+        //internal void AddUserFavorite(string userID, string favoriteToAdd)
+        //{
+        //    UserFavorites.Add(new UserFavorites() { UserId = userID, Favorite = favoriteToAdd });
+        //    SaveChanges();
+        //}
 
-        //Ska ej användas
-        private List<CalendarMainVM> GetCalendarForMain(string userID)
-        {
-            var listToReturn = new List<CalendarMainVM>();
-            var firstListitem = WorkoutSession
-            .Where(i => i.UserId == userID)
-            .Select(c => new CalendarMainVM()
-            {
-                Date = c.Date,
-                SessionName = c.SessionName,
-                TypeOfWorkoutSession = c.Type
-            })
-            .Where(d => (d.Date.DayOfYear < DateTime.Now.DayOfYear) && (d.Date.Year <= DateTime.Now.Year))
-            .OrderByDescending(c => c.Date)
-            .FirstOrDefault();
-
-            var todayListitem = WorkoutSession
-            .Where(i => i.UserId == userID)
-            .Select(c => new CalendarMainVM()
-            {
-                Date = c.Date,
-                SessionName = c.SessionName,
-                TypeOfWorkoutSession = c.Type
-            })
-            .Where(d => d.Date.Day == DateTime.Now.Day && d.Date.Month==DateTime.Now.Month && d.Date.Year == DateTime.Now.Year)
-            .FirstOrDefault();
-
-            var lastListitem = WorkoutSession
-            .Where(i => i.UserId == userID)
-            .Select(c => new CalendarMainVM()
-            {
-                Date = c.Date,
-                SessionName = c.SessionName,
-                TypeOfWorkoutSession = c.Type
-            })
-            .OrderBy(c => c.Date)
-            .Where(d => d.Date.Day > DateTime.Now.Day)
-            .FirstOrDefault();
-
-            listToReturn.Add(firstListitem);
-            listToReturn.Add(todayListitem);
-            listToReturn.Add(lastListitem);
-            return listToReturn;
-        }
-
-        private List<GoalVM> GetGoalsForMain(string userID)
-        {
-            //return Goal.Where(u => u.UserId == userID);
-            return null;
-        }
+        //private List<GoalVM> GetGoalsForMain(string userID)
+        //{
+        //    //return Goal.Where(u => u.UserId == userID);
+        //    return null;
+        //}
 
         internal void AddWeightMeasurment(string userID, BodyMeasurmentsVM bodyMeasurments)
         {
@@ -205,12 +160,6 @@ namespace SlutprojektBackend.Models.Entities
                 .ToList();
 
             return calandarList;
-        }
-
-        internal void AddUserFavorite(string userID, string favoriteToAdd)
-        {
-            UserFavorites.Add(new UserFavorites() { UserId = userID, Favorite = favoriteToAdd });
-            SaveChanges();
         }
 
         public WrapperStatisticsVM GetAllStatistics(string userID)
@@ -412,7 +361,7 @@ namespace SlutprojektBackend.Models.Entities
             var oldWorkoutSession = WorkoutSession
                 .Include(z=>z.Exercise)
                 .ThenInclude(y=>y.Set)
-                .FirstOrDefault(x => x.SessionName == workoutToEdit.SessionName && x.UserId == userID && x.Date == workoutToEdit.Date); //== session;
+                .FirstOrDefault(x => x.SessionName == workoutToEdit.SessionName && x.UserId == userID && x.Date == workoutToEdit.Date); 
 
             foreach (var exercise in oldWorkoutSession.Exercise)
             {
@@ -431,8 +380,6 @@ namespace SlutprojektBackend.Models.Entities
 
             WorkoutSession.Add(session);
             SaveChanges();
-            
-             
         }
 
         internal void DeleteWorkout(string userID, WorkoutSessionVM workoutToDelete)
