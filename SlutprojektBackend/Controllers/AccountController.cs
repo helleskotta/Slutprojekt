@@ -37,7 +37,7 @@ namespace SlutprojektBackend.Controllers
         public async Task<IActionResult> Register(RegisterVM viewModel)
         {
             if (!ModelState.IsValid)
-                return Content("no");//new IdentityResult {Succeeded=false};
+                return Content("No");//new IdentityResult {Succeeded=false};
 
             var result = await userManager.CreateAsync(new IdentityUser(viewModel.UserName), (viewModel.Password));
 
@@ -45,13 +45,13 @@ namespace SlutprojektBackend.Controllers
             {
                 ModelState.AddModelError("Password", result.Errors.First().Description);
                 //return result;
-                return Content("no");
+                return Content("No");
             }
             var r = await signInManager.PasswordSignInAsync(viewModel.UserName, viewModel.Password, true, false);
 
             if (!r.Succeeded)
             {
-                return Content("no");
+                return Content("No");
             }
             else
             {
@@ -76,7 +76,7 @@ namespace SlutprojektBackend.Controllers
             var result = await signInManager.PasswordSignInAsync(model.UserName, model.PassWord, true, false);
             if (!result.Succeeded)
             {
-                return Content("no");
+                return Content("No");
             }
             else
             {
