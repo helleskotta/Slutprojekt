@@ -114,7 +114,7 @@ document.addEventListener("deviceready", function () {
             }
 
             else {
-                prevContent = '<i>You have not logged any previous workout.Click to add a workout session.<br /><br /> <font size="20px">+</font></i>';
+                prevContent = '<i>You have not logged any previous workout. Click to add a workout session.</i><br /><br /> <font size="20px">+</font>';
 
                 $("#box1").click(function () {
                     window.location = "add.html";
@@ -146,7 +146,7 @@ document.addEventListener("deviceready", function () {
             }
 
             else {
-                todayContent = '<i>You have no workout planned today. Click to add a workout session.<br /><br /><font size="20px">+</font></i>';
+                todayContent = '<i>You have no workout planned today. Click to add a workout session.</i><br /><br /><font size="20px">+</font>';
 
                 $("#box2").click(function () {
                     window.location = "add.html";
@@ -183,7 +183,7 @@ document.addEventListener("deviceready", function () {
                 //});
             }
             else {
-                nextContent = '<i>You have no upcoming workout planned. Click to add a workout session.<br /><br /><font size="20px">+</font></i>';
+                nextContent = '<i>You have no upcoming workout planned. Click to add a workout session.</i><br /><br /><font size="20px">+</font>';
 
                 $("#box3").click(function () {
                     window.location = "add.html";

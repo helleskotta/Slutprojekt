@@ -94,7 +94,7 @@ document.addEventListener("deviceready", function () {
         $("#programname").val(WOToRerun.sessionName);
         for (var i = 0; i < WOToRerun.exercises.length; i++) {
 
-            appendString += '<div class="oneexercise"> <select id="listOfExercise" style="width:70%;"> <option value="" disabled selected>' + WOToRerun.exercises[i].name + '</option>';
+            appendString += '<div class="oneexercise"> <select id="listOfExercise" style="width:70%;"> <option>' + WOToRerun.exercises[i].name + '</option>';
 
             var strOptions2 = "";
             var exercises2 = JSON.parse(storage.getItem("UserExercises"));
