@@ -39,7 +39,7 @@ document.addEventListener("deviceready", function () {
     });
 
     $("#donateclick").click(function () {
-        alert("If you like this app, please consider donating to us :)\n\nSwish: \n0707748177");
+        alert("If you like this app, please consider donating to us :)\n\nSwish: \n0707748177 \n0736407799");
     });
 
     $("#aboutus").click(function () {
